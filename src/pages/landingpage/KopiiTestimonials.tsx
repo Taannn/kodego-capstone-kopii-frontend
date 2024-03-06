@@ -2,19 +2,19 @@ const testimonials = [
   {
     name: "Sarah Thompson",
     role: "Freelance Writer",
-    avatarSrc: "https://kopiiiiiimg.netlify.app/assets/images/testimonies-avatar-1.jpg",
+    avatar_src: "https://kopiiiiiimg.netlify.app/assets/images/testimonies-avatar-1.jpg",
     text: "Kopii has become my go-to platform for sourcing inspiration and fueling my creativity. The diverse range of coffee blends and the seamless ordering process make it a delightful experience. Kopii's commitment to supporting local businesses is something I truly appreciate.",
   },
   {
     name: "Alex Rodriguez",
     role: "Graphic Designer",
-    avatarSrc: "https://kopiiiiiimg.netlify.app/assets/images/testimonies-avatar-2.jpg",
+    avatar_src: "https://kopiiiiiimg.netlify.app/assets/images/testimonies-avatar-2.jpg",
     text: "As a designer, I'm drawn to aesthetics, and Kopii nails it! From the visually pleasing interface to the unique coffee brands available, it's a perfect blend of style and substance. Kopii has added a daily dose of inspiration to my work routine.",
   },
   {
     name: "David Chang",
     role: "Small Business Owner (Local Cafe)",
-    avatarSrc: "https://kopiiiiiimg.netlify.app/assets/images/testimonies-avatar-3.jpg",
+    avatar_src: "https://kopiiiiiimg.netlify.app/assets/images/testimonies-avatar-3.jpg",
     text: "Kopii has been a game-changer for my local cafe. The exposure we gained through their platform significantly boosted our sales. The inventory management tools and real-time analytics for shop owners are incredibly useful. Kopii is more than just a marketplace; it's a lifeline for local businesses.",
   },
 ];
@@ -38,7 +38,7 @@ const KopiiTestimonials = () => {
                       <div className="card-body shadow card-bg">
                         <div className="avatar d-flex flex-row gap-3">
                           <div className="avatar-img">
-                            <img className="img-fluid rounded-5" src={testimonial.avatarSrc} alt="" />
+                            <img className="img-fluid rounded-5" src={testimonial.avatar_src} alt="" />
                           </div>
                           <div className="avatar-name">
                             <h5 className="mb-0">{testimonial.name}</h5>

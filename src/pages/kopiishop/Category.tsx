@@ -11,8 +11,8 @@ const Category = () => {
     <div className="">
       <div className="container">
         <div className="row ff-main py-1 ">
-          {categories.map(c => (
-            <button className="btn rounded-0 text-light btn-primary col-3">
+          {categories.map((c, i) => (
+            <button key={i} className="btn rounded-0 text-light btn-primary col-3">
               {c.category}
             </button>
           ))}

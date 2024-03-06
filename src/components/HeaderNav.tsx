@@ -116,38 +116,41 @@ const HeaderNav = () => {
             <div className="offcanvas-body">
               <ul className="navbar-nav nav-underline ff-main fs-6 justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item">
-                  <a
+                  <Link
+                    to="/"
                     className={`nav-link ${active === 'Home' ? 'active' : ''}`}
                     onClick={() => handleActiveLink('Home')}
-                    href="#"
                     aria-current="page"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <Link
+                    to="/kopiishop"
                     className={`nav-link ${active === 'Shop' ? 'active' : ''}`}
                     onClick={() => handleActiveLink('Shop')}
                   >
                     Kopii Shop
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <Link
+                    to="/kopiistop"
                     className={`nav-link ${active === 'KopiiStop' ? 'active' : ''}`}
                     onClick={() => handleActiveLink('KopiiStop')}
                   >
                     Kopii Stop
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <Link
+                    to="/signup"
                     id="login"
                     className="btn btn-outline-light overflow-hidden hvr-bounce-to-top btn-sm bg- fw-medium text-info pt-1"
                   >
                     Login/Signup
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
