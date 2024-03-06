@@ -1,0 +1,23 @@
+.full-dimension {
+  height: 100vh;
+}
+.half-dimension {
+  height: 50vh;
+  background-image: url(../images/kopii-stop-img-2.jpg);
+  background-size: cover;
+}
+.custom-width {
+  // max-width: 700px;
+  width: 800px;
+  @media (max-width: 576px) {
+      width: 300px;
+  }
+}
+// grid
+.gridbox {
+  display: grid;
+}
+.flexbox-sb {
+  display: flex;
+  justify-content: space-between;
+}

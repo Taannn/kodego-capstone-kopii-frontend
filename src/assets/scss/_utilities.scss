@@ -1,0 +1,84 @@
+// box shadows
+.bs-primary {
+  box-shadow: inset 6px 6px 12px #3c2417,
+              inset -6px -6px 12px #583423;
+}
+.bs-secondary {
+  box-shadow: inset 6px 6px 12px #8f5d33,
+              inset -6px -6px 12px #d3894b;
+}
+.bs-success {
+  box-shadow: inset 6px 6px 12px #536f50,
+              inset -6px -6px 12px #7ba376;
+}
+.bs-info {
+  box-shadow: inset 6px 6px 12px #ad9381,
+              inset -6px -6px 12px #fdd7bd;
+}
+.bs-warning {
+  box-shadow: inset 6px 6px 12px #85332d,
+              inset -6px -6px 12px #c34b41;
+}
+.bs-danger {
+  box-shadow: inset 6px 6px 12px #231613,
+              inset -6px -6px 12px #33201b;
+}
+.bs-light {
+  box-shadow: inset 6px 6px 12px #c9c6be,
+              inset -6px -6px 12px #ffffff;
+}
+.bs-dark {
+  box-shadow: inset 6px 6px 12px #290e10,
+              inset -6px -6px 12px #3c1418;
+}
+// spacing
+.py-6 {
+  padding: 6rem 0 6rem;
+}
+.pt-6 {
+  padding-top: 6rem;
+}
+.p-6 {
+  padding: 6rem;
+}
+.py-10 {
+  padding: 10rem 0 10rem;
+}
+.mb-20 {
+  margin-bottom: 20rem;
+}
+.mt-6 {
+  margin-top: 10rem !important;
+}
+@media (max-width: 768px) {
+  .mt-6 {
+      margin-top: 2rem !important;
+  }
+}
+// alignment
+.h-align {
+  margin-inline: auto;
+}
+// extra colors
+.text-sage {
+  color: $sage;
+}
+.bg-sage {
+  background-color: $sage;
+}
+// custom styles
+.bg-opaque {
+  background-color: rgba($color: #000000, $alpha: 0.5);
+}
+.op-mid {
+  opacity: 0.5;
+}
+.z-higher {
+  z-index: 120;
+}
+.z-lower {
+  z-index: 86;
+}
+.z-much-lower {
+  z-index: 32;
+}
