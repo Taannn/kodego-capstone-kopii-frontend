@@ -6,7 +6,7 @@ const SearchBarCart = () => {
         <div className="d-flex ms-lg-auto">
           <div className="d-flex input-group" role="search">
             <button
-              className="btn btn-outline-info me-1" type="submit">
+              className="btn btn-danger me-1" type="submit">
                 <i className="fa-solid fa-magnifying-glass text-sage py-2 px-3">
                 </i>
             </button>

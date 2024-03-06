@@ -1,21 +1,21 @@
+const categories = [
+  { category: 'Mugs' },
+  { category: 'Coffee' },
+  { category: 'Teacups' },
+  { category: 'Merchandise' },
+]
+
 
 const Category = () => {
   return (
     <div className="">
       <div className="container">
         <div className="row ff-main py-1 ">
-          <button className="btn rounded-0 text-light btn-primary col-3">
-            Mugs
-          </button>
-          <button className="btn rounded-0 text-light btn-primary col-3">
-            Coffee
-          </button>
-          <button className="btn rounded-0 text-light btn-primary col-3">
-            Teacups
-          </button>
-          <button className="btn rounded-0 text-light btn-primary col-3">
-            Merchandise
-          </button>
+          {categories.map(c => (
+            <button className="btn rounded-0 text-light btn-primary col-3">
+              {c.category}
+            </button>
+          ))}
         </div>
       </div>
     </div>

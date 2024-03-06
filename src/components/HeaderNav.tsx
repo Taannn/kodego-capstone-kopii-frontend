@@ -10,7 +10,7 @@ const HeaderNav = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark d-none d-lg-block z-lower bg-primary">
+      <nav className="navbar navbar-expand-lg navbar-dark fixed-top d-none d-lg-block z-lower bg-primary">
         <div className="container">
           <a className="navbar-brand hvr-wobble-horizontal" href="/">
             <img
