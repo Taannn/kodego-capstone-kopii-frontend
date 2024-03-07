@@ -1,7 +1,12 @@
+import Categories from "./Categories"
+import Hero from "./HeroHeader"
 
 const KopiiStop = () => {
   return (
-    <div>KopiiStop</div>
+    <>
+      <Hero />
+      <Categories />
+    </>
   )
 }
 

@@ -13,16 +13,16 @@ const FooterNav = () => {
               <hr className="w-100 clearfix d-md-none" />
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h6 className="text-uppercase mb-4 font-weight-bold">Navigation</h6>
-                <p><a className="text-white text-decoration-none" href="#home">Home</a></p>
-                <p><a className="text-white text-decoration-none" href="#about_us">About Us</a></p>
-                <p><a className="text-white text-decoration-none" href="#reviews">Reviews</a></p>
+                <p><a className="text-white text-decoration-none">Home</a></p>
+                <p><a className="text-white text-decoration-none">About Us</a></p>
+                <p><a className="text-white text-decoration-none">Reviews</a></p>
               </div>
               <hr className="w-100 clearfix d-md-none" />
               <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h6 className="text-uppercase mb-4 font-weight-bold">Shop Now</h6>
-                <p><a className="text-white text-decoration-none" href="pages/kopii-shop.html">Kopii Shop</a></p>
-                <p><a className="text-white text-decoration-none" href="pages/kopii-stop.html">Kopii Stop</a></p>
-                <p><a className="text-white text-decoration-none" href="pages/contact-us.html">Talk to Us</a></p>
+                <p><a className="text-white text-decoration-none">Kopii Shop</a></p>
+                <p><a className="text-white text-decoration-none">Kopii Stop</a></p>
+                <p><a className="text-white text-decoration-none">Talk to Us</a></p>
               </div>
               <hr className="w-100 clearfix d-md-none" />
               <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
