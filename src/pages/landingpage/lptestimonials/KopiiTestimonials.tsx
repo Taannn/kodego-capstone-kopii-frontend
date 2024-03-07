@@ -1,23 +1,3 @@
-// const testimonials = [
-//   {
-//     name: "Sarah Thompson",
-//     role: "Freelance Writer",
-//     avatar_src: "https://kopiiiiiimg.netlify.app/assets/images/testimonies-avatar-1.jpg",
-//     text: "Kopii has become my go-to platform for sourcing inspiration and fueling my creativity. The diverse range of coffee blends and the seamless ordering process make it a delightful experience. Kopii's commitment to supporting local businesses is something I truly appreciate.",
-//   },
-//   {
-//     name: "Alex Rodriguez",
-//     role: "Graphic Designer",
-//     avatar_src: "https://kopiiiiiimg.netlify.app/assets/images/testimonies-avatar-2.jpg",
-//     text: "As a designer, I'm drawn to aesthetics, and Kopii nails it! From the visually pleasing interface to the unique coffee brands available, it's a perfect blend of style and substance. Kopii has added a daily dose of inspiration to my work routine.",
-//   },
-//   {
-//     name: "David Chang",
-//     role: "Small Business Owner (Local Cafe)",
-//     avatar_src: "https://kopiiiiiimg.netlify.app/assets/images/testimonies-avatar-3.jpg",
-//     text: "Kopii has been a game-changer for my local cafe. The exposure we gained through their platform significantly boosted our sales. The inventory management tools and real-time analytics for shop owners are incredibly useful. Kopii is more than just a marketplace; it's a lifeline for local businesses.",
-//   },
-// ];
 import { KopiiTestimonialsProps } from "../LandingPageProps";
 
 const KopiiTestimonials: React.FC<KopiiTestimonialsProps> = ({ landingTestimonials }) => {

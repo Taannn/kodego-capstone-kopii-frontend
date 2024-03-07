@@ -72,3 +72,17 @@ export type LandingTestimonialsInitState = {
 export type KopiiTestimonialsProps = {
   landingTestimonials: LandingTestimonialsProps[];
 };
+
+// types for lpdiscover
+export type LandingDiscoverProps = {
+  title: string;
+  img1: string;
+  im2: string;
+}
+export type LandingDiscoverInitState = {
+  info: LandingDiscoverProps[];
+  error: string;
+}
+export type KopiiDiscoverProps = {
+  landingDiscover: LandingDiscoverProps[];
+};

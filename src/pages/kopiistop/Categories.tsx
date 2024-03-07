@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface CardData {
   id: number;
   imageUrl: string;
@@ -67,17 +69,24 @@ const Categories: React.FC = () => {
         </div>
         <div className="row mt-3 mb-5 gy-3">
           {cardData.map((card) => (
-            <div className="col-3" key={card.id}>
-              <a href={card.categoryLink} className="text-decoration-none">
+            <div className="col-md-3 col-6" key={card.id}>
+              <Link to={card.categoryLink} className="text-decoration-none">
                 <div className="card rounded overflow-hidden">
                   <div className="category">
                     <img src={card.imageUrl} className="img-fluid" alt="" />
                   </div>
-                  <div className="card-body">
-                    <div className="card-title text-primary ff-main h2">{card.categoryName}</div>
+                  <div className="card-body px-3 pt-3 pb-0">
+                    <div className="card-title text-primary ff-main h6 m-0">{card.categoryName}</div>
+                      <div className="pricing d-flex w-100 ff-main gap-1 align-items-center justify-content-between">
+                        <p className="text-bold fs-5 text-dark">₱ 150.00</p>
+                        <div className="rating d-flex">
+                          <i className="fa-solid fa-star pt-1 me-1" style={{ color: 'yellow', fontSize: '1rem'}}></i>
+                          <p>4.8</p>
+                        </div>
+                      </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </div>

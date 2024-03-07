@@ -6,16 +6,22 @@ import landingAboutListReducer from '../pages/landingpage/lpabout/landingAboutLi
 import landingStopIntroReducer from '../pages/landingpage/lpstopintro/landingStopIntroSlice'
 import landingTestimonialsReducer from '../pages/landingpage/lptestimonials/landingTestimonialsSlice'
 import loadingShopReducer from '../pages/kopiishop/loadingSliceShop'
+import shopCategoryReducer from '../pages/kopiishop/shopcategory/shopCategorySlice'
+import shopCarouselReducer from '../pages/kopiishop/shopcarousel/shopCarouselSlice'
+import landingDiscoverReducer from '../pages/landingpage/lpdiscover/landingDiscoverSlice'
 
 const store = configureStore({
   reducer: {
     loadingLanding: loadingLandingReducer,
-    loadingshop: loadingShopReducer,
+    loadingShop: loadingShopReducer,
     lphero: landingHeroReducer,
     lpaboutData: landingAboutDataReducer,
     lpaboutList: landingAboutListReducer,
     lpstopIntro: landingStopIntroReducer,
     lpTestimonials: landingTestimonialsReducer,
+    shopcategory: shopCategoryReducer,
+    shopcarousel: shopCarouselReducer,
+    lpdiscover: landingDiscoverReducer,
   },
 
 })

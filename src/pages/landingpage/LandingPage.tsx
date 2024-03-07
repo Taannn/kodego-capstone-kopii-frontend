@@ -11,6 +11,8 @@ import KopiiStopFeatured from './lpstopintro/KopiiStopFeatured'
 import KopiiTestimonials from './lptestimonials/KopiiTestimonials'
 import KopiiSubscription from './lpsubscription/KopiiSubscription'
 import { fetchLandingTestimonials } from './lptestimonials/landingTestimonialsSlice'
+import { fetchLandingDiscover } from './lpdiscover/landingDiscoverSlice'
+import KopiiDiscover from './lpdiscover/KopiiDiscover'
 
 const LandingPage = () => {
   const loading = useAppSelector((state) => state.loadingLanding.isLoadingLanding)
@@ -19,6 +21,7 @@ const LandingPage = () => {
   const landingAboutList = useAppSelector((state) => state.lpaboutList)
   const landingStopIntro = useAppSelector((state) => state.lpstopIntro)
   const landingTestimonials = useAppSelector((state) => state.lpTestimonials)
+  const landingDiscover = useAppSelector((state) => state.lpdiscover)
 
   const dispatch = useAppDispatch()
   useEffect(() => {
@@ -27,25 +30,28 @@ const LandingPage = () => {
     dispatch(fetchLandingAboutList())
     dispatch(fetchLandingStopIntro())
     dispatch(fetchLandingTestimonials())
+    dispatch(fetchLandingDiscover())
+
     return () => {
       dispatch(setLoadingLanding(false))
     }
   }, [dispatch])
 
   return (
-    <div>
+    <>
       {loading && <div id='preloader'></div>}
       {!loading && landingHero.error ?<div>Error: {landingHero.error}</div> : null }
       {!loading && landingHero.info.length ? (
         <div>
           <KopiiHero landingHeroProp={landingHero.info} />
+          <KopiiDiscover landingDiscover={landingDiscover.info} />
           <KopiiAbout landingAboutData={landingAboutData.info} landingAboutList={landingAboutList.info} />
           <KopiiStopFeatured landingStopIintro={landingStopIntro.info} />
           <KopiiTestimonials landingTestimonials={landingTestimonials.info} />
           <KopiiSubscription />
         </div>
       ) : null}
-    </div>
+    </>
   )
 }
 

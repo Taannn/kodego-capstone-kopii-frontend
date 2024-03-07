@@ -3,16 +3,29 @@ export type LoadingStateShop = {
   isLoadingShop: boolean;
 };
 
-// types for lphero
-// export type LandingHeroProps = {
-//   hero_title: string;
-//   hero_about: string;
-//   hero_btn: string;
-// }
-// export type LandingHeroInitState = {
-//   info: LandingHeroProps[];
-//   error: string;
-// }
-// export type KopiiHeroProps = {
-//   landingHeroProp: LandingHeroProps[];
-// };
+// types for shopcategory
+export type ShopCategoryProps = {
+  category: string;
+};
+export type ShopCategoryInitState = {
+  info: ShopCategoryProps[];
+  error: string;
+};
+export type CategoryProps = {
+  shopCategory: ShopCategoryProps[];
+};
+
+// types for shopcarousel
+export type ShopCarouselProps = {
+  id: number;
+  img: string;
+  title: string;
+  about: string;
+};
+export type ShopCarouselInitState = {
+  info: ShopCarouselProps[];
+  error: string;
+};
+export type CarouselProps = {
+  shopCarousel: ShopCarouselProps[];
+};
