@@ -10,7 +10,6 @@ import { fetchShopHighlyRated } from './shopproducts/shopHighlyRatedSlice';
 import { fetchShopDailyDiscover } from './shopproducts/shopDailyDiscoverSlice';
 import KopiiShopProducts from './shopproducts/KopiiShopProducts';
 
-
 const KopiiShop: React.FC = () => {
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const shopCategory = useAppSelector((state) => state.shopcategory);

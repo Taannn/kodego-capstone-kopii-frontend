@@ -54,3 +54,23 @@ export type KopiiShopProductProps = {
   shopProducts: ShopProductProps[];
   desc: string;
 };
+
+// types for shopselectedproduct
+export type ShopSelectedProductProps = {
+  map(arg0: (s: any, i: any) => import("react/jsx-runtime").JSX.Element): unknown;
+  product_id: number;
+  product_name: string;
+  product_desc: string;
+  product_price: string;
+  product_stock: number;
+  product_img: string;
+  category_name: string;
+  starting_quantity: number;
+};
+export type ShopSelectedProductInitState = {
+  info: ShopSelectedProductProps[];
+  error: string;
+};
+export type CurrentProductProps = {
+  shopSelectedProduct: ShopSelectedProductProps;
+};

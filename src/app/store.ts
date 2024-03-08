@@ -11,6 +11,7 @@ import shopCarouselReducer from '../pages/kopiishop/shopcarousel/shopCarouselSli
 import landingDiscoverReducer from '../pages/landingpage/lpdiscover/landingDiscoverSlice'
 import shopHighlyRatedReducer from '../pages/kopiishop/shopproducts/shopHighlyRatedSlice'
 import shopDailyDiscoverReducer from '../pages/kopiishop/shopproducts/shopDailyDiscoverSlice'
+import shopSelectedProductReducer from '../pages/kopiishop/selectedproduct/kopiiShopSelectedSlice'
 
 const store = configureStore({
   reducer: {
@@ -26,9 +27,9 @@ const store = configureStore({
     lpdiscover: landingDiscoverReducer,
     shophighlyRated: shopHighlyRatedReducer,
     shopdailyDiscover: shopDailyDiscoverReducer,
+    shopselectedProduct: shopSelectedProductReducer,
   },
-
-})
+});
 
 export default store
 

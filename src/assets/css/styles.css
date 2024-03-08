@@ -11936,7 +11936,7 @@ textarea.form-control-lg {
   box-shadow: inset 6px 6px 12px #c9c6be, inset -6px -6px 12px #ffffff;
 }
 
-.card:hover {
+.card-hover:hover {
   box-shadow: 0 0 12px 1px #c9c6be, 0 0 12px 1px #ffffff;
 }
 
