@@ -14,7 +14,7 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
           {shopProducts.map((s, i) => (
             <div className="col-md-3 col-6" key={i}>
               <Link to={`/kopiishop/${s.product_id}`} className="text-decoration-none">
-                <div className="card rounded overflow-hidden">
+                <div className="card card-hover-danger rounded overflow-hidden">
                   <div className="category">
                     <img src={s.product_img} className="img-fluid" alt="" />
                   </div>
