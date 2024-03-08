@@ -19,7 +19,7 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
                     <img src={s.product_img} className="img-fluid" alt="" />
                   </div>
                   <div className="card-body px-3 pt-3 pb-0">
-                    <div className="card-title text-primary ff-main h6 m-0">{s.product_name}</div>
+                    <div className="card-title text-primary ff-main h6 m-0 text-ellipsis">{s.product_name}</div>
                       <div className="pricing d-flex w-100 ff-main gap-1 align-items-center justify-content-between">
                         <p className="text-bold fs-5 text-dark">₱ {s.product_price}</p>
                         <div className="rating d-flex">

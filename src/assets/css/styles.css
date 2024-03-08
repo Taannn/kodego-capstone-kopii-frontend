@@ -11936,6 +11936,10 @@ textarea.form-control-lg {
   box-shadow: inset 6px 6px 12px #c9c6be, inset -6px -6px 12px #ffffff;
 }
 
+.card:hover {
+  box-shadow: 0 0 12px 1px #c9c6be, 0 0 12px 1px #ffffff;
+}
+
 .bs-dark {
   box-shadow: inset 6px 6px 12px #290e10, inset -6px -6px 12px #3c1418;
 }
@@ -11999,6 +12003,12 @@ textarea.form-control-lg {
 
 .z-much-lower {
   z-index: 32;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hero {
