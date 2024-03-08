@@ -8,6 +8,8 @@ import KopiiStop from "./pages/kopiistop/KopiiStop"
 import ContactUs from "./pages/contactus/ContactUs"
 import ErrorPage from "./pages/error/ErrorPage"
 import FooterNav from "./components/FooterNav"
+import KopiiShopSelected from "./pages/kopiishop/selectedproduct/KopiiShopSelected"
+import FilteredCategory from "./pages/kopiishop/filteredcategory/FilteredCategory"
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/kopiishop" element={<KopiiShop />} />
+          <Route path="/kopiishop/:index" element={<KopiiShopSelected />} />
+          <Route path="/category/:category" element={<FilteredCategory />} />
           <Route path="/kopiistop" element={<KopiiStop />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/contactus" element={<ContactUs />} />

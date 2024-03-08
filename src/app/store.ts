@@ -9,6 +9,8 @@ import loadingShopReducer from '../pages/kopiishop/loadingSliceShop'
 import shopCategoryReducer from '../pages/kopiishop/shopcategory/shopCategorySlice'
 import shopCarouselReducer from '../pages/kopiishop/shopcarousel/shopCarouselSlice'
 import landingDiscoverReducer from '../pages/landingpage/lpdiscover/landingDiscoverSlice'
+import shopHighlyRatedReducer from '../pages/kopiishop/shopproducts/shopHighlyRatedSlice'
+import shopDailyDiscoverReducer from '../pages/kopiishop/shopproducts/shopDailyDiscoverSlice'
 
 const store = configureStore({
   reducer: {
@@ -22,6 +24,8 @@ const store = configureStore({
     shopcategory: shopCategoryReducer,
     shopcarousel: shopCarouselReducer,
     lpdiscover: landingDiscoverReducer,
+    shophighlyRated: shopHighlyRatedReducer,
+    shopdailyDiscover: shopDailyDiscoverReducer,
   },
 
 })

@@ -1,5 +1,5 @@
-import Categories from "./Categories"
-import Hero from "./HeroHeader"
+import Categories from "./Categories";
+import Hero from "./HeroHeader";
 
 const KopiiStop = () => {
   return (
@@ -7,7 +7,7 @@ const KopiiStop = () => {
       <Hero />
       <Categories />
     </>
-  )
-}
+  );
+};
 
-export default KopiiStop
+export default KopiiStop;

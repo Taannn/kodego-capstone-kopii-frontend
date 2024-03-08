@@ -2,7 +2,7 @@ import { CarouselProps } from "../KopiiShopProps";
 
 const Carousel: React.FC<CarouselProps> = ({ shopCarousel }) => {
   return (
-    <div className="container-fluid container-md mt-md-5 mt-2">
+    <div className="container-fluid container-md mt-md-5 mt-2 mb-md-0 mb-5">
       <div id="carouselExampleCaptions" className="carousel slide">
         <div className="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>

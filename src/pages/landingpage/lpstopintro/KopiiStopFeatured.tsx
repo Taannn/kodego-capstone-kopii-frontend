@@ -6,6 +6,7 @@
 //     img: 'https://kopiiiiiimg.netlify.app/assets/images/category-teacups-dark-velvet.jpg'
 //   }
 // ]
+import { Link } from "react-router-dom"
 import { KopiiStopFeaturedProps } from "../LandingPageProps"
 
 const KopiiStopFeatured: React.FC<KopiiStopFeaturedProps> = ({ landingStopIintro }) => {
@@ -20,10 +21,10 @@ const KopiiStopFeatured: React.FC<KopiiStopFeaturedProps> = ({ landingStopIintro
                 <p className="ls-1 ff-lead fw-bold mt-4 lh-1">
                   {l.about}
                 </p>
-                <a href="pages/kopii-stop.html" className="btn btn-danger btn-lg bs-danger text-info hvr-glow">
+                <Link to="/kopiistop" className="btn btn-danger btn-lg bs-danger text-info hvr-glow">
                   {l.btn}
                   <i className="fa-solid fa-chevron-right ms-2"></i>
-                </a>
+                </Link>
               </div>
               <div className="col-6 d-none rounded overflow-hidden d-lg-block text-center">
                 <img className="img-fluid rounded" src={l.img} alt="" />
