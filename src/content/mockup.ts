@@ -690,6 +690,8 @@ const data = [
     "product_img": "https://kopiiiiiimg.netlify.app/assets/images/category-mugs-pair-of-mugs.jpg",
     "product_rating": "4.6",
     "category_id": 8,
+    "category_name": "Mugs",
+    "starting_quantity": 1,
     "ordered_from": "Kopii Shop"
   },
   {
@@ -701,6 +703,8 @@ const data = [
     "product_img": "https://kopiiiiiimg.netlify.app/assets/images/category-mugs-plain-white.jpg",
     "product_rating": "4.9",
     "category_id": 8,
+    "category_name": "Mugs",
+    "starting_quantity": 1,
     "ordered_from": "Kopii Shop"
   }
 ]

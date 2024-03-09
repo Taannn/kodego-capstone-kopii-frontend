@@ -4,6 +4,8 @@ type ProductDetailsProps = {
   productPrice: string;
   startingQuantity: number;
   productDesc: string;
+  increment: () => void;
+  decrement: () => void;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({
@@ -11,7 +13,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   productName,
   productPrice,
   startingQuantity,
-  productDesc
+  productDesc,
+  increment,
+  decrement
 }) => {
   return (
     <div className="col-md-7">
@@ -33,9 +37,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             <a href="signup.html" className="shadow btn btn-lg btn-secondary add-to-cart-btn bs-secondary rounded">Add to cart</a>
           </div>
           <div className="block quantity d-flex gap-1 ms-2">
-            <button className="btn btn-lg rounded bg-info">+</button>
+            <button onClick={increment} className="btn btn-lg rounded bg-info">+</button>
             <span className="btn btn-lg btn-disabled rounded bg-info">{startingQuantity}</span>
-            <button className="btn btn-lg rounded bg-info">-</button>
+            <button onClick={decrement} className="btn btn-lg rounded bg-info">-</button>
           </div>
         </div>
       </div>
