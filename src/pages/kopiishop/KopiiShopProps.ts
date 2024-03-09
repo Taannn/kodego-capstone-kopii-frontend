@@ -52,7 +52,7 @@ export type ShopSelectedProps = {
 };
 export type KopiiShopProductProps = {
   shopProducts: ShopProductProps[];
-  desc: string;
+  desc: string | undefined;
 };
 
 // types for shopselectedproduct

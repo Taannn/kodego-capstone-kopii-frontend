@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 type BreadCrumbProps = {
-  currentProduct: string;
+  currentProduct: string | undefined;
 }
 
 const BreadCrumb:React.FC<BreadCrumbProps> = ({ currentProduct }) => {

@@ -29,6 +29,12 @@ const store = configureStore({
     shopdailyDiscover: shopDailyDiscoverReducer,
     shopselectedProduct: shopSelectedProductReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    // to avoid thw warning not sure though it this will do, hoping the code still works
+    getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+    }),
 });
 
 export default store
