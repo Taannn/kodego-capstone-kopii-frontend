@@ -34,7 +34,7 @@ const SearchBarCart = () => {
             />
           </form>
         </div>
-        <a href="cart-empty.html"><i className="fa-solid fa-cart-shopping ms-1 ms-lg-3 me-3 text-info"></i></a>
+        <Link to="/cart"><i className="fa-solid fa-cart-shopping ms-1 ms-lg-3 me-3 text-info"></i></Link>
       </div>
     </nav>
   )

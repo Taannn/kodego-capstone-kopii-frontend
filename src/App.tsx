@@ -11,6 +11,7 @@ import FooterNav from "./components/FooterNav"
 import KopiiShopSelected from "./pages/kopiishop/selectedproduct/KopiiShopSelected"
 import FilteredCategory from "./pages/kopiishop/filteredcategory/FilteredCategory"
 import SearchResult from "./pages/kopiishop/shopsearch/SearchResult"
+import KopiiShopCart from "./pages/shopcart/KopiiShopCart"
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="search/:search" element={<SearchResult />} />
           <Route path="/kopiistop" element={<KopiiStop />} />
           <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/cart" element={<KopiiShopCart />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </main>
