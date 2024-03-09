@@ -6,6 +6,7 @@ import ProductDetails from "./ProductDetails"
 import ProductImages from "./ProductImages"
 const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) => {
   const [startingQuantity, setStartingQuantity] = useState(shopSelectedProduct.starting_quantity);
+  // console.log(shopSelectedProduct);
 
   const handleIncrement = () => {
     setStartingQuantity(prev => prev + 1)

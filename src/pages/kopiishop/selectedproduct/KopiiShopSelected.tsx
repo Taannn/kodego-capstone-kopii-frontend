@@ -14,7 +14,7 @@ const KopiiShopSelected: React.FC = () => {
   const dispatch = useAppDispatch();
 
   if (!currentProduct) {
-    <div>Item not found!</div>
+    <div className='display-1 ff-main text-center'>Item not found!</div>
   }
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const KopiiShopSelected: React.FC = () => {
       {loading && <div id='preloader'></div>}
       {/* {!loading && currentProduct.error ?<div>Error: {currentProduct.error}</div> : null } */}
       {!loading && currentProduct ? (
-        <CurrentProduct shopSelectedProduct={currentProduct} />
+        <CurrentProduct shopSelectedProduct={currentProduct}/>
       ) : null}
     </div>
   )

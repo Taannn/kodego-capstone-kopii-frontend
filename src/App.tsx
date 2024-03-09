@@ -10,6 +10,8 @@ import ErrorPage from "./pages/error/ErrorPage"
 import FooterNav from "./components/FooterNav"
 import KopiiShopSelected from "./pages/kopiishop/selectedproduct/KopiiShopSelected"
 import FilteredCategory from "./pages/kopiishop/filteredcategory/FilteredCategory"
+import SearchResult from "./pages/kopiishop/shopsearch/SearchResult"
+
 
 function App() {
   return (
@@ -22,12 +24,11 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/kopiishop" element={<KopiiShop />} />
           <Route path="/kopiishop/:index" element={<KopiiShopSelected />} />
           <Route path="/category/:category" element={<FilteredCategory />} />
+          <Route path="search/:search" element={<SearchResult />} />
           <Route path="/kopiistop" element={<KopiiStop />} />
-          <Route path="/contactus" element={<ContactUs />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
