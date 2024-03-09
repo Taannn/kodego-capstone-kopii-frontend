@@ -9,7 +9,7 @@ const KopiiShopCart = () => {
           <div className="col-6 col-md-3 ff-main h1 text-center">Product</div>
           <div className="col-6 col-md-9 ff-main h1 text-center">Controls</div>
         </div>
-        <div className="row border border-primary border-3 bg-light">
+        <div className="row border border-primary border-3 bg-light mb-5">
           <div className="col-6 col-md-3 p-2">
             <img className="img-fluid" src="https://kopiiiiiimg.netlify.app/assets/images/category-teacups-dark-velvet.jpg" alt="" />
             <p className="text-primary h4 ff-main text-ellipsis">Kopii Example Product Name etc etc etc</p>
@@ -23,8 +23,9 @@ const KopiiShopCart = () => {
             <div className="d-flex align-items-center justify-content-center">
               <p className="amount display-5 text-bold ff-main lead text-primary">₱ 1335.88</p>
             </div>
-            <div className="delete d-flex align-items-center justify-content-center">
-              <button className="btn rounded bg-warning text-light w-100 ff-main">Delete</button>
+            <div className="delete d-flex align-items-center justify-content-center gap-1">
+              <button className="btn rounded bg-warning text-light ff-main">Delete</button>
+              <button className="btn rounded bg-success text-light ff-main">Checkout</button>
             </div>
           </div>
         </div>
