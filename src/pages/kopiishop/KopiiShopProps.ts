@@ -2,6 +2,9 @@
 export type LoadingStateShop = {
   isLoadingShop: boolean;
 };
+export type IsLoggedInProp = {
+  isLoggedIn: boolean;
+};
 
 // types for shopcategory
 export type ShopCategoryProps = {

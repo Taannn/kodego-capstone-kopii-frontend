@@ -12,6 +12,7 @@ import landingDiscoverReducer from '../pages/landingpage/lpdiscover/landingDisco
 import shopHighlyRatedReducer from '../pages/kopiishop/shopproducts/shopHighlyRatedSlice'
 import shopDailyDiscoverReducer from '../pages/kopiishop/shopproducts/shopDailyDiscoverSlice'
 import shopSelectedProductReducer from '../pages/kopiishop/selectedproduct/kopiiShopSelectedSlice'
+import isLoggedInReducer from '../pages/login/isLoggedInSlice';
 
 const store = configureStore({
   reducer: {
@@ -28,9 +29,10 @@ const store = configureStore({
     shophighlyRated: shopHighlyRatedReducer,
     shopdailyDiscover: shopDailyDiscoverReducer,
     shopselectedProduct: shopSelectedProductReducer,
+    loginState: isLoggedInReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    // to avoid thw warning not sure though it this will do, hoping the code still works
+    // to avoid thw warning not sure though if this will do, hoping the code still works
     getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,

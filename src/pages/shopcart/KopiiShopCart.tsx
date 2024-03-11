@@ -5,7 +5,7 @@ const KopiiShopCart = () => {
     <div>
       <BreadCrumb currentProduct={"Cart"} />
       <div className="container px-4">
-        <div className="row bg-sage text-center-ff-main mb-2 mb-md-5 p-2">
+        <div className="row bg-sage text-center-ff-main mb-4 mb-md-5 p-2">
           <div className="col-6 col-md-3 ff-main h1 text-center">Product</div>
           <div className="col-6 col-md-9 ff-main h1 text-center">Controls</div>
         </div>

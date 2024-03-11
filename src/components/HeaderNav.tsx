@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAppSelector } from "../app/hooks";
 
 const HeaderNav = () => {
   const [active, setActive] = useState("home");
+  const loggedIn = useAppSelector((state) => state.loginState.isLoggedIn)
 
   const handleActiveLink = (link: string) => {
     setActive(link);
@@ -64,13 +66,20 @@ const HeaderNav = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link
+                {!loggedIn ? <Link
                   id="login"
                   to="/signup"
                   className="btn hvr-bounce-to-top btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
                 >
                   Login/Signup
+                </Link> : <Link
+                  id="login"
+                  to="/userinfo"
+                  className="btn hvr-bounce-to-top btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
+                >
+                  <i className="fa-solid fa-user px-2"></i>
                 </Link>
+                }
               </li>
             </ul>
           </div>
@@ -144,13 +153,20 @@ const HeaderNav = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link
-                    to="/signup"
-                    id="login"
-                    className="btn btn-outline-light overflow-hidden hvr-bounce-to-top btn-sm bg- fw-medium text-info pt-1"
-                  >
-                    Login/Signup
-                  </Link>
+                {!loggedIn ? <Link
+                  id="login"
+                  to="/signup"
+                  className="btn hvr-bounce-to-top btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
+                >
+                  Login/Signup
+                </Link> : <Link
+                  id="login"
+                  to="/userinfo"
+                  className="btn hvr-bounce-to-top btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
+                >
+                  <i className="fa-solid fa-user px-2"></i>
+                </Link>
+                }
                 </li>
               </ul>
             </div>

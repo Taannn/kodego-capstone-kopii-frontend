@@ -12,6 +12,7 @@ import KopiiShopSelected from "./pages/kopiishop/selectedproduct/KopiiShopSelect
 import FilteredCategory from "./pages/kopiishop/filteredcategory/FilteredCategory"
 import SearchResult from "./pages/kopiishop/shopsearch/SearchResult"
 import KopiiShopCart from "./pages/shopcart/KopiiShopCart"
+import UserInfo from "./pages/usersettings/UserInfo"
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/kopiistop" element={<KopiiStop />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/cart" element={<KopiiShopCart />} />
+          <Route path="/userinfo" element={<UserInfo />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </main>
