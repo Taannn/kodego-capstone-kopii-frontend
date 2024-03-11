@@ -36,7 +36,7 @@ const FilteredCategory = () => {
       {!loading && products.length ? (
         <div>
           <BreadCrumb currentProduct={category} />
-          <KopiiShopProducts shopProducts={products} desc={category}  />
+          <KopiiShopProducts shopProducts={products} desc={`Category: ${category}`}  />
         </div>
       ) : null}
     </>
