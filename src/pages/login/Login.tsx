@@ -5,6 +5,7 @@ import axios from "axios";
 import AnimatedCoffeeMaker from "../../components/AnimatedCoffeeMaker";
 import { setIsLoggedIn } from "./isLoggedInSlice";
 import { useAppDispatch } from "../../app/hooks";
+import Div from "../../components/Div";
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -48,21 +49,28 @@ const Login: React.FC = () => {
 
   return (
     <section className="vh-100 bg-image bg-light ff-main text-primary">
-      <div className="mask d-flex align-items-center h-100 gradient-custom-3">
-        <div className="container-fluid">
-          <div className="row d-flex justify-content-start align-items-center h-100">
-            <div className="col-md-3 full-dimension bg-danger d-flex align-items-center d-none d-md-block">
+      <Div styles="mask d-flex align-items-center h-100 gradient-custom-3">
+        <Div styles="container-fluid">
+          <Div styles="row d-flex justify-content-start align-items-center h-100">
+            <Div styles="col-md-3 full-dimension bg-danger d-flex align-items-center d-none d-md-block">
               <div className="invi-spacer"></div>
               <AnimatedCoffeeMaker />
-            </div>
+            </Div>
 
-            <div className="col-12 col-md-9 col-lg-6 col-xl-5">
-              <div className="card border-0 bg-light mt-5">
-                <div className="card-body">
+            <Div styles="col-12 col-md-9 col-lg-6 col-xl-5">
+              <Div styles="card border-0 bg-light mt-5">
+                <Div styles="card-body">
                   <h2 className="text-primary mb-2 display-4">Log in to Kopii</h2>
                   <form onSubmit={handleSubmit}>
                     <div className="form-outline mb-2">
-                      <input type="email" id="loginEmail" name="email" value={formData.email} onChange={handleChange} className="form-control form-control-lg" required />
+                      <input
+                        type="email" id="loginEmail"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="form-control form-control-lg"
+                        required
+                      />
                       <label className="form-label fw-bold" htmlFor="loginEmail">Your Email</label>
                     </div>
 
@@ -101,12 +109,12 @@ const Login: React.FC = () => {
                       Have an account already? <Link to="/signup" className="fw-bold text-body"><u>Sign up here</u></Link>
                     </p>
                   </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                </Div>
+              </Div>
+            </Div>
+          </Div>
+        </Div>
+      </Div>
     </section>
   );
 }

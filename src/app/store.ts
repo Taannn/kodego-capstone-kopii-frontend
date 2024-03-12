@@ -13,6 +13,7 @@ import shopHighlyRatedReducer from '../pages/kopiishop/shopproducts/shopHighlyRa
 import shopDailyDiscoverReducer from '../pages/kopiishop/shopproducts/shopDailyDiscoverSlice'
 import shopSelectedProductReducer from '../pages/kopiishop/selectedproduct/kopiiShopSelectedSlice'
 import isLoggedInReducer from '../pages/login/isLoggedInSlice';
+import signupReducer from '../pages/signup/signupSlice';
 
 const store = configureStore({
   reducer: {
@@ -30,6 +31,7 @@ const store = configureStore({
     shopdailyDiscover: shopDailyDiscoverReducer,
     shopselectedProduct: shopSelectedProductReducer,
     loginState: isLoggedInReducer,
+    kopiisignup: signupReducer,
   },
   middleware: (getDefaultMiddleware) =>
     // to avoid thw warning not sure though if this will do, hoping the code still works

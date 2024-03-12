@@ -1,47 +1,55 @@
-import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AnimatedCoffeeMaker from '../../components/AnimatedCoffeeMaker';
 import axios from 'axios';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+  emailInput,
+  nameInput,
+  surnameInput,
+  passwordInput,
+  errorMessage,
+  passwordToggle
+} from './signupSlice';
 
 const Signup: React.FC = () => {
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const formData = useAppSelector((state) => state.kopiisignup);
+  const dispatch = useAppDispatch();
 
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState<string | null>("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value
-    });
-    setError(null);
+  const handleChange = (action: any) => {
+    dispatch(action);
+    dispatch(errorMessage(null));
   };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/kopii/signup", formData);
+      const res = await axios.post("http://localhost:3001/kopii/signup", {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email: formData.email,
+        password: formData.password
+      });
       console.log('User data', res.data);
+      dispatch(nameInput(''));
+      dispatch(surnameInput(''));
+      dispatch(emailInput(''));
+      dispatch(passwordInput(''));
       navigate("/login");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         if (error.response.data.error === 'DuplicateEmailError') {
-          setError('Email is already registered.');
+          dispatch(errorMessage('Email is already registered.'));
         } else {
-          setError('Invalid signup data');
+          dispatch(errorMessage('Invalid signup data'));
         }
       } else {
         console.error('Signup failed:', error.message);
-        setError('An unexpected error occurred');
+        dispatch(errorMessage('An unexpected error occurred'));
       }
     }
   };
+
 
   return (
     <section className="vh-100 bg-image bg-light ff-main text-primary">
@@ -62,7 +70,7 @@ const Signup: React.FC = () => {
                         type="text"
                         id="first_name"
                         value={formData.first_name}
-                        onChange={handleChange}
+                        onChange={(e)=>handleChange(nameInput(e.target.value))}
                         className="form-control form-control-lg"
                         required
                       />
@@ -74,7 +82,7 @@ const Signup: React.FC = () => {
                         type="text"
                         id="last_name"
                         value={formData.last_name}
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(surnameInput(e.target.value))}
                         className="form-control form-control-lg"
                         required
                       />
@@ -86,7 +94,7 @@ const Signup: React.FC = () => {
                         type="email"
                         id="email"
                         value={formData.email}
-                        onChange={handleChange}
+                        onChange={(e)=>handleChange(emailInput(e.target.value))}
                         className="form-control form-control-lg"
                         placeholder="example@gmail.com"
                         required
@@ -96,10 +104,10 @@ const Signup: React.FC = () => {
 
                     <div className="form-outline mb-2">
                       <input
-                        type={showPassword ? 'text': 'password'}
+                        type={formData.showPassword ? 'text': 'password'}
                         id="password"
                         value={formData.password}
-                        onChange={handleChange}
+                        onChange={(e)=>handleChange(passwordInput(e.target.value))}
                         className="form-control form-control-lg"
                         placeholder="Must have at least 6 characters"
                         required
@@ -112,14 +120,14 @@ const Signup: React.FC = () => {
                         className="form-check-input me-2"
                         type="checkbox"
                         id="showPassword"
-                        onChange={() => setShowPassword(!showPassword)}
+                        onChange={()=> dispatch(passwordToggle(!formData.showPassword))}
                       />
                       <label className="form-check-label fw-medium" htmlFor="showPassword">Show Password</label>
                     </div>
 
-                    {error && (
+                    {formData.error && (
                       <div className="alert alert-warning mt-3" role="alert">
-                        {error}
+                        {formData.error}
                       </div>
                     )}
 
@@ -144,3 +152,42 @@ const Signup: React.FC = () => {
 }
 
 export default Signup;
+
+// const navigate = useNavigate();
+// const [showPassword, setShowPassword] = useState<boolean>(false);
+
+// const [formData, setFormData] = useState({
+//   first_name: "",
+//   last_name: "",
+//   email: "",
+//   password: "",
+// });
+// const [error, setError] = useState<string | null>("");
+
+// const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//   setFormData({
+//     ...formData,
+//     [e.target.id]: e.target.value
+//   });
+//   setError(null);
+// };
+
+// const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
+//   e.preventDefault();
+//   try {
+//     const res = await axios.post("http://localhost:3001/kopii/signup", formData);
+//     console.log('User data', res.data);
+//     navigate("/login");
+//   } catch (error: any) {
+//     if (error.response && error.response.status === 400) {
+//       if (error.response.data.error === 'DuplicateEmailError') {
+//         setError('Email is already registered.');
+//       } else {
+//         setError('Invalid signup data');
+//       }
+//     } else {
+//       console.error('Signup failed:', error.message);
+//       setError('An unexpected error occurred');
+//     }
+//   }
+// };
