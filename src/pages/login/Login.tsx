@@ -1,48 +1,47 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AnimatedCoffeeMaker from "../../components/AnimatedCoffeeMaker";
-import { setIsLoggedIn } from "./isLoggedInSlice";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Div from "../../components/Div";
+import {
+  emailInput,
+  passwordInput,
+  passwordToggle,
+  errorMessage,
+  loggedInToggle
+} from "./loginSlice";
 
 const Login: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: ""
-  });
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const formData = useAppSelector((state) => state.kopiilogin);
+  const dispatch = useAppDispatch();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-    setError(null);
+  const handleChange = (action: any) => {
+    dispatch(action);
+    dispatch(errorMessage(null));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/kopii/login", formData);
+      const res = await axios.post("http://localhost:3001/kopii/login", {
+        email: formData.email,
+        password: formData.password
+      });
       const { token, customer_id, expiresIn } = res.data;
       localStorage.setItem('token', token);
       console.log('User logged in : ', customer_id);
       console.log('Session expires in : ', expiresIn);
-      dispatch(setIsLoggedIn(true));
+      dispatch(loggedInToggle(true));
       navigate("/kopiishop");
     } catch (error: any) {
       if (error.response && error.response.status === 404) {
-        setError("User not found");
+        dispatch(errorMessage("User not found"));
       } else if (error.response && error.response.status === 401) {
-        setError("Invalid password");
+        dispatch(errorMessage("Invalid password"));
       } else {
         console.log('Login Failed : ', error.message);
-        setError("An unexpected error occurred");
+        dispatch(errorMessage("An unexpected error occurred"));
       }
     }
   };
@@ -67,7 +66,7 @@ const Login: React.FC = () => {
                         type="email" id="loginEmail"
                         name="email"
                         value={formData.email}
-                        onChange={handleChange}
+                        onChange={(e)=>handleChange(emailInput(e.target.value))}
                         className="form-control form-control-lg"
                         required
                       />
@@ -75,7 +74,15 @@ const Login: React.FC = () => {
                     </div>
 
                     <div className="form-outline mb-2">
-                      <input type={showPassword ? 'text': 'password'} id="loginPassword" name="password" value={formData.password} onChange={handleChange} className="form-control form-control-lg" required />
+                      <input
+                        type={formData.showPassword ? 'text': 'password'}
+                        id="loginPassword"
+                        name="password"
+                        value={formData.password}
+                        onChange={(e)=>handleChange(passwordInput(e.target.value))}
+                        className="form-control form-control-lg"
+                        required
+                      />
                       <label className="form-label fw-bold" htmlFor="loginPassword">Password</label>
 
                     </div>
@@ -84,15 +91,15 @@ const Login: React.FC = () => {
                         className="form-check-input me-2"
                         type="checkbox"
                         id="showPassword"
-                        onChange={() => setShowPassword(!showPassword)}
+                        onChange={() => dispatch(passwordToggle(!formData.showPassword))}
                       />
                       <label className="form-check-label fw-medium" htmlFor="showPassword">
                         Show Password
                       </label>
                     </div>
-                      {error && (
+                      {formData.error && (
                       <div className="alert alert-warning mt-3" role="alert">
-                        {error}
+                        {formData.error}
                       </div>
                       )}
 
@@ -120,3 +127,42 @@ const Login: React.FC = () => {
 }
 
 export default Login;
+
+// const dispatch = useAppDispatch();
+// const [formData, setFormData] = useState({
+//   email: "",
+//   password: ""
+// });
+// const navigate = useNavigate();
+// const [showPassword, setShowPassword] = useState<boolean>(false);
+// const [error, setError] = useState<string | null>(null);
+
+// const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//   setFormData({
+//     ...formData,
+//     [e.target.name]: e.target.value
+//   });
+//   setError(null);
+// };
+
+// const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+//   e.preventDefault();
+//   try {
+//     const res = await axios.post("http://localhost:3001/kopii/login", formData);
+//     const { token, customer_id, expiresIn } = res.data;
+//     localStorage.setItem('token', token);
+//     console.log('User logged in : ', customer_id);
+//     console.log('Session expires in : ', expiresIn);
+//     dispatch(setIsLoggedIn(true));
+//     navigate("/kopiishop");
+//   } catch (error: any) {
+//     if (error.response && error.response.status === 404) {
+//       setError("User not found");
+//     } else if (error.response && error.response.status === 401) {
+//       setError("Invalid password");
+//     } else {
+//       console.log('Login Failed : ', error.message);
+//       setError("An unexpected error occurred");
+//     }
+//   }
+// };

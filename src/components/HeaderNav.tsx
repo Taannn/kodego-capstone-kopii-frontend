@@ -4,7 +4,7 @@ import { useAppSelector } from "../app/hooks";
 
 const HeaderNav = () => {
   const [active, setActive] = useState("home");
-  const loggedIn = useAppSelector((state) => state.loginState.isLoggedIn)
+  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn)
 
   const handleActiveLink = (link: string) => {
     setActive(link);

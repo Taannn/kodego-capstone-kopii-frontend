@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks"
-import { setIsLoggedIn } from "../login/isLoggedInSlice"
+import { loggedInToggle } from "../login/loginSlice";
 
 const UserInfo = () => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     localStorage.removeItem('token');
-    dispatch(setIsLoggedIn(false));
+    dispatch(loggedInToggle(false));
   }
 
   return (
