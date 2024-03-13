@@ -1,18 +1,10 @@
-// const kopiistopintro = [
-//   {
-//     title: 'Kopii Stop: Your Ultimate Coffee Delivery Destination',
-//     about: 'Indulge in the luxury of having your favorite coffee delights delivered to your doorstep with Kopii Stop. We bring the bustling coffee culture right to your fingertips, offering a diverse selection from local coffee shops to renowned brands. Explore, order, and savor the rich flavors of Kopii Stop.',
-//     btn: 'Discover Kopii Stop',
-//     img: 'https://kopiiiiiimg.netlify.app/assets/images/category-teacups-dark-velvet.jpg'
-//   }
-// ]
 import { Link } from "react-router-dom"
 import { KopiiStopFeaturedProps } from "../LandingPageProps"
 
-const KopiiStopFeatured: React.FC<KopiiStopFeaturedProps> = ({ landingStopIintro }) => {
+const KopiiStopFeatured: React.FC<KopiiStopFeaturedProps> = ({ landingStopIntro }) => {
   return (
     <>
-      {landingStopIintro.map((l, i) => (
+      {landingStopIntro.map((l, i) => (
         <section key={i} className="kopii-stop bg-success pb-5 pt-5" id="kopii_stop">
           <div className="container">
             <div className="row justify-content-between align-items-center pt-5">

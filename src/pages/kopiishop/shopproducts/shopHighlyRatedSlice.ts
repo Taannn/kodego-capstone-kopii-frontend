@@ -11,7 +11,7 @@ const initialState: ShopProductInitState = {
 export const fetchShopHighlyRated = createAsyncThunk('shopHighlyRated/fetchShopHighlyRated', async (_, { dispatch }) => {
   dispatch(setLoadingShop(true));
   try {
-    const response = await axios.get('http://localhost:3001/kopii/shop/highrated');
+    const response = await axios.get('https://kopii-mp2.onrender.com/kopii/shop/highrated');
     return response.data.data;
   } catch (error) {
     throw error;

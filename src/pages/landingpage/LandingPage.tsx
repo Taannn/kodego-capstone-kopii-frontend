@@ -26,11 +26,11 @@ const LandingPage = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchLandingHero())
+    dispatch(fetchLandingDiscover())
     dispatch(fetchLandingAboutData())
     dispatch(fetchLandingAboutList())
     dispatch(fetchLandingStopIntro())
     dispatch(fetchLandingTestimonials())
-    dispatch(fetchLandingDiscover())
 
     return () => {
       dispatch(setLoadingLanding(false))
@@ -46,7 +46,7 @@ const LandingPage = () => {
           <KopiiHero landingHeroProp={landingHero.info} />
           <KopiiDiscover landingDiscover={landingDiscover.info} />
           <KopiiAbout landingAboutData={landingAboutData.info} landingAboutList={landingAboutList.info} />
-          <KopiiStopFeatured landingStopIintro={landingStopIntro.info} />
+          <KopiiStopFeatured landingStopIntro={landingStopIntro.info} />
           <KopiiTestimonials landingTestimonials={landingTestimonials.info} />
           <KopiiSubscription />
         </div>

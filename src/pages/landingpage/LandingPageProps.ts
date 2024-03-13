@@ -55,7 +55,7 @@ export type LandingStopIntroInitState = {
   error: string;
 }
 export type KopiiStopFeaturedProps = {
-  landingStopIintro: LandingStopIntroProps[];
+  landingStopIntro: LandingStopIntroProps[];
 };
 
 // types for lptestimonials

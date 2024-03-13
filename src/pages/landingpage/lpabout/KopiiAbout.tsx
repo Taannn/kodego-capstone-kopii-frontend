@@ -1,25 +1,4 @@
 import Div from "../../../components/Div";
-
-// const featuresList = [
-//   {
-//     icon_class: "fa-solid fa-mug-saucer",
-//     title: "Community-Driven Platform",
-//     text:
-//       "Connect with coffee enthusiasts from around the world. Kopii is more than a platform; it's a vibrant community celebrating the love for coffee.",
-//   },
-//   {
-//     icon_class: "fa-solid fa-handshake",
-//     title: "Supporting Local Businesses",
-//     text:
-//       "By choosing Kopii, you support local coffee businesses. We're committed to fostering growth and recognition for small coffee shops.",
-//   },
-//   {
-//     icon_class: "fa-solid fa-wand-sparkles",
-//     title: "Elevating Coffee Experience",
-//     text:
-//       "Experience coffee like never before. Kopii offers a seamless integration of convenience, variety, and a sense of community for every coffee lover.",
-//   },
-// ];
 import { KopiiAboutProps } from "../LandingPageProps";
 
 const KopiiAbout: React.FC<KopiiAboutProps> = ({ landingAboutData, landingAboutList }) => {

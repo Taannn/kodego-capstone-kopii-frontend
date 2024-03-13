@@ -11,7 +11,7 @@ const initialState: ShopSelectedProductInitState = {
 export const fetchShopSelectedProduct = createAsyncThunk('shopSelectedProduct/fetchShopSelectedProduct', async (_, { dispatch }) => {
   dispatch(setLoadingShop(true));
   try {
-    const response = await axios.get('http://localhost:3001/kopii/shop');
+    const response = await axios.get('https://kopii-mp2.onrender.com/kopii/shop');
     return response.data.data;
   } catch (error) {
     throw error;

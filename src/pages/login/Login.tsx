@@ -24,7 +24,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/kopii/login", {
+      const res = await axios.post("https://kopii-mp2.onrender.com/kopii/login", {
         email: formData.email,
         password: formData.password
       });
