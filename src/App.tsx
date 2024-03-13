@@ -34,10 +34,10 @@ function App() {
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/cart" element={<KopiiShopCart />} />
           <Route path="/userinfo" element={<UserInfo />} />
-          <Route path="/*" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
-      <footer id="contact_us" className="text-center text-lg-start text-info bg-primary ff-main">
+      <footer className="text-center text-lg-start text-info bg-primary ff-main">
         <FooterNav />
       </footer>
     </BrowserRouter>

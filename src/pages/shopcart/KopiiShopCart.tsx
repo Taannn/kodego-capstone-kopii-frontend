@@ -32,17 +32,17 @@ const KopiiShopCart = () => {
           </Div>
 
           {!customerCart.info.length && loggedIn ?
-            <div className=" mt-5 full-dimension align-items-center">
+            <Div styles=" mt-5 full-dimension align-items-center">
               <h1 className="text-center text-dark ff-main op-mid display-1">Your Cart is empty</h1>
-            </div> : null
+            </Div> : null
           }
           {!loading && customerCart.info.length ? (
             <CustomerCart shopCustomerCart={customerCart.info} />
           ) : null}
           {!loggedIn &&
-            <div className=" mt-5 full-dimension align-items-center">
+            <Div styles=" mt-5 full-dimension align-items-center">
               <h1 className="text-center text-dark ff-main op-mid display-1">Login first to view cart</h1>
-            </div>
+            </Div>
           }
         </Div>
       </div>
