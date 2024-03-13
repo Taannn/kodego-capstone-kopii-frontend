@@ -33,6 +33,8 @@ const Login: React.FC = () => {
       console.log('User logged in : ', customer_id);
       console.log('Session expires in : ', expiresIn);
       dispatch(loggedInToggle(true));
+      dispatch(emailInput(''));
+      dispatch(passwordInput(''));
       navigate("/kopiishop");
     } catch (error: any) {
       if (error.response && error.response.status === 404) {

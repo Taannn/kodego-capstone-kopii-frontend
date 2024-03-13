@@ -1,36 +1,52 @@
+import Div from "../../components/Div";
 import BreadCrumb from "../kopiishop/selectedproduct/BreadCrumb";
+import CustomerCart from "./CustomerCart";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { setLoadingShop } from "../kopiishop/loadingSliceShop";
+import { fetchShopCustomerCart } from "./shopCustomerCartSlice";
 
 const KopiiShopCart = () => {
+  const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
+  const customerCart = useAppSelector((state) => state.shopcustomerCart);
+  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchShopCustomerCart());
+    console.log(customerCart.info)
+    return () => {
+      dispatch(setLoadingShop(false));
+    }
+  }, [dispatch])
   return (
-    <div>
-      <BreadCrumb currentProduct={"Cart"} />
-      <div className="container px-4">
-        <div className="row bg-sage text-center-ff-main mb-4 mb-md-5 p-2">
-          <div className="col-6 col-md-3 ff-main h1 text-center">Product</div>
-          <div className="col-6 col-md-9 ff-main h1 text-center">Controls</div>
-        </div>
-        <div className="row border border-primary border-3 bg-light mb-5">
-          <div className="col-6 col-md-3 p-2">
-            <img className="img-fluid" src="https://kopiiiiiimg.netlify.app/assets/images/category-teacups-dark-velvet.jpg" alt="" />
-            <p className="text-primary h4 ff-main text-ellipsis">Kopii Example Product Name etc etc etc</p>
-          </div>
-          <div className="col-6 col-md-9 d-flex flex-column flex-md-row align-items-center justify-content-evenly p-2">
-            <div className="block quantity d-flex gap-1">
-              <button className="btn rounded bg-danger text-light">+</button>
-              <span className="btn btn-disabled rounded bg-danger text-light">1</span>
-              <button className="btn rounded bg-danger text-light">-</button>
+    <>
+      {loading && <div id='preloader'></div>}
+      {!loading && customerCart.error ?<div>Error: {customerCart.error}</div> : null }
+      <div>
+        <BreadCrumb currentProduct={"Your Cart"} />
+        <Div styles="container px-4">
+          <Div styles="row bg-sage text-center-ff-main mb-4 mb-md-5 p-2">
+            <Div styles="col-6 col-md-3 ff-main h1 text-center">Product</Div>
+            <Div styles="col-6 col-md-9 ff-main h1 text-center">Controls</Div>
+          </Div>
+
+          {!customerCart.info.length && loggedIn ?
+            <div className=" mt-5 full-dimension align-items-center">
+              <h1 className="text-center text-dark ff-main op-mid display-1">Your Cart is empty</h1>
+            </div> : null
+          }
+          {!loading && customerCart.info.length ? (
+            <CustomerCart shopCustomerCart={customerCart.info} />
+          ) : null}
+          {!loggedIn &&
+            <div className=" mt-5 full-dimension align-items-center">
+              <h1 className="text-center text-dark ff-main op-mid display-1">Login first to view cart</h1>
             </div>
-            <div className="d-flex align-items-center justify-content-center">
-              <p className="amount display-5 text-bold ff-main lead text-primary">₱ 1335.88</p>
-            </div>
-            <div className="delete d-flex align-items-center justify-content-center gap-1">
-              <button className="btn rounded bg-warning text-light ff-main">Delete</button>
-              <button className="btn rounded bg-success text-light ff-main">Checkout</button>
-            </div>
-          </div>
-        </div>
+          }
+        </Div>
       </div>
-    </div>
+    </>
   );
 };
 
