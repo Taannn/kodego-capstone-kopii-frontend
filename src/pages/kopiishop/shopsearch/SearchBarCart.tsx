@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../app/hooks";
 
 
 const SearchBarCart = () => {
+  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
+  const cartItemCount = useAppSelector((state) => state.shopcustomerCart);
   const [searchValue, setSearchValue] = useState('');
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value)
@@ -34,7 +37,18 @@ const SearchBarCart = () => {
             />
           </form>
         </div>
-        <Link to="/cart"><i className="fa-solid fa-cart-shopping ms-1 ms-lg-3 me-3 text-info"></i></Link>
+        <Link to="/cart">
+          {loggedIn && cartItemCount.info && cartItemCount.info.length > 0 ? (
+            <i className="fa-solid fa-cart-shopping ms-1 ms-lg-3 me-3 text-info position-relative">
+              <span className="position-absolute ff-main top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                {cartItemCount.info.length}
+                <span className="visually-hidden">cart item/s count</span>
+              </span>
+            </i>
+          ) : (
+            <i className="fa-solid fa-cart-shopping ff-main ms-1 ms-lg-3 me-3 text-info"></i>
+          )}
+        </Link>
       </div>
     </nav>
   )

@@ -9,6 +9,7 @@ import Carousel from './shopcarousel/Carousel';
 import { fetchShopHighlyRated } from './shopproducts/shopHighlyRatedSlice';
 import { fetchShopDailyDiscover } from './shopproducts/shopDailyDiscoverSlice';
 import KopiiShopProducts from './shopproducts/KopiiShopProducts';
+import { fetchShopCustomerCart } from '../shopcart/shopCustomerCartSlice';
 
 const KopiiShop: React.FC = () => {
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
@@ -23,6 +24,7 @@ const KopiiShop: React.FC = () => {
     dispatch(fetchShopCarousel())
     dispatch(fetchShopHighlyRated())
     dispatch(fetchShopDailyDiscover())
+    dispatch(fetchShopCustomerCart())
 
     return () => {
       dispatch(setLoadingShop(false))

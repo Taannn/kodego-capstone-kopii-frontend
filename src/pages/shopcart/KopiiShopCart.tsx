@@ -1,24 +1,13 @@
 import Div from "../../components/Div";
 import BreadCrumb from "../kopiishop/selectedproduct/BreadCrumb";
 import CustomerCart from "./CustomerCart";
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { setLoadingShop } from "../kopiishop/loadingSliceShop";
-import { fetchShopCustomerCart } from "./shopCustomerCartSlice";
+import { useAppSelector } from "../../app/hooks";
 
 const KopiiShopCart = () => {
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const customerCart = useAppSelector((state) => state.shopcustomerCart);
   const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
-  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchShopCustomerCart());
-    console.log(customerCart.info)
-    return () => {
-      dispatch(setLoadingShop(false));
-    }
-  }, [dispatch])
   return (
     <>
       {loading && <div id='preloader'></div>}
