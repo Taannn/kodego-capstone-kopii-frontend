@@ -11,7 +11,7 @@ const KopiiShopCart = () => {
   return (
     <>
       {loading && <div id='preloader'></div>}
-      {!loading && customerCart.error ?<div>Error: {customerCart.error}</div> : null }
+      {/* {!loading && customerCart.error ?<div>Error: {customerCart.error}</div> : null } */}
       <div>
         <BreadCrumb currentProduct={"Your Cart"} />
         <Div styles="container px-4">

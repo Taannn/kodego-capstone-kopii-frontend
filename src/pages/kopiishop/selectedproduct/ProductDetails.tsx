@@ -1,3 +1,4 @@
+
 type ProductDetailsProps = {
   productCategory: string;
   productName: string;
@@ -6,6 +7,7 @@ type ProductDetailsProps = {
   productDesc: string;
   increment: () => void;
   decrement: () => void;
+  addToCart: () => void;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({
@@ -15,7 +17,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   startingQuantity,
   productDesc,
   increment,
-  decrement
+  decrement,
+  addToCart
 }) => {
   return (
     <div className="col-md-7">
@@ -31,10 +34,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         </div>
         <div className="buttons d-flex my-5">
           <div className="block">
-            <a href="cart.html" className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</a>
+            <a className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</a>
           </div>
           <div className="block">
-            <a href="signup.html" className="shadow btn btn-lg btn-secondary add-to-cart-btn bs-secondary rounded">Add to cart</a>
+            <a onClick={addToCart} className="shadow btn btn-lg btn-secondary add-to-cart-btn bs-secondary rounded">Add to cart</a>
           </div>
           <div className="block quantity d-flex gap-1 ms-2">
             <button onClick={increment} className="btn btn-lg rounded bg-info">+</button>

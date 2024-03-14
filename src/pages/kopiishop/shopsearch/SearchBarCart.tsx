@@ -40,7 +40,7 @@ const SearchBarCart = () => {
         <Link to="/cart">
           {loggedIn && cartItemCount.info && cartItemCount.info.length > 0 ? (
             <i className="fa-solid fa-cart-shopping ms-1 ms-lg-3 me-3 text-info position-relative">
-              <span className="position-absolute ff-main top-0 start-100 translate-middle badge rounded-pill bg-primary">
+              <span className="position-absolute ff-main top-0 start-100 translate-middle badge rounded-pill bg-dark">
                 {cartItemCount.info.length}
                 <span className="visually-hidden">cart item/s count</span>
               </span>

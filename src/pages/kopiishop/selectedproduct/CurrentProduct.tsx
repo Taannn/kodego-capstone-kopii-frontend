@@ -4,9 +4,14 @@ import { CurrentProductProps } from "../KopiiShopProps"
 import BreadCrumb from "./BreadCrumb"
 import ProductDetails from "./ProductDetails"
 import ProductImages from "./ProductImages"
+import { useAppDispatch, useAppSelector } from "../../../app/hooks"
+import axios from "axios"
+import { setSuccessful } from "./addToCartSlice"
+import { useNavigate } from "react-router-dom"
 const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) => {
   const [startingQuantity, setStartingQuantity] = useState(shopSelectedProduct.starting_quantity);
-  // console.log(shopSelectedProduct);
+  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn)
+  const dispatch = useAppDispatch();
 
   const handleIncrement = () => {
     setStartingQuantity(prev => prev + 1)
@@ -16,6 +21,31 @@ const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) =
       setStartingQuantity(prev => prev - 1)
     }
   }
+  const navigate = useNavigate();
+  const handleAddToCart = async (id: number) => {
+    if (!loggedIn) {
+      return navigate("/login")
+    }
+    try {
+      const token = localStorage.getItem('token')
+      const response = await axios.post("https://kopii-mp2.onrender.com/kopii/shop/", {
+        product_id: id,
+        quantity: startingQuantity
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      console.log(response.data.data);
+      dispatch(setSuccessful(true))
+      return response.data.data;
+    } catch (error) {
+      throw error
+    } finally {
+      dispatch(setSuccessful(false))
+    }
+  }
+
   return (
     <>
       <div>
@@ -31,6 +61,7 @@ const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) =
               productDesc={shopSelectedProduct.product_desc}
               increment={handleIncrement}
               decrement={handleDecrement}
+              addToCart={() => handleAddToCart(shopSelectedProduct.product_id)}
             />
           </Div>
         </Div>
