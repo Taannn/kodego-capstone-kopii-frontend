@@ -13,6 +13,9 @@ import FilteredCategory from "./pages/kopiishop/filteredcategory/FilteredCategor
 import SearchResult from "./pages/kopiishop/shopsearch/SearchResult"
 import KopiiShopCart from "./pages/shopcart/KopiiShopCart"
 import UserInfo from "./pages/usersettings/UserInfo"
+import KopiiShopOrders from "./pages/usersettings/shoporders/KopiiShopOrders"
+import KopiiStopOrders from "./pages/usersettings/stoporders/KopiiStopOrders"
+import AddressAndInfo from "./pages/usersettings/addressinfo/AddressAndInfo"
 
 
 function App() {
@@ -34,6 +37,9 @@ function App() {
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/cart" element={<KopiiShopCart />} />
           <Route path="/userinfo" element={<UserInfo />} />
+          <Route path="/shoporders" element={<KopiiShopOrders />} />
+          <Route path="/stoporders" element={<KopiiStopOrders />} />
+          <Route path="/addressinfo" element={<AddressAndInfo />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>

@@ -12022,6 +12022,13 @@ textarea.form-control-lg {
   background-blend-mode: difference;
 }
 
+.user-info-bg {
+  background-image: url(https://kopiiiiiimg.netlify.app/assets/images/carousel-main-3.jpg);
+  background-size: cover;
+  background-position: right;
+  background-blend-mode: difference;
+}
+
 .avatar-img {
   max-width: 3rem;
 }

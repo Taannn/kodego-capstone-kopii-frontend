@@ -1,45 +1,64 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks"
 import { loggedInToggle } from "../login/loginSlice";
-import { useEffect, useState } from "react";
+import BreadCrumb from "../../components/BreadCrumb";
+
 
 const UserInfo = () => {
-  const [toastToggle, setToastToggle] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('token');
     dispatch(loggedInToggle(false));
+    setTimeout(() => {
+      navigate("/kopiishop");
+    }, 1000);
   }
 
-  useEffect(() => {
-    if (toastToggle) {
-      setTimeout(() => {
-        setToastToggle(false)
-      }, 3000);
-    }
-  }, [toastToggle])
-  const handleToggle = () => {
-    setToastToggle(true);
-  }
   return (
-    <div className="container full-dimension">
-      <div className="ff-main text-primary mt-6 display-1 text-center">UserInfo</div>
-      <Link to="/kopiishop" onClick={handleLogout} className="btn-lg btn-info text-dark">Logout</Link>
-      <button className="btn btn-dark text-light btn-lg" onClick={handleToggle}>Click me</button>
-      {/*  */}
-      <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
-        <div id="liveToast" className={`toast${toastToggle ? ' show':''}`} role="alert" aria-live="assertive" aria-atomic="true">
-          <div className="toast-header bg-info text-dark">
-            <strong className="me-auto">Product Name</strong>
-            <small>1 sec ago</small>
-            <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-          <div className="toast-body text-dark">
-            Successfully added!
+    <>
+      <div className="modal fade" id="logoutModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered ff-main">
+          <div className="modal-content">
+            <div className="modal-header bg-info">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body bg-dark text-light fs-4">
+              Are you sure you want to log out?
+            </div>
+            <div className="modal-footer bg-dark border-0">
+              <button onClick={handleLogout} data-bs-dismiss="modal" className="btn btn-success">Yes</button>
+              <button type="button" className="btn btn-warning" data-bs-dismiss="modal">No</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <BreadCrumb currentProduct={"User Settings"} link={"/kopiishop"} />
+      <div className="container mb-5 ff-main">
+        <div className="row">
+          <div className="col-12 user-info-bg col-md-8 bg-danger rounded mx-auto text-light ff-main pt-5 px-2 lh-base">
+            <h1>User Full Name</h1>
+            <p className="lead">loggedinuser@gmail.com</p>
+          </div>
+        </div>
+        {/*  */}
+        <div className="row mt-2">
+          <Link to="/shoporders" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Kopii Shop Orders</Link>
+        </div>
+        <div className="row mt-2">
+          <Link to="/stoporders" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Kopii Stop Orders</Link>
+        </div>
+        <div className="row mt-2">
+          <Link to="/addressinfo" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Addresses and Info</Link>
+        </div>
+        <div className="row mt-2">
+          <div data-bs-toggle="modal" data-bs-target="#logoutModal" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">
+            Logout
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 

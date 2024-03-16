@@ -69,13 +69,15 @@ const HeaderNav = () => {
                 {!loggedIn ? <Link
                   id="login"
                   to="/signup"
-                  className="btn hvr-bounce-to-top btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
+                  className={`btn hvr-bounce-to-top ${active === "not" ? "" : ""} me-3 btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2`}
+                  onClick={() => handleActiveLink("not")}
                 >
                   Login/Signup
                 </Link> : <Link
                   id="login"
                   to="/userinfo"
-                  className="btn hvr-bounce-to-top btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
+                  className={`btn hvr-bounce-to-top ${active === "not" ? "" : ""} me-3 btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2`}
+                  onClick={() => handleActiveLink("not")}
                 >
                   <i className="fa-solid fa-user px-2"></i>
                 </Link>
@@ -156,15 +158,17 @@ const HeaderNav = () => {
                 {!loggedIn ? <Link
                   id="login"
                   to="/signup"
-                  className="btn hvr-bounce-to-top btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
+                  className={`nav-link${active === "not" ? "active" : ""}`}
+                  onClick={() => handleActiveLink("not")}
                 >
                   Login/Signup
                 </Link> : <Link
                   id="login"
                   to="/userinfo"
-                  className="btn hvr-bounce-to-top btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
+                  className={`nav-link${active === "not" ? "active" : ""}`}
+                  onClick={() => handleActiveLink("not")}
                 >
-                  <i className="fa-solid fa-user px-2"></i>
+                  User Settings
                 </Link>
                 }
                 </li>

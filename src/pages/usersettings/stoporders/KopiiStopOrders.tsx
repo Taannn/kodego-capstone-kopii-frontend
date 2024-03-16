@@ -1,7 +1,10 @@
+import BreadCrumb from "../../../components/BreadCrumb";
 
 const KopiiStopOrders = () => {
   return (
-    <div className="ff-main op-mid text-primary display-1 mt-6">KopiiStopOrders</div>
+    <div>
+      <BreadCrumb currentProduct={"Kopii Stop Orders"} link={"/userinfo"} />
+    </div>
   );
 };
 
