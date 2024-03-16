@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { setLoadingShop } from '../loadingSliceShop'
-import { ShopProductInitState, ShopProductProps } from '../KopiiShopProps'
+import { ShopProductInitState, ShopProductProps } from '../KopiiShopProps';
 
 const initialState: ShopProductInitState = {
   info: [],

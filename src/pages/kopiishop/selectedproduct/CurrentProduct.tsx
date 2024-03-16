@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Div from "../../../components/Div"
 import { CurrentProductProps } from "../KopiiShopProps"
-import BreadCrumb from "./BreadCrumb"
+import BreadCrumb from "../../../components/BreadCrumb"
 import ProductDetails from "./ProductDetails"
 import ProductImages from "./ProductImages"
 import { useAppDispatch, useAppSelector } from "../../../app/hooks"
@@ -41,15 +41,13 @@ const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) =
       return response.data.data;
     } catch (error) {
       throw error
-    } finally {
-      dispatch(setSuccessful(false))
     }
   }
 
   return (
     <>
       <div>
-        <BreadCrumb currentProduct={shopSelectedProduct.product_name} />
+        <BreadCrumb currentProduct={shopSelectedProduct.product_name} link={`/kopiishop`} />
         <Div styles="container my-5 ff-main">
           <Div styles="row">
             <ProductImages productImg={shopSelectedProduct.product_img} productName={shopSelectedProduct.product_name} />

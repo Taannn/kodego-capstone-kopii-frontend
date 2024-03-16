@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
-import BreadCrumb from "../selectedproduct/BreadCrumb";
+import BreadCrumb from "../../../components/BreadCrumb";
 import KopiiShopProducts from "../shopproducts/KopiiShopProducts";
 import { useEffect } from "react";
 import { fetchShopDailyDiscover } from "../shopproducts/shopDailyDiscoverSlice";
@@ -15,7 +15,7 @@ const SearchResult = () => {
   // an easy fix if you're dealing with something that might be undefined, just give it a default value as a fallback :)
   useEffect(() => {
     dispatch(fetchShopDailyDiscover());
-  }, [dispatch])
+  }, [dispatch]);
 
   const filteredResult = products.filter((product) => {
     return product.product_name.toLowerCase().includes(searchItem.toLowerCase());
@@ -29,17 +29,17 @@ const SearchResult = () => {
       {loading && <div id='preloader'></div>}
       {!filteredResult.length &&
       <div className=" mt-5 full-dimension align-items-center">
-        <BreadCrumb currentProduct={"Search Result"} />
+        <BreadCrumb currentProduct={"Search Result"} link={"/kopiishop"} />
         <h1 className="text-center text-dark ff-main op-mid display-1">No Items Found</h1>
       </div>}
       {!loading && filteredResult.length ? (
         <div>
-          <BreadCrumb currentProduct={"Search Result"} />
+          <BreadCrumb currentProduct={"Search Result"} link={"/kopiishop"} />
           <KopiiShopProducts shopProducts={filteredResult} desc={`Search Result for "${searchItem}"`}  />
         </div>
       ) : null}
     </>
-  )
-}
+  );
+};
 
-export default SearchResult
+export default SearchResult;

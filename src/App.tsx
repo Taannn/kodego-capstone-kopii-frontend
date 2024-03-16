@@ -4,9 +4,9 @@ import LandingPage from "./pages/landingpage/LandingPage"
 import Login from "./pages/login/Login"
 import Signup from "./pages/signup/Signup"
 import KopiiShop from "./pages/kopiishop/KopiiShop"
-import KopiiStop from "./pages/kopiistop/KopiiStop"
-import ContactUs from "./pages/contactus/ContactUs"
-import ErrorPage from "./pages/error/ErrorPage"
+import KopiiStop from "./pages/kopiistop/KopiiStop";
+import ContactUs from "./pages/contactus/ContactUs";
+import ErrorPage from "./pages/error/ErrorPage";
 import FooterNav from "./components/FooterNav"
 import KopiiShopSelected from "./pages/kopiishop/selectedproduct/KopiiShopSelected"
 import FilteredCategory from "./pages/kopiishop/filteredcategory/FilteredCategory"

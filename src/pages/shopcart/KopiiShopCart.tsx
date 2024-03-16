@@ -1,5 +1,5 @@
 import Div from "../../components/Div";
-import BreadCrumb from "../kopiishop/selectedproduct/BreadCrumb";
+import BreadCrumb from "../../components/BreadCrumb";
 import CustomerCart from "./CustomerCart";
 import { useAppSelector } from "../../app/hooks";
 
@@ -13,7 +13,7 @@ const KopiiShopCart = () => {
       {loading && <div id='preloader'></div>}
       {/* {!loading && customerCart.error ?<div>Error: {customerCart.error}</div> : null } */}
       <div>
-        <BreadCrumb currentProduct={"Your Cart"} />
+        <BreadCrumb currentProduct={"Your Cart"} link={"/kopiishop"} />
         <Div styles="container px-4">
           <Div styles="row bg-sage text-center-ff-main mb-4 mb-md-5 p-2">
             <Div styles="col-6 col-md-3 ff-main h1 text-center">Product</Div>

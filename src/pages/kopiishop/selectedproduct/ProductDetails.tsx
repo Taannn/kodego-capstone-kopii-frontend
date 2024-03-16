@@ -1,4 +1,6 @@
-
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { setSuccessful } from "./addToCartSlice";
 type ProductDetailsProps = {
   productCategory: string;
   productName: string;
@@ -20,8 +22,30 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   decrement,
   addToCart
 }) => {
+  const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (successfullyAdded) {
+      setTimeout(() => {
+        dispatch(setSuccessful(false))
+      }, 3000);
+    }
+  }, [successfullyAdded])
   return (
     <div className="col-md-7">
+      <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
+        <div id="liveToast" className={`toast${successfullyAdded ? ' show':''}`} role="alert" aria-live="assertive" aria-atomic="true">
+          <div className="toast-header bg-info text-dark">
+            <strong className="me-auto">{productName}</strong>
+            <small>1 sec ago</small>
+            <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div className="toast-body text-dark">
+            Successfully added!
+          </div>
+        </div>
+      </div>
       <div className="main-description px-2">
         <div className="category text-bold text-secondary">
           Category: {productCategory}
