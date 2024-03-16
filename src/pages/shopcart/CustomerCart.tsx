@@ -26,6 +26,13 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
     }
   }
 
+  const calculateTotalPrice = (item: { product_price: string; quantity: number; }) => {
+    const price = parseFloat(item.product_price);
+    // DECIMAL(10, 2) for some reason gets converted into string here so parseFloat does its job to allow the calculation below then toFixed(2) mimics the DECIMAL(10, 2) in mysql with always 2 digits in decimal, reverts it back to string as well (returned result) :)
+    const quantity = item.quantity;
+    return (price * quantity).toFixed(2);
+  };
+
   return (
     <>
       {shopCustomerCart.map((s, i) => (
@@ -41,7 +48,7 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
               <button className="btn rounded bg-danger text-light">-</button>
             </div>
             <div className="d-flex align-items-center justify-content-center">
-              <p className="amount display-5 text-bold ff-main lead text-primary">₱ {s.product_price}</p>
+              <p className="amount display-5 text-bold ff-main lead text-primary">₱ {calculateTotalPrice(s)}</p>
             </div>
             <div className="delete d-flex align-items-center justify-content-center gap-1">
               <button onClick={() => handleDeleteFromCart(s.product_id)} className="btn rounded bg-warning text-light ff-main">Delete</button>
