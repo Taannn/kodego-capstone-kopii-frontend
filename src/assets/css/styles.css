@@ -12080,6 +12080,17 @@ textarea.form-control-lg {
   z-index: 100;
 }
 
+.select-container {
+  position: relative;
+}
+
+.select-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .full-dimension {
   height: 100vh;
 }

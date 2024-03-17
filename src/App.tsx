@@ -16,6 +16,8 @@ import UserInfo from "./pages/usersettings/UserInfo"
 import KopiiShopOrders from "./pages/usersettings/shoporders/KopiiShopOrders"
 import KopiiStopOrders from "./pages/usersettings/stoporders/KopiiStopOrders"
 import AddressAndInfo from "./pages/usersettings/addressinfo/AddressAndInfo"
+import ShopCheckout from "./pages/kopiishop/orderpage/ShopCheckout"
+import ShopOrderComplete from "./pages/kopiishop/ordercomplete/ShopOrderComplete"
 
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
           <Route path="/shoporders" element={<KopiiShopOrders />} />
           <Route path="/stoporders" element={<KopiiStopOrders />} />
           <Route path="/addressinfo" element={<AddressAndInfo />} />
+          <Route path="/shopcheckout" element={<ShopCheckout />} />
+          <Route path="/shop/ordercomplete" element={<ShopOrderComplete />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>

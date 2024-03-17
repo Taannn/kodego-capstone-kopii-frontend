@@ -4,6 +4,12 @@ import { setLoadingShop } from "../kopiishop/loadingSliceShop";
 import axios from "axios";
 import { fetchShopCustomerCart } from "./shopCustomerCartSlice";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  quantitySetter,
+  priceSetter,
+  selectedProductId
+} from "../kopiishop/orderpage/shopCheckoutSlice";
 
 const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
   const [itemQuantities, setItemQuantities] = useState<{ [key: number]: number }>(Object.fromEntries(shopCustomerCart.map(item => [item.product_id, 1])));
@@ -48,6 +54,14 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
     return (price * quantity).toFixed(2);
   };
 
+  const handleSelectedProductDetail = (quantity: number, productId: number, price: string) => {
+    dispatch(quantitySetter(quantity));
+    dispatch(selectedProductId(productId));
+    dispatch(priceSetter(price));
+    console.log(quantity, productId, price);
+
+  }
+
   return (
     <>
       {shopCustomerCart.map((s, i) => (
@@ -67,7 +81,7 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
             </div>
             <div className="delete d-flex align-items-center justify-content-center gap-1">
               <button onClick={() => handleDeleteFromCart(s.product_id)} className="btn rounded bg-warning text-light ff-main">Delete</button>
-              <button className="btn rounded bg-success text-light ff-main">Checkout</button>
+              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(itemQuantities[s.product_id], s.product_id, calculateTotalPrice(s, s.product_id))} className="btn rounded bg-success text-light ff-main">Checkout</Link>
             </div>
           </div>
         </div>
