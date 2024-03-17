@@ -1,4 +1,3 @@
-import { useState } from "react"
 import Div from "../../../components/Div"
 import { CurrentProductProps } from "../KopiiShopProps"
 import BreadCrumb from "../../../components/BreadCrumb"
@@ -9,18 +8,9 @@ import axios from "axios"
 import { setSuccessful } from "./addToCartSlice"
 import { useNavigate } from "react-router-dom"
 const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) => {
-  const [startingQuantity, setStartingQuantity] = useState(shopSelectedProduct.starting_quantity);
   const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn)
   const dispatch = useAppDispatch();
 
-  const handleIncrement = () => {
-    setStartingQuantity(prev => prev + 1)
-  }
-  const handleDecrement = () => {
-    if (startingQuantity > 1) {
-      setStartingQuantity(prev => prev - 1)
-    }
-  }
   const navigate = useNavigate();
   const handleAddToCart = async (id: number) => {
     if (!loggedIn) {
@@ -30,7 +20,7 @@ const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) =
       const token = localStorage.getItem('token')
       const response = await axios.post("https://kopii-mp2.onrender.com/kopii/shop/", {
         product_id: id,
-        quantity: startingQuantity
+        quantity: 1
       }, {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -55,10 +45,7 @@ const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) =
               productCategory={shopSelectedProduct.category_name}
               productName={shopSelectedProduct.product_name}
               productPrice={shopSelectedProduct.product_price}
-              startingQuantity={startingQuantity}
               productDesc={shopSelectedProduct.product_desc}
-              increment={handleIncrement}
-              decrement={handleDecrement}
               addToCart={() => handleAddToCart(shopSelectedProduct.product_id)}
             />
           </Div>

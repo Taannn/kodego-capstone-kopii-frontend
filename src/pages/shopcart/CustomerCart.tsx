@@ -3,8 +3,10 @@ import { useAppDispatch } from "../../app/hooks";
 import { setLoadingShop } from "../kopiishop/loadingSliceShop";
 import axios from "axios";
 import { fetchShopCustomerCart } from "./shopCustomerCartSlice";
+import { useState } from "react";
 
 const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
+  const [itemQuantities, setItemQuantities] = useState<{ [key: number]: number }>(Object.fromEntries(shopCustomerCart.map(item => [item.product_id, 1])));
   const dispatch = useAppDispatch();
 
   const handleDeleteFromCart = async (product_id: number) => {
@@ -26,10 +28,23 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
     }
   }
 
-  const calculateTotalPrice = (item: { product_price: string; quantity: number; }) => {
+  const handleIncrement = (productId: number) => {
+    setItemQuantities(prevQuantities => ({
+      ...prevQuantities,
+      [productId]: (prevQuantities[productId] || 0) + 1
+    }));
+  }
+
+  const handleDecrement = (productId: number) => {
+    setItemQuantities(prevQuantities => ({
+      ...prevQuantities,
+      [productId]: Math.max((prevQuantities[productId] || 0) - 1, 0)
+    }));
+  }
+
+  const calculateTotalPrice = (item: { product_price: string; }, productId: number) => {
     const price = parseFloat(item.product_price);
-    // DECIMAL(10, 2) for some reason gets converted into string here so parseFloat does its job to allow the calculation below then toFixed(2) mimics the DECIMAL(10, 2) in mysql with always 2 digits in decimal, reverts it back to string as well (returned result) :)
-    const quantity = item.quantity;
+    const quantity = itemQuantities[productId] || 1; // Use the quantity from itemQuantities
     return (price * quantity).toFixed(2);
   };
 
@@ -43,12 +58,12 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
           </div>
           <div className="col-6 col-md-9 d-flex flex-column flex-md-row align-items-center justify-content-evenly p-2">
             <div className="block quantity d-flex gap-1">
-              <button className="btn rounded bg-danger text-light">+</button>
-              <span className="btn btn-disabled rounded bg-danger text-light">{s.quantity}</span>
-              <button className="btn rounded bg-danger text-light">-</button>
+              <button onClick={() => handleIncrement(s.product_id)} className="btn rounded bg-danger text-light">+</button>
+              <span className="btn btn-disabled rounded bg-danger text-light">{itemQuantities[s.product_id] || 1}</span>
+              <button onClick={() => handleDecrement(s.product_id)} className="btn rounded bg-danger text-light">-</button>
             </div>
             <div className="d-flex align-items-center justify-content-center">
-              <p className="amount display-5 text-bold ff-main lead text-primary">₱ {calculateTotalPrice(s)}</p>
+              <p className="amount display-5 text-bold ff-main lead text-primary">₱ {calculateTotalPrice(s, s.product_id)}</p>
             </div>
             <div className="delete d-flex align-items-center justify-content-center gap-1">
               <button onClick={() => handleDeleteFromCart(s.product_id)} className="btn rounded bg-warning text-light ff-main">Delete</button>
@@ -61,4 +76,4 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
   )
 }
 
-export default CustomerCart
+export default CustomerCart;

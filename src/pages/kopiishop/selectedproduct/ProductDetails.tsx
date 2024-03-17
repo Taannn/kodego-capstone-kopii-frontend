@@ -5,10 +5,7 @@ type ProductDetailsProps = {
   productCategory: string;
   productName: string;
   productPrice: string;
-  startingQuantity: number;
   productDesc: string;
-  increment: () => void;
-  decrement: () => void;
   addToCart: () => void;
 }
 
@@ -16,10 +13,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   productCategory,
   productName,
   productPrice,
-  startingQuantity,
   productDesc,
-  increment,
-  decrement,
   addToCart
 }) => {
   const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
@@ -64,9 +58,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             <a onClick={addToCart} className="shadow btn btn-lg btn-secondary add-to-cart-btn bs-secondary rounded">Add to cart</a>
           </div>
           <div className="block quantity d-flex gap-1 ms-2">
-            <button onClick={increment} className="btn btn-lg rounded bg-info">+</button>
-            <span className="btn btn-lg btn-disabled rounded bg-info">{startingQuantity}</span>
-            <button onClick={decrement} className="btn btn-lg rounded bg-info">-</button>
+            {/* <span className="btn btn-lg btn-disabled rounded bg-info">{startingQuantity}</span> */}
           </div>
         </div>
       </div>
