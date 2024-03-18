@@ -10,6 +10,7 @@ import {
   errorMessage,
   passwordToggle
 } from './signupSlice';
+import { loggedInToggle } from '../login/loginSlice';
 
 const Signup: React.FC = () => {
   const formData = useAppSelector((state) => state.kopiisignup);
@@ -30,12 +31,19 @@ const Signup: React.FC = () => {
         email: formData.email,
         password: formData.password
       });
+      const response = await axios.post("https://kopii-mp2.onrender.com/kopii/login", {
+        email: formData.email,
+        password: formData.password
+      });
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      dispatch(loggedInToggle(true));
       console.log('User data', res.data);
       dispatch(nameInput(''));
       dispatch(surnameInput(''));
       dispatch(emailInput(''));
       dispatch(passwordInput(''));
-      navigate("/login");
+      navigate("/kopiishop");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         if (error.response.data.error === 'DuplicateEmailError') {
