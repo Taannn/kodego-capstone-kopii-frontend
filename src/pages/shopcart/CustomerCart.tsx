@@ -44,7 +44,8 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
   const handleDecrement = (productId: number) => {
     setItemQuantities(prevQuantities => ({
       ...prevQuantities,
-      [productId]: Math.max((prevQuantities[productId] || 0) - 1, 0)
+      [productId]: Math.max((prevQuantities[productId] || 0) - 1, 1)
+      // this makes it so that the final quantity  will always be 1 or above
     }));
   }
 
