@@ -1,23 +1,31 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { setSuccessful } from "./addToCartSlice";
-type ProductDetailsProps = {
-  productCategory: string;
-  productName: string;
-  productPrice: string;
-  productDesc: string;
-  addToCart: () => void;
-}
+import { Link } from "react-router-dom";
+import { priceSetter, quantitySetter, selectedProductId, selectedProductImg } from "../orderpage/shopCheckoutSlice";
+import { ProductDetailsProps } from "../KopiiShopProps";
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({
   productCategory,
   productName,
   productPrice,
   productDesc,
+  productId,
+  productStock,
+  productImg,
   addToCart
 }) => {
   const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
   const dispatch = useAppDispatch();
+
+  const handleSelectedProductDetail = (quantity: number, productID: number, price: string, img: string) => {
+    dispatch(quantitySetter(quantity));
+    dispatch(selectedProductId(productID));
+    dispatch(priceSetter(price));
+    dispatch(selectedProductImg(img));
+
+    console.log(quantity, productId, price);
+  }
 
   useEffect(() => {
     if (successfullyAdded) {
@@ -52,13 +60,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         </div>
         <div className="buttons d-flex my-5">
           <div className="block">
-            <a className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</a>
+            <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, productPrice, productImg)} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>
           </div>
           <div className="block">
             <a onClick={addToCart} className="shadow btn btn-lg btn-secondary add-to-cart-btn bs-secondary rounded">Add to cart</a>
           </div>
           <div className="block quantity d-flex gap-1 ms-2">
-            {/* <span className="btn btn-lg btn-disabled rounded bg-info">{startingQuantity}</span> */}
+            <span className="btn btn-lg btn-disabled rounded bg-info">Stock: {productStock}</span>
           </div>
         </div>
       </div>

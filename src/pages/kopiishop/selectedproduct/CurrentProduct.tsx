@@ -46,6 +46,9 @@ const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) =
               productName={shopSelectedProduct.product_name}
               productPrice={shopSelectedProduct.product_price}
               productDesc={shopSelectedProduct.product_desc}
+              productId={shopSelectedProduct.product_id}
+              productStock={shopSelectedProduct.product_stock}
+              productImg={shopSelectedProduct.product_img}
               addToCart={() => handleAddToCart(shopSelectedProduct.product_id)}
             />
           </Div>

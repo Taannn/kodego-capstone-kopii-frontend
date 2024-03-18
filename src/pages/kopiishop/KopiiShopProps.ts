@@ -77,3 +77,14 @@ export type ShopSelectedProductInitState = {
 export type CurrentProductProps = {
   shopSelectedProduct: ShopSelectedProductProps;
 };
+
+export type ProductDetailsProps = {
+  productCategory: string;
+  productName: string;
+  productPrice: string;
+  productDesc: string;
+  productId: number;
+  productStock: number;
+  productImg: string;
+  addToCart: () => void;
+}

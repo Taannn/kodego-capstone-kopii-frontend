@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 import {
   quantitySetter,
   priceSetter,
-  selectedProductId
+  selectedProductId,
+  selectedProductImg
 } from "../kopiishop/orderpage/shopCheckoutSlice";
 
 const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
@@ -55,12 +56,12 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
     return (price * quantity).toFixed(2);
   };
 
-  const handleSelectedProductDetail = (quantity: number, productId: number, price: string) => {
+  const handleSelectedProductDetail = (quantity: number, productId: number, price: string, img: string) => {
     dispatch(quantitySetter(quantity));
     dispatch(selectedProductId(productId));
     dispatch(priceSetter(price));
+    dispatch(selectedProductImg(img));
     console.log(quantity, productId, price);
-
   }
 
   return (
@@ -82,7 +83,7 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
             </div>
             <div className="delete d-flex align-items-center justify-content-center gap-1">
               <button onClick={() => handleDeleteFromCart(s.product_id)} className="btn rounded bg-warning text-light ff-main">Delete</button>
-              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(itemQuantities[s.product_id], s.product_id, calculateTotalPrice(s, s.product_id))} className="btn rounded bg-success text-light ff-main">Checkout</Link>
+              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(itemQuantities[s.product_id], s.product_id, calculateTotalPrice(s, s.product_id), s.product_img)} className="btn rounded bg-success text-light ff-main">Checkout</Link>
             </div>
           </div>
         </div>

@@ -14,8 +14,9 @@ import {
   errorMessage,
   priceSetter,
   quantitySetter,
-  selectedProductId
+  selectedProductId,
 } from "./shopCheckoutSlice";
+import OrderedProduct from "./OrderedProduct";
 
 const ShopCheckout = () => {
   const [paymentMethod, setPaymentMethod] = useState<string>('');
@@ -50,6 +51,7 @@ const ShopCheckout = () => {
           'Authorization': `Bearer ${token}`
         }
       });
+      console.log(response.data.data);
       console.log('User data', res.data);
       dispatch(addressInput(''));
       dispatch(cityInput(''));
@@ -58,7 +60,6 @@ const ShopCheckout = () => {
       dispatch(priceSetter(null));
       dispatch(selectedProductId(null));
       setPaymentMethod('');
-      console.log(response.data.data);
       navigate("/shop/ordercomplete");
     } catch (error: any) {
       console.log(error);
@@ -68,7 +69,17 @@ const ShopCheckout = () => {
   return (
     <div>
       <BreadCrumb currentProduct={"Checkout"} link={"/kopiishop"} />
-      <Div styles="container ff-main">
+      <Div styles="border border-top-0 border-start-0 border-end-0 border-bottom-5 border-primary">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-8 mx-auto">
+              <h1 className="display-1 ff-main text-primary">Order Confirmation</h1>
+            </div>
+          </div>
+        </div>
+      </Div>
+      <Div styles="container ff-main mt-5">
+        <OrderedProduct />
         <Div styles="row">
           <Div styles="col-12 col-md-8 mx-auto">
             <form onSubmit={handleSubmit}>

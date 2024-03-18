@@ -8,6 +8,7 @@ type InitialStateProps = {
   finalQuantity: number | null;
   finalPrice: string | null;
   productId: number | null;
+  productImg: string;
 }
 const initialState: InitialStateProps = {
   address: "",
@@ -16,7 +17,8 @@ const initialState: InitialStateProps = {
   error: "",
   finalQuantity: null,
   finalPrice: null,
-  productId: null
+  productId: null,
+  productImg: ''
 }
 
 const shopCheckoutSlice = createSlice({
@@ -43,6 +45,9 @@ const shopCheckoutSlice = createSlice({
     },
     selectedProductId: (state, action) => {
       state.productId = action.payload;
+    },
+    selectedProductImg: (state, action) => {
+      state.productImg = action.payload;
     }
   },
 })
@@ -57,5 +62,6 @@ export const {
   errorMessage,
   quantitySetter,
   priceSetter,
-  selectedProductId
+  selectedProductId,
+  selectedProductImg
 } = shopCheckoutSlice.actions
