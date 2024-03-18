@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { setSuccessful } from "./addToCartSlice";
 import { Link } from "react-router-dom";
-import { priceSetter, quantitySetter, selectedProductId, selectedProductImg } from "../orderpage/shopCheckoutSlice";
+import { priceSetter, quantitySetter, selectedProductId, selectedProductImg, selectedProductDesc, selectedProductName } from "../orderpage/shopCheckoutSlice";
 import { ProductDetailsProps } from "../KopiiShopProps";
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({
@@ -18,13 +18,20 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
   const dispatch = useAppDispatch();
 
-  const handleSelectedProductDetail = (quantity: number, productID: number, price: string, img: string) => {
+  const handleSelectedProductDetail = (
+    quantity: number,
+    productID: number,
+    productPrice: string,
+    productImg: string,
+    productName: string,
+    productDesc: string
+  ) => {
     dispatch(quantitySetter(quantity));
     dispatch(selectedProductId(productID));
-    dispatch(priceSetter(price));
-    dispatch(selectedProductImg(img));
-
-    console.log(quantity, productId, price);
+    dispatch(priceSetter(productPrice));
+    dispatch(selectedProductImg(productImg));
+    dispatch(selectedProductName(productName));
+    dispatch(selectedProductDesc(productDesc));
   }
 
   useEffect(() => {
@@ -60,7 +67,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         </div>
         <div className="buttons d-flex my-5">
           <div className="block">
-            <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, productPrice, productImg)} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>
+            <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, productPrice, productImg, productName, productDesc)} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>
           </div>
           <div className="block">
             <a onClick={addToCart} className="shadow btn btn-lg btn-secondary add-to-cart-btn bs-secondary rounded">Add to cart</a>

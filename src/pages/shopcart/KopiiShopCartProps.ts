@@ -3,6 +3,7 @@ export type ShopCustomerCartProps = {
   product_id: number;
   product_img: string;
   product_name: string;
+  product_desc: string;
   quantity: number;
   product_price: string;
 };
