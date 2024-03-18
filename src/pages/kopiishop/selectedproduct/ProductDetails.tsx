@@ -16,6 +16,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   addToCart
 }) => {
   const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
+  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
   const dispatch = useAppDispatch();
 
   const handleSelectedProductDetail = (
@@ -67,7 +68,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         </div>
         <div className="buttons d-flex my-5">
           <div className="block">
-            <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, productPrice, productImg, productName, productDesc)} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>
+            {loggedIn ?
+              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, productPrice, productImg, productName, productDesc)} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>
+            :
+            <Link to={"/login"} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>
+            }
           </div>
           <div className="block">
             <a onClick={addToCart} className="shadow btn btn-lg btn-secondary add-to-cart-btn bs-secondary rounded">Add to cart</a>
