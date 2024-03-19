@@ -67,7 +67,8 @@ export const addShopOrder = createAsyncThunk('shopCheckout/addShopOrder', async 
   } finally {
     dispatch(setLoadingShop(false));
   }
-})
+});
+
 
 const shopCheckoutSlice = createSlice({
   name: 'shopCheckout',

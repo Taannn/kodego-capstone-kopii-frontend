@@ -15,14 +15,14 @@ const FilteredCategory = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       dispatch(setLoadingShop(true));
-  try {
-    const response = await axios.get(`https://kopii-mp2.onrender.com/kopii/shop/category/${category}`);
-    setProducts(response.data.data);
-  } catch (error) {
-    throw error;
-  } finally {
-    dispatch(setLoadingShop(false));
-  }
+    try {
+      const response = await axios.get(`https://kopii-mp2.onrender.com/kopii/shop/category/${category}`);
+      setProducts(response.data.data);
+    } catch (error) {
+      throw error;
+    } finally {
+      dispatch(setLoadingShop(false));
+    }
     }
     fetchCategory()
 

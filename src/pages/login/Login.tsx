@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import AnimatedCoffeeMaker from "../../components/AnimatedCoffeeMaker";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Div from "../../components/Div";
@@ -8,7 +7,7 @@ import {
   passwordInput,
   passwordToggle,
   errorMessage,
-  loggedInToggle
+  userLogin
 } from "./loginSlice";
 
 const Login: React.FC = () => {
@@ -23,28 +22,15 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const loginData = {
+      email: formData.email,
+      password: formData.password
+    }
     try {
-      const res = await axios.post("https://kopii-mp2.onrender.com/kopii/login", {
-        email: formData.email,
-        password: formData.password
-      });
-      const { token, customer_id, expiresIn } = res.data;
-      localStorage.setItem('token', token);
-      console.log('User logged in : ', customer_id);
-      console.log('Session expires in : ', expiresIn);
-      dispatch(loggedInToggle(true));
-      dispatch(emailInput(''));
-      dispatch(passwordInput(''));
+      await dispatch(userLogin(loginData));
       navigate("/kopiishop");
-    } catch (error: any) {
-      if (error.response && error.response.status === 404) {
-        dispatch(errorMessage("User not found"));
-      } else if (error.response && error.response.status === 401) {
-        dispatch(errorMessage("Invalid password"));
-      } else {
-        console.log('Login Failed : ', error.message);
-        dispatch(errorMessage("An unexpected error occurred"));
-      }
+    } catch (error) {
+      console.error("Login Failed with error: ", error);
     }
   };
 
@@ -129,42 +115,3 @@ const Login: React.FC = () => {
 }
 
 export default Login;
-
-// const dispatch = useAppDispatch();
-// const [formData, setFormData] = useState({
-//   email: "",
-//   password: ""
-// });
-// const navigate = useNavigate();
-// const [showPassword, setShowPassword] = useState<boolean>(false);
-// const [error, setError] = useState<string | null>(null);
-
-// const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//   setFormData({
-//     ...formData,
-//     [e.target.name]: e.target.value
-//   });
-//   setError(null);
-// };
-
-// const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-//   e.preventDefault();
-//   try {
-//     const res = await axios.post("http://localhost:3001/kopii/login", formData);
-//     const { token, customer_id, expiresIn } = res.data;
-//     localStorage.setItem('token', token);
-//     console.log('User logged in : ', customer_id);
-//     console.log('Session expires in : ', expiresIn);
-//     dispatch(setIsLoggedIn(true));
-//     navigate("/kopiishop");
-//   } catch (error: any) {
-//     if (error.response && error.response.status === 404) {
-//       setError("User not found");
-//     } else if (error.response && error.response.status === 401) {
-//       setError("Invalid password");
-//     } else {
-//       console.log('Login Failed : ', error.message);
-//       setError("An unexpected error occurred");
-//     }
-//   }
-// };

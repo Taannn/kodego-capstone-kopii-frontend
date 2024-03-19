@@ -46,8 +46,12 @@ const ShopCheckout = () => {
         paymentMethod: formData.paymentMethod,
         shippingFee: formData.shippingFee
       }
-      dispatch(addShopOrder(orderData));
-      navigate("/shop/ordercomplete");
+      try {
+        dispatch(addShopOrder(orderData));
+        navigate("/shop/ordercomplete");
+      } catch (error) {
+        console.error("Order Failed with error: ", error);
+      }
   };
 
   return (
