@@ -12,29 +12,19 @@ import {
   errorMessage,
   shippingFeeSetter,
   paymentMethodSetter,
-  addShopOrder
+  totalAmountSetter,
+  addShopOrder,
 } from "./shopCheckoutSlice";
 import OrderedProduct from "./OrderedProduct";
+import PlaceOrder from "./PlaceOrder";
 import { useNavigate } from "react-router-dom";
 
 const ShopCheckout = () => {
   const formData = useAppSelector((state) => state.shopCheckout);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    const generateRandomNumber = () => {
-      return (Math.random() * (60 - 20) + 20).toFixed(2);
-    };
-    const randomFee = generateRandomNumber();
-    dispatch(shippingFeeSetter(parseFloat(randomFee)));
-  }, []);
-
-  const handleChange = (action: any) => {
-    dispatch(action);
-    dispatch(errorMessage(null));
-  }
-
   const navigate = useNavigate();
-  const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
       const orderData = {
         productId: formData.productId,
@@ -47,12 +37,29 @@ const ShopCheckout = () => {
         shippingFee: formData.shippingFee
       }
       try {
-        dispatch(addShopOrder(orderData));
+        await dispatch(addShopOrder(orderData));
         navigate("/shop/ordercomplete");
       } catch (error) {
         console.error("Order Failed with error: ", error);
       }
   };
+
+  useEffect(() => {
+    const generateRandomNumber = () => {
+      return (Math.random() * (60 - 20) + 20).toFixed(2);
+    };
+    const randomFee = generateRandomNumber();
+    dispatch(shippingFeeSetter(parseFloat(randomFee)));
+    const fee = parseFloat(randomFee);
+    const price = parseFloat(formData.finalPrice)
+    const priceWithShipping =  (price + fee).toFixed(2);
+    dispatch(totalAmountSetter(priceWithShipping));
+  }, []);
+
+  const handleChange = (action: any) => {
+    dispatch(action);
+    dispatch(errorMessage(null));
+  }
 
   return (
     <div>
@@ -67,10 +74,10 @@ const ShopCheckout = () => {
         </Div>
       </Div>
       <Div styles="container ff-main mt-5">
+      <form onSubmit={handleSubmit}>
         <OrderedProduct />
-        <Div styles="row">
-          <Div styles="col-12 col-md-8 mx-auto">
-            <form onSubmit={handleSubmit}>
+          <Div styles="row">
+            <Div styles="col-12 col-md-8 mx-auto">
               <Input
                 handleChange={(e) => handleChange(addressInput(e.target.value))}
                 value={formData.address}
@@ -105,11 +112,10 @@ const ShopCheckout = () => {
                   {formData.error}
                 </div>
               )}
-              <button type="submit">Place Order</button>
-              <h1 className="ff-main text-dark display-5">{formData.shippingFee}</h1>
-            </form>
+            </Div>
+            <PlaceOrder />
           </Div>
-        </Div>
+        </form>
       </Div>
     </div>
   );

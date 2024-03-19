@@ -20,13 +20,6 @@ const SearchBarCart = () => {
       <div className="container">
         <div className="d-flex ms-lg-auto">
           <form onSubmit={handleFormSubmit} className="d-flex input-group" role="search">
-            <Link
-              to={`/search/${searchValue}`}
-              className="btn btn-danger me-1"
-              type="submit">
-                <i className="fa-solid fa-magnifying-glass text-sage py-2 px-3">
-                </i>
-            </Link>
             <input
               className="form-control me-2"
               type="search"
@@ -35,6 +28,13 @@ const SearchBarCart = () => {
               placeholder="Search for products"
               aria-label="Search"
             />
+            <Link
+              to={`/search/${searchValue}`}
+              className="btn btn-danger me-1"
+              type="submit">
+                <i className="fa-solid fa-magnifying-glass text-sage py-2 px-3">
+                </i>
+            </Link>
           </form>
         </div>
         <Link to="/cart">

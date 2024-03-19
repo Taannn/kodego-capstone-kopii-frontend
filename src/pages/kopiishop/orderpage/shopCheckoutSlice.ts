@@ -16,7 +16,8 @@ const initialState: CheckoutInitialStateProps = {
   productDesc: '',
   shippingFee: 0,
   paymentMethod: '',
-  orderStatus: ''
+  orderStatus: '',
+  totalAmount: ''
 }
 
 export const addShopOrder = createAsyncThunk('shopCheckout/addShopOrder', async (data: {
@@ -61,6 +62,7 @@ export const addShopOrder = createAsyncThunk('shopCheckout/addShopOrder', async 
     dispatch(priceSetter(null));
     dispatch(selectedProductId(null));
     dispatch(paymentMethodSetter(''));
+    dispatch(totalAmountSetter(''));
     return response.data.data;
   } catch (error: any) {
     console.error(error);
@@ -109,6 +111,9 @@ const shopCheckoutSlice = createSlice({
     },
     paymentMethodSetter: (state, action) => {
       state.paymentMethod = action.payload;
+    },
+    totalAmountSetter: (state, action) => {
+      state.totalAmount = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -137,5 +142,6 @@ export const {
   selectedProductName,
   selectedProductDesc,
   shippingFeeSetter,
-  paymentMethodSetter
+  paymentMethodSetter,
+  totalAmountSetter
 } = shopCheckoutSlice.actions

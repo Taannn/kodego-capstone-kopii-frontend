@@ -103,4 +103,5 @@ export type CheckoutInitialStateProps = {
   shippingFee: number;
   paymentMethod: string;
   orderStatus: string;
+  totalAmount: string;
 }
