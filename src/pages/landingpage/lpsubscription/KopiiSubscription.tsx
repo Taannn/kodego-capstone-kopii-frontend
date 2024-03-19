@@ -10,7 +10,7 @@ const KopiiSubscription = () => {
               <label htmlFor="emailInput" className="form-label"></label>
             </div>
             <div className="col-lg-5">
-              <form>
+              <form onSubmit={(e) => e.preventDefault()}>
                 <div className="mb-4 d-flex input-group">
                   <input type="email" className="form-control rounded-start-2 ff-main" id="emailInput" placeholder="Enter your email" />
                   <button type="submit" className="btn btn-primary d-inline-block ff-main" data-bs-toggle="modal" data-bs-target="#exampleModal">Subscribe</button>

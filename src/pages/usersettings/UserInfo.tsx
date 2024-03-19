@@ -46,9 +46,9 @@ const UserInfo = () => {
         <div className="row mt-2">
           <Link to="/shoporders" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Kopii Shop Orders</Link>
         </div>
-        <div className="row mt-2">
+        {/* <div className="row mt-2">
           <Link to="/stoporders" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Kopii Stop Orders</Link>
-        </div>
+        </div> */}
         <div className="row mt-2">
           <Link to="/addressinfo" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Addresses and Info</Link>
         </div>

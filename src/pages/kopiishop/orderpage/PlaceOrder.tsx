@@ -1,31 +1,7 @@
-// import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../app/hooks";
-// import { addShopOrder } from "./shopCheckoutSlice";
 
 const PlaceOrder: React.FC = () => {
   const formData = useAppSelector((state) => state.shopCheckout);
-  // const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
-
-  // const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //     const orderData = {
-  //       productId: formData.productId,
-  //       finalQuantity: formData.finalQuantity,
-  //       finalPrice: formData.finalPrice,
-  //       address: formData.address,
-  //       city: formData.city,
-  //       zipCode: formData.zipCode,
-  //       paymentMethod: formData.paymentMethod,
-  //       shippingFee: formData.shippingFee
-  //     }
-  //     try {
-  //       await dispatch(addShopOrder(orderData));
-  //       navigate("/shop/ordercomplete");
-  //     } catch (error) {
-  //       console.error("Order Failed with error: ", error);
-  //     }
-  // };
 
   return (
     <div className="col-12 col-md-8 border border-info border-3 bg-light my-5 d-flex p-2 mx-auto rounded d-flex flex-column">
