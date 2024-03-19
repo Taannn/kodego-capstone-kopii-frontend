@@ -20,15 +20,15 @@ const UserInfo = () => {
       <div className="modal fade" id="logoutModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered ff-main">
           <div className="modal-content">
-            <div className="modal-header bg-info">
+            <div className="modal-header bg-secondary border-0 text-light">
               <h1 className="modal-title fs-5" id="exampleModalLabel">Logout</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div className="modal-body bg-dark text-light fs-4">
+            <div className="modal-body bg-secondary text-light fs-4">
               Are you sure you want to log out?
             </div>
-            <div className="modal-footer bg-dark border-0">
-              <button onClick={handleLogout} data-bs-dismiss="modal" className="btn btn-success">Yes</button>
+            <div className="modal-footer bg-secondary border-0">
+              <button onClick={handleLogout} data-bs-dismiss="modal" className="btn btn-primary text-light">Yes</button>
               <button type="button" className="btn btn-warning" data-bs-dismiss="modal">No</button>
             </div>
           </div>

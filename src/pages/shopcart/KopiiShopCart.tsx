@@ -15,7 +15,7 @@ const KopiiShopCart = () => {
       <div>
         <BreadCrumb currentProduct={"Your Cart"} link={"/kopiishop"} />
         <Div styles="container px-4">
-          <Div styles="row bg-sage text-center-ff-main mb-4 mb-md-5 p-2">
+          <Div styles="row bg-sage text-center-ff-main mb-4 mb-md-5 p-2 rounded">
             <Div styles="col-6 col-md-3 ff-main h1 text-center">Product</Div>
             <Div styles="col-6 col-md-9 ff-main h1 text-center">Controls</Div>
           </Div>

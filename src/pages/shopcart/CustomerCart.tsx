@@ -77,9 +77,11 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
   return (
     <>
       {shopCustomerCart.map((s, i) => (
-        <div key={i + s.product_id} className="row border border-primary border-3 bg-light mb-5">
+        <div key={i + s.product_id} className="row border border-primary border-3 rounded bg-light mb-5">
           <div className="col-6 col-md-3 p-2">
-            <img className="img-fluid" src={s.product_img} alt={s.product_name} />
+            <div className="rounded overflow-hidden">
+              <img className="img-fluid" src={s.product_img} alt={s.product_name} />
+            </div>
             <p className="text-primary h4 ff-main text-ellipsis">{s.product_name}</p>
           </div>
           <div className="col-6 col-md-9 d-flex flex-column flex-md-row align-items-center justify-content-evenly p-2">

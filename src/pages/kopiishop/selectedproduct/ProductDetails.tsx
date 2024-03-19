@@ -46,12 +46,12 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
     <div className="col-md-7">
       <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
         <div id="liveToast" className={`toast${successfullyAdded ? ' show':''}`} role="alert" aria-live="assertive" aria-atomic="true">
-          <div className="toast-header bg-success text-light">
+          <div className="toast-header bg-secondary border-0 text-light">
             <strong className="me-auto">{productName}</strong>
             <small>1 sec ago</small>
             <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
-          <div className="toast-body text-light bg-dark">
+          <div className="toast-body text-light bg-secondary rounded-bottom">
             Successfully added!
           </div>
         </div>

@@ -20,9 +20,6 @@ const KopiiShopOrders = () => {
               <li className="nav-item">
                 <a className="nav-link" data-bs-toggle="tab" href="#completed">Completed</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" data-bs-toggle="tab" href="#cancelled">Cancelled</a>
-              </li>
             </ul>
           </div>
           <div className="card-body">
@@ -31,8 +28,8 @@ const KopiiShopOrders = () => {
                 <p className="display-6 ff-main text-dark" style={{ opacity: '.3' }}>No items added</p>
               </div>
               <div className="tab-pane fade show active" id="to-ship">
-                <div className="row border border-primary border-3 bg-light mb-5">
-                  <div className="col-6 col-md-3 p-2">
+                <div className="row border border-primary border-3 bg-light mb-5 rounded">
+                  <div className="col-6 col-md-3 overflow-hidden rounded p-2">
                     <img className="img-fluid" src="https://kopiiiiiimg.netlify.app/assets/images/category-cookies-premium-cookies.jpg" alt="cake" />
                   </div>
                   <div className="col-6 col-md-9 d-flex flex-column flex-md-row align-items-center justify-content-evenly p-2">
@@ -56,9 +53,6 @@ const KopiiShopOrders = () => {
                 <p className="display-6 ff-main text-dark" style={{ opacity: '.3' }}>No items added</p>
               </div>
               <div className="tab-pane fade" id="completed">
-                <p className="display-6 ff-main text-dark" style={{ opacity: '.3' }}>No items added</p>
-              </div>
-              <div className="tab-pane fade" id="cancelled">
                 <p className="display-6 ff-main text-dark" style={{ opacity: '.3' }}>No items added</p>
               </div>
             </div>
