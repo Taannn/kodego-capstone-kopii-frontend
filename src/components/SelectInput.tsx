@@ -24,7 +24,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
           required
           >
           <option value="">{optionDefault}</option>
-          <option value="gcash">{optionOne}</option>
+          <option value={optionOne}>{optionOne}</option>
         </select>
         <div className="select-icon">
           <i className="fa-solid fa-chevron-down"></i>

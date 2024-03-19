@@ -105,7 +105,7 @@ const ShopCheckout = () => {
                 label="Payment Method"
                 id="paymentMethod"
                 optionDefault="Select Payment Method"
-                optionOne="Cah on Delivery"
+                optionOne="Cash on Delivery"
               />
               {formData.error && (
                 <div className="alert alert-warning mt-3" role="alert">

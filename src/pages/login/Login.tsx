@@ -7,8 +7,9 @@ import {
   passwordInput,
   passwordToggle,
   errorMessage,
-  userLogin
+  loggedInToggle
 } from "./loginSlice";
+import axios from "axios";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -22,15 +23,29 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const loginData = {
-      email: formData.email,
-      password: formData.password
-    }
     try {
-      await dispatch(userLogin(loginData));
+      const res = await axios.post("https://kopii-mp2.onrender.com/kopii/login", {
+        email: formData.email,
+        password: formData.password
+      });
+      const { token, customer_id, expiresIn } = res.data;
+      localStorage.setItem('token', token);
+      console.log('User logged in : ', customer_id);
+      console.log('Session expires in : ', expiresIn);
+      dispatch(loggedInToggle(true));
       navigate("/kopiishop");
-    } catch (error) {
-      console.error("Login Failed with error: ", error);
+      dispatch(emailInput(''));
+      dispatch(passwordInput(''));
+      return res.data.data;
+    } catch (error: any) {
+      if (error.response && error.response.status === 404) {
+        dispatch(errorMessage("User not found"));
+      } else if (error.response && error.response.status === 401) {
+        dispatch(errorMessage("Invalid password"));
+      } else {
+        console.log('Login Failed : ', error.message);
+        dispatch(errorMessage("An unexpected error occurred"));
+      }
     }
   };
 

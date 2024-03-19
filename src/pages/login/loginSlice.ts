@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
 
 type InitialStateProps = {
   email: string;
@@ -17,36 +17,6 @@ const initialState: InitialStateProps = {
   isLoggedIn: false,
   message: ''
 }
-
-export const userLogin = createAsyncThunk('login/userLogin', async (data: {
-  email: string;
-  password: string;
-}, { dispatch }) => {
-  try {
-    const res = await axios.post("https://kopii-mp2.onrender.com/kopii/login", {
-      email: data.email,
-      password: data.password
-    });
-    const { token, customer_id, expiresIn } = res.data;
-    localStorage.setItem('token', token);
-    console.log('User logged in : ', customer_id);
-    console.log('Session expires in : ', expiresIn);
-    dispatch(loggedInToggle(true));
-    dispatch(emailInput(''));
-    dispatch(passwordInput(''));
-    return res.data.data;
-  } catch (error: any) {
-    if (error.response && error.response.status === 404) {
-      dispatch(errorMessage("User not found"));
-    } else if (error.response && error.response.status === 401) {
-      dispatch(errorMessage("Invalid password"));
-    } else {
-      console.log('Login Failed : ', error.message);
-      dispatch(errorMessage("An unexpected error occurred"));
-    }
-  }
-
-});
 
 const loginSlice = createSlice({
   name: 'login',
@@ -68,15 +38,6 @@ const loginSlice = createSlice({
       state.isLoggedIn = action.payload;
     }
   },
-  extraReducers: (builder) => {
-    builder.addCase(userLogin.fulfilled, (state, action) => {
-      state.message = action.payload;
-    })
-    builder.addCase(userLogin.rejected, (state, action) => {
-      state.message = ''
-      state.error = action.error.message || 'Error'
-    })
-  }
 })
 
 export default loginSlice.reducer

@@ -1,4 +1,3 @@
-// types for shopcarousel
 export type ShopCustomerCartProps = {
   product_id: number;
   product_img: string;

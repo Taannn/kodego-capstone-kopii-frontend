@@ -17,6 +17,7 @@ import loginReducer from '../pages/login/loginSlice';
 import shopCustomerCartReducer from '../pages/shopcart/shopCustomerCartSlice';
 import successfullyAddedReducer from '../pages/kopiishop/selectedproduct/addToCartSlice';
 import shopCheckoutReducer from '../pages/kopiishop/orderpage/shopCheckoutSlice';
+import shopCustomerOrdersReducer from '../pages/usersettings/shoporders/shopCustomerOrdersSlice';
 
 const store = configureStore({
   reducer: {
@@ -38,6 +39,7 @@ const store = configureStore({
     shopcustomerCart: shopCustomerCartReducer,
     cartsuccessful: successfullyAddedReducer,
     shopCheckout: shopCheckoutReducer,
+    shopOrders: shopCustomerOrdersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     // to avoid thw warning not sure though if this will do, hoping the code still works

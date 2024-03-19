@@ -1,7 +1,9 @@
 
 const ToPay = () => {
   return (
-    <div>ToPay</div>
+    <div className="tab-pane fade" id="to-pay">
+      <p className="display-1 ff-main text-dark mt-6" style={{ opacity: '.3' }}>No Orders Yet</p>
+    </div>
   );
 };
 
