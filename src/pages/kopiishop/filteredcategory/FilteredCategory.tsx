@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { setLoadingShop } from "../loadingSliceShop";
+import { setLoadingShop } from "../../preloader/loadingSliceShop";
 import KopiiShopProducts from "../shopproducts/KopiiShopProducts";
 import BreadCrumb from "../../../components/BreadCrumb";
 

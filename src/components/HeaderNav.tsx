@@ -56,7 +56,7 @@ const HeaderNav = () => {
                   Kopii Shop
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   to="/kopiistop"
                   className={`nav-link ${active === "stop" ? "active" : ""} me-3`}
@@ -64,7 +64,7 @@ const HeaderNav = () => {
                 >
                   Kopii Stop
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 {!loggedIn ? <Link
                   id="login"
@@ -145,7 +145,7 @@ const HeaderNav = () => {
                     Kopii Shop
                   </Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link
                     to="/kopiistop"
                     className={`nav-link ${active === 'KopiiStop' ? 'active' : ''}`}
@@ -153,7 +153,7 @@ const HeaderNav = () => {
                   >
                     Kopii Stop
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-item">
                 {!loggedIn ? <Link
                   id="login"

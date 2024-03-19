@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { setLoadingShop } from '../kopiishop/loadingSliceShop'
+import { setLoadingShop } from '../preloader/loadingSliceShop'
 import { ShopCustomerCartInitState, ShopCustomerCartProps } from './KopiiShopCartProps'
 
 const initialState: ShopCustomerCartInitState = {

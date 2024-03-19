@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LoadingStateLanding } from "./LandingPageProps";
+import { LoadingStateLanding } from "../landingpage/LandingPageProps";
 
 const initialState: LoadingStateLanding = {
   isLoadingLanding: false

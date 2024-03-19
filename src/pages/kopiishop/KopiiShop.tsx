@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { setLoadingShop } from './loadingSliceShop';
+import { setLoadingShop } from '../preloader/loadingSliceShop';
 import SearchBarCart from './shopsearch/SearchBarCart';
 import { fetchShopCategory } from './shopcategory/shopCategorySlice';
 import Category from './shopcategory/Category';

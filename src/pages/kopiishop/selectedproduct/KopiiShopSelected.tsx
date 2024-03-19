@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setLoadingShop } from '../loadingSliceShop';
+import { setLoadingShop } from '../../preloader/loadingSliceShop';
 import { fetchShopSelectedProduct } from './kopiiShopSelectedSlice';
 import { useParams } from 'react-router-dom';
 import CurrentProduct from './CurrentProduct';

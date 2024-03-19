@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LoadingStateShop } from "./KopiiShopProps";
+import { LoadingStateShop } from "../kopiishop/KopiiShopProps";
 
 const initialState: LoadingStateShop = {
   isLoadingShop: false

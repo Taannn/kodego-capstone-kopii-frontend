@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { setLoadingLanding } from './loadingSliceLanding'
+import { setLoadingLanding } from '../preloader/loadingSliceLanding'
 import KopiiHero from './lphero/KopiiHero'
 import { fetchLandingHero } from './lphero/landingHeroSlice'
 import { fetchLandingAboutData } from './lpabout/landingAboutDataSlice'

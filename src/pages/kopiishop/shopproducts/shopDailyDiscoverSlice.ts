@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { setLoadingShop } from '../loadingSliceShop'
+import { setLoadingShop } from '../../preloader/loadingSliceShop'
 import { ShopProductInitState, ShopProductProps } from '../KopiiShopProps';
 
 const initialState: ShopProductInitState = {
@@ -19,7 +19,6 @@ export const fetchShopDailyDiscover = createAsyncThunk('shopDailyDiscover/fetchS
     dispatch(setLoadingShop(false));
   }
 })
-
 
 const shopDailyDiscoverSlice = createSlice({
   name: 'shopDailyDiscover',

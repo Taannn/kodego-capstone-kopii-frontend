@@ -1,29 +1,73 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import axios from 'axios';
+import { setLoadingShop } from '../../preloader/loadingSliceShop';
+import { CheckoutInitialStateProps } from '../KopiiShopProps';
 
-type InitialStateProps = {
-  address: string;
-  city: string;
-  zipCode: string;
-  error: string | null;
-  finalQuantity: number | null;
-  finalPrice: string | null;
-  productId: number | null;
-  productImg: string;
-  productName: string;
-  productDesc: string;
-}
-const initialState: InitialStateProps = {
+const initialState: CheckoutInitialStateProps = {
   address: "",
   city: "",
   zipCode: "",
   error: "",
-  finalQuantity: null,
-  finalPrice: null,
-  productId: null,
+  finalQuantity: 0,
+  finalPrice: '',
+  productId: 0,
   productImg: '',
   productName: '',
-  productDesc: ''
+  productDesc: '',
+  shippingFee: 0,
+  paymentMethod: '',
+  orderStatus: ''
 }
+
+export const addShopOrder = createAsyncThunk('shopCheckout/addShopOrder', async (data: {
+  productId: number;
+  finalQuantity: number;
+  finalPrice: string;
+  address: string;
+  city: string;
+  zipCode: string;
+  paymentMethod: string;
+  shippingFee: number;
+}, { dispatch }) => {
+  dispatch(setLoadingShop(true))
+  try {
+    const price = parseFloat(data.finalPrice);
+    const priceWithShipping =  (price + data.shippingFee).toFixed(2);
+    const token = localStorage.getItem('token');
+    const res = await axios.post("https://kopii-mp2.onrender.com/kopii/shop/addorder", {
+      product_id: data.productId,
+      quantity: data.finalQuantity,
+      price: priceWithShipping,
+      address: data.address,
+      city: data.city,
+      zip_code: data.zipCode,
+      payment_method: data.paymentMethod
+    }, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const response = await axios.delete(`https://kopii-mp2.onrender.com/kopii/shop/cart/${data.productId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    console.log(response.data.data);
+    console.log('User data', res.data);
+    dispatch(addressInput(''));
+    dispatch(cityInput(''));
+    dispatch(zipCodeInput(''));
+    dispatch(quantitySetter(null));
+    dispatch(priceSetter(null));
+    dispatch(selectedProductId(null));
+    dispatch(paymentMethodSetter(''));
+    return response.data.data;
+  } catch (error: any) {
+    console.error(error);
+  } finally {
+    dispatch(setLoadingShop(false));
+  }
+})
 
 const shopCheckoutSlice = createSlice({
   name: 'shopCheckout',
@@ -58,8 +102,23 @@ const shopCheckoutSlice = createSlice({
     },
     selectedProductDesc: (state, action) => {
       state.productDesc = action.payload;
+    },
+    shippingFeeSetter: (state, action) => {
+      state.shippingFee = action.payload;
+    },
+    paymentMethodSetter: (state, action) => {
+      state.paymentMethod = action.payload;
     }
   },
+  extraReducers: (builder) => {
+    builder.addCase(addShopOrder.fulfilled, (state, action) => {
+      state.orderStatus = action.payload
+    })
+    builder.addCase(addShopOrder.rejected, (state, action) => {
+      state.orderStatus = ''
+      state.error = action.error.message || 'Error'
+    })
+  }
 })
 
 // default export
@@ -75,5 +134,7 @@ export const {
   selectedProductId,
   selectedProductImg,
   selectedProductName,
-  selectedProductDesc
+  selectedProductDesc,
+  shippingFeeSetter,
+  paymentMethodSetter
 } = shopCheckoutSlice.actions

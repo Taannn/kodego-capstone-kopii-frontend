@@ -88,3 +88,19 @@ export type ProductDetailsProps = {
   productImg: string;
   addToCart: () => void;
 }
+
+export type CheckoutInitialStateProps = {
+  address: string;
+  city: string;
+  zipCode: string;
+  error: string | null;
+  finalQuantity: number;
+  finalPrice: string;
+  productId: number;
+  productImg: string;
+  productName: string;
+  productDesc: string;
+  shippingFee: number;
+  paymentMethod: string;
+  orderStatus: string;
+}

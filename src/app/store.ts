@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import loadingLandingReducer from '../pages/landingpage/loadingSliceLanding';
+import loadingLandingReducer from '../pages/preloader/loadingSliceLanding';
 import landingHeroReducer from '../pages/landingpage/lphero/landingHeroSlice';
 import landingAboutDataReducer from '../pages/landingpage/lpabout/landingAboutDataSlice';
 import landingAboutListReducer from '../pages/landingpage/lpabout/landingAboutListSlice';
 import landingStopIntroReducer from '../pages/landingpage/lpstopintro/landingStopIntroSlice';
 import landingTestimonialsReducer from '../pages/landingpage/lptestimonials/landingTestimonialsSlice';
-import loadingShopReducer from '../pages/kopiishop/loadingSliceShop';
+import loadingShopReducer from '../pages/preloader/loadingSliceShop';
 import shopCategoryReducer from '../pages/kopiishop/shopcategory/shopCategorySlice';
 import shopCarouselReducer from '../pages/kopiishop/shopcarousel/shopCarouselSlice';
 import landingDiscoverReducer from '../pages/landingpage/lpdiscover/landingDiscoverSlice';

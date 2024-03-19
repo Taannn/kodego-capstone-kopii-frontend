@@ -1,6 +1,6 @@
 import { CustomerCartProps } from "./KopiiShopCartProps";
 import { useAppDispatch } from "../../app/hooks";
-import { setLoadingShop } from "../kopiishop/loadingSliceShop";
+import { setLoadingShop } from "../preloader/loadingSliceShop";
 import axios from "axios";
 import { fetchShopCustomerCart } from "./shopCustomerCartSlice";
 import { useState } from "react";

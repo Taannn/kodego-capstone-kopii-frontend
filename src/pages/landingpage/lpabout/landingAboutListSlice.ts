@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { setLoadingLanding } from '../loadingSliceLanding'
+import { setLoadingLanding } from '../../preloader/loadingSliceLanding'
 import { LandingAboutListInitState, LandingAboutListProps } from '../LandingPageProps'
 
 const initialState: LandingAboutListInitState = {
