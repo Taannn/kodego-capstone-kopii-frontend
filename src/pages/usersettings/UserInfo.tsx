@@ -1,12 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { loggedInToggle } from "../login/loginSlice";
 import BreadCrumb from "../../components/BreadCrumb";
+import { useEffect } from "react";
+import { fetchShopUserInfo } from "./userInfoSlice";
 
 
 const UserInfo = () => {
+  const userInfo = useAppSelector((state) => state.shopUserInfo.info);
+  const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(fetchShopUserInfo());
+  }, [dispatch]);
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     dispatch(loggedInToggle(false));
@@ -34,30 +42,39 @@ const UserInfo = () => {
           </div>
         </div>
       </div>
-      <BreadCrumb currentProduct={"User Settings"} link={"/kopiishop"} />
-      <div className="container mb-5 ff-main">
-        <div className="row">
-          <div className="col-12 user-info-bg col-md-8 bg-danger rounded mx-auto text-light ff-main pt-5 px-2 lh-base">
-            <h1>User Full Name</h1>
-            <p className="lead">loggedinuser@gmail.com</p>
+      {loading && <div id="preloader"></div>}
+      {!loading &&
+      <>
+        <BreadCrumb currentProduct={"User Settings"} link={"/kopiishop"} />
+        <div className="container mb-5 ff-main">
+          <div className="row">
+            <div className="col-12 user-info-bg col-md-8 bg-danger rounded mx-auto text-light ff-main pt-5 px-2 lh-base">
+              {userInfo.map((s,i ) => (
+                <div key={i}>
+                  <h1>{s.first_name + ' ' +  s.last_name}</h1>
+                  <p className="lead">{s.email}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/*  */}
+          <div className="row mt-2">
+            <Link to="/shoporders" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Kopii Shop Orders</Link>
+          </div>
+          {/* <div className="row mt-2">
+            <Link to="/stoporders" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Kopii Stop Orders</Link>
+          </div> */}
+          <div className="row mt-2">
+            <Link to="/addressinfo" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Addresses and Info</Link>
+          </div>
+          <div className="row mt-2">
+            <div data-bs-toggle="modal" data-bs-target="#logoutModal" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">
+              Logout
+            </div>
           </div>
         </div>
-        {/*  */}
-        <div className="row mt-2">
-          <Link to="/shoporders" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Kopii Shop Orders</Link>
-        </div>
-        {/* <div className="row mt-2">
-          <Link to="/stoporders" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Kopii Stop Orders</Link>
-        </div> */}
-        <div className="row mt-2">
-          <Link to="/addressinfo" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">Addresses and Info</Link>
-        </div>
-        <div className="row mt-2">
-          <div data-bs-toggle="modal" data-bs-target="#logoutModal" className="col-12 col-md-8 btn btn-outline-dark mx-auto rounded py-3">
-            Logout
-          </div>
-        </div>
-      </div>
+      </>
+      }
     </div>
   )
 }
