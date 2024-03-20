@@ -28,10 +28,10 @@ const Login: React.FC = () => {
         email: formData.email,
         password: formData.password
       });
-      const { token, customer_id, expiresIn } = res.data;
+      const { token } = res.data;
       localStorage.setItem('token', token);
-      console.log('User logged in : ', customer_id);
-      console.log('Session expires in : ', expiresIn);
+      // console.log('User logged in : ', customer_id);
+      // console.log('Session expires in : ', expiresIn);
       dispatch(loggedInToggle(true));
       navigate("/kopiishop");
       dispatch(emailInput(''));

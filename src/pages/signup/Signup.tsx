@@ -38,12 +38,13 @@ const Signup: React.FC = () => {
       const { token } = response.data;
       localStorage.setItem('token', token);
       dispatch(loggedInToggle(true));
-      console.log('User data', res.data);
+      // console.log('User data', res.data);
       dispatch(nameInput(''));
       dispatch(surnameInput(''));
       dispatch(emailInput(''));
       dispatch(passwordInput(''));
       navigate("/kopiishop");
+      return res.data.data;
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         if (error.response.data.error === 'DuplicateEmailError') {
