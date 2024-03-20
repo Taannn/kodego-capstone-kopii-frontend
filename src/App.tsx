@@ -18,6 +18,7 @@ import KopiiStopOrders from "./pages/usersettings/stoporders/KopiiStopOrders"
 import AddressAndInfo from "./pages/usersettings/addressinfo/AddressAndInfo"
 import ShopCheckout from "./pages/kopiishop/orderpage/ShopCheckout"
 import ShopOrderComplete from "./pages/kopiishop/ordercomplete/ShopOrderComplete"
+import ToShipInfo from "./pages/usersettings/shoporders/infoperstatus/ToShipInfo"
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/cart" element={<KopiiShopCart />} />
           <Route path="/userinfo" element={<UserInfo />} />
           <Route path="/shoporders" element={<KopiiShopOrders />} />
+          <Route path="/shoporders/:toshipID" element={<ToShipInfo />} />
           <Route path="/stoporders" element={<KopiiStopOrders />} />
           <Route path="/addressinfo" element={<AddressAndInfo />} />
           <Route path="/shopcheckout" element={<ShopCheckout />} />

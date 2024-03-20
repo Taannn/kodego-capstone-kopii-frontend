@@ -8,10 +8,10 @@ const ToShip: React.FC<CustomerOrdersProps> = ({ shopCustomerOrders }) => {
         <p className="display-1 ff-main text-dark mt-6" style={{ opacity: '.3' }}>No Orders Yet</p>
       }
       {shopCustomerOrders.map((s, i) => (
-        <Link to={""} key={i + s.order_id} className="wrapper">
+        <Link to={`/shoporders/${s.order_id}`} key={i + s.order_id} className="wrapper">
           <div className="row border border-primary border-3 bg-light mb-0 rounded-0 rounded-top">
             <div className="col-6 col-md-3 overflow-hidden rounded p-2">
-              <img className="img-fluid" src={s.product_img} alt={s.product_name} />
+              <img className="img-fluid rounded" src={s.product_img} alt={s.product_name} />
             </div>
             <div className="col-6 col-md-9 d-flex flex-column flex-md-row align-items-center justify-content-around p-2">
               <div className="d-flex align-items-center justify-content-center">

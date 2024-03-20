@@ -9,7 +9,7 @@
 }
 .bs-success {
   box-shadow: inset 6px 6px 12px #536f50,
-              inset -6px -6px 12px #7ba376;
+  inset -6px -6px 12px #7ba376;
 }
 .bs-info {
   box-shadow: inset 6px 6px 12px #ad9381,
@@ -17,11 +17,15 @@
 }
 .bs-warning {
   box-shadow: inset 6px 6px 12px #85332d,
-              inset -6px -6px 12px #c34b41;
+  inset -6px -6px 12px #c34b41;
 }
 .bs-danger {
   box-shadow: inset 6px 6px 12px #231613,
-              inset -6px -6px 12px #33201b;
+  inset -6px -6px 12px #33201b;
+}
+.card-hover-secondary:hover {
+  box-shadow: 0 0 6px 1px #8f5d33,
+              0 0 6px 1px #d3894b;
 }
 .card-hover-danger:hover {
   box-shadow: 0 0 12px 1px #231613,

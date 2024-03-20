@@ -11932,6 +11932,10 @@ textarea.form-control-lg {
   box-shadow: inset 6px 6px 12px #231613, inset -6px -6px 12px #33201b;
 }
 
+.card-hover-secondary:hover {
+  box-shadow: 0 0 6px 1px #8f5d33, 0 0 6px 1px #d3894b;
+}
+
 .card-hover-danger:hover {
   box-shadow: 0 0 12px 1px #231613, 0 0 12px 1px #33201b;
 }

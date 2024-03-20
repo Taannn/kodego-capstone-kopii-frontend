@@ -17,6 +17,8 @@ const KopiiShop: React.FC = () => {
   const shopCarousel = useAppSelector((state) => state.shopcarousel);
   const shopHighlyRated = useAppSelector((state) => state.shophighlyRated)
   const shopDailyDiscover = useAppSelector((state) => state.shopdailyDiscover)
+  const highlyRated  = shopHighlyRated.info.slice(0, 4);
+  const dailyDiscover  = shopDailyDiscover.info.slice(0, 20);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -39,8 +41,8 @@ const KopiiShop: React.FC = () => {
           <SearchBarCart />
           <Category shopCategory={shopCategory.info} />
           <Carousel shopCarousel={shopCarousel.info} />
-          <KopiiShopProducts shopProducts={shopHighlyRated.info} desc="Best Selling" />
-          <KopiiShopProducts shopProducts={shopDailyDiscover.info} desc="Daily Discover" />
+          <KopiiShopProducts shopProducts={highlyRated} desc="Best Selling" />
+          <KopiiShopProducts shopProducts={dailyDiscover} desc="Daily Discover" />
         </div>
       ) : null}
     </>
