@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+
 import { KopiiStopFeaturedProps } from "../LandingPageProps"
 
 const KopiiStopFeatured: React.FC<KopiiStopFeaturedProps> = ({ landingStopIntro }) => {
@@ -13,10 +13,10 @@ const KopiiStopFeatured: React.FC<KopiiStopFeaturedProps> = ({ landingStopIntro 
                 <p className="ls-1 ff-lead fw-bold mt-4 lh-1">
                   {l.about}
                 </p>
-                <Link to="/kopiistop" className="btn btn-danger btn-lg bs-danger text-info hvr-glow">
-                  {l.btn}
-                  <i className="fa-solid fa-chevron-right ms-2"></i>
-                </Link>
+                <span className="btn btn-danger btn-lg bs-danger text-info hvr-glow">
+                  Soon to be Added
+                  {/* <i className="fa-solid fa-chevron-right ms-2"></i> */}
+                </span>
               </div>
               <div className="col-6 d-none rounded overflow-hidden d-lg-block text-center">
                 <img className="img-fluid rounded" src={l.img} alt="" />

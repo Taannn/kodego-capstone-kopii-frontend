@@ -64,7 +64,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
           {productName}
         </div>
         <div className="price-area mt-2 mb-4">
-          <p className="new-price text-bold mb-1">₱ {productPrice}</p>
+          <p className="new-price text-bold mb-1">₱ {new Intl.NumberFormat().format(parseFloat(productPrice))}</p>
         </div>
         <div className="buttons d-flex my-5">
           <div className="block">

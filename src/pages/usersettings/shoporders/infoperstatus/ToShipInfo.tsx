@@ -39,7 +39,7 @@ const ToShipInfo = () => {
                 <p className="fs-4 ms-4">{currentProduct.product_name}</p>
               </div>
               <div className="d-flex justify-content-between mb-5">
-                <div className="fs-1 text-bold">₱ {currentProduct.amount}</div>
+                <div className="fs-1 text-bold">₱ {new Intl.NumberFormat().format(parseFloat(currentProduct.amount))}</div>
                 <div className="fs-1 text-bold">x {currentProduct.quantity}</div>
               </div>
               <div className="lead fs-5">{currentProduct.product_desc}</div>
@@ -53,9 +53,9 @@ const ToShipInfo = () => {
                 <p className="text-bold fs-4">Order Date:</p>
                 <p className="fs-6">{currentProduct.order_date}</p>
               </div>
-              <div className="d-flex flex-column">
+              {/* <div className="d-flex flex-column">
               <button className="btn btn-lg rounded btn-outline-warning disabled">Cancel Order</button>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="row border border-primary border-3 border-top-0 bg-light mb-0 rounded-0 rounded-bottom p-2 ff-main text-primary mb-5">

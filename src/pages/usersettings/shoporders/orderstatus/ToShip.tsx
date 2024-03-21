@@ -24,7 +24,7 @@ const ToShip: React.FC<CustomerOrdersProps> = ({ shopCustomerOrders }) => {
               </div>
               <div className="delete d-flex align-items-center justify-content-center gap-1">
                 <p className="amount display-5 text-bold ff-main lead text-primary">
-                  ₱ {s.amount}
+                  ₱ {new Intl.NumberFormat().format(parseFloat(s.amount))}
                 </p>
               </div>
             </div>

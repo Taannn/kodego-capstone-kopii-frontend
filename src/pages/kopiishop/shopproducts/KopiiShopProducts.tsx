@@ -1,7 +1,9 @@
 import { KopiiShopProductProps } from "../KopiiShopProps";
 import { Link } from "react-router-dom";
 
+
 const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc }) => {
+
   return (
     <section className="categories pt-0 pt-md-5 mt-0 mt-md-5 px-3 px-md-0">
       <div className="container">
@@ -21,7 +23,7 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
                   <div className="card-body px-3 pt-3 pb-0">
                     <div className="card-title text-primary ff-main h6 m-0 text-ellipsis">{s.product_name}</div>
                       <div className="pricing d-flex w-100 ff-main gap-1 align-items-center justify-content-between">
-                        <p className="text-bold fs-5 text-dark">₱ {s.product_price}</p>
+                        <p className="text-bold fs-5 text-dark">₱ {new Intl.NumberFormat().format(parseFloat(s.product_price))}</p>
                         <div className="rating d-flex">
                           <i className="fa-solid fa-star pt-1 me-1" style={{ color: 'yellow', fontSize: '1rem'}}></i>
                           <p>{s.product_rating}</p>
