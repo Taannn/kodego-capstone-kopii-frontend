@@ -20,8 +20,8 @@ const SearchResult = () => {
   const filteredResult = products.filter((product) => {
     return product.product_name.toLowerCase().includes(searchItem.toLowerCase());
   })
-  console.log(searchItem);
-  console.log(filteredResult);
+  // console.log(searchItem);
+  // console.log(filteredResult);
 
   return (
     // <div className="display-1 ff-main mt-6">SearchResullt</div>
