@@ -25,14 +25,14 @@ const PlaceOrder: React.FC = () => {
         <div className="p-2">
           <div className="d-flex flex-column ff-main text-primary">
             <p className="fs-5 text-bold lh-1">₱ {formData.shippingFee}</p>
-            <p className="fs-5 text-bold lh-1">₱ {formData.finalPrice}</p>
-            <p className="fs-3 text-bold lh-1">₱ {formData.totalAmount}</p>
+            <p className="fs-5 text-bold lh-1">₱ {new Intl.NumberFormat().format(parseFloat(formData.finalPrice))}</p>
+            <p className="fs-3 text-bold lh-1">₱ {new Intl.NumberFormat().format(parseFloat(formData.totalAmount))}</p>
           </div>
         </div>
       </div>
       {/*  */}
       <div>
-        <button type="submit" className="btn btn-lg btn-secondary d-block ms-auto">Place Order</button>
+        <button type="submit" className="btn btn-lg btn-secondary text-light d-block ms-auto">Place Order</button>
       </div>
     </div>
   );

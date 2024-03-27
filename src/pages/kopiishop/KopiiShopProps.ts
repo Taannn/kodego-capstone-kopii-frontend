@@ -40,6 +40,7 @@ export type ShopProductProps = {
   product_price: string;
   product_img: string;
   product_rating: string
+  product_desc: string;
 };
 export type ShopProductPropsExtended = ShopProductProps & {
   product_stock: number;

@@ -19,6 +19,7 @@ import AddressAndInfo from "./pages/usersettings/addressinfo/AddressAndInfo"
 import ShopCheckout from "./pages/kopiishop/orderpage/ShopCheckout"
 import ShopOrderComplete from "./pages/kopiishop/ordercomplete/ShopOrderComplete"
 import ToShipInfo from "./pages/usersettings/shoporders/infoperstatus/ToShipInfo"
+import ScrollToTop from "./components/ScrollToTop"
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <HeaderNav />
       </header>
       <main>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />

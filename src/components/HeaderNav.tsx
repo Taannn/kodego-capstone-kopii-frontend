@@ -1,14 +1,10 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useAppSelector } from "../app/hooks";
 
 const HeaderNav = () => {
-  const [active, setActive] = useState("home");
-  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn)
-
-  const handleActiveLink = (link: string) => {
-    setActive(link);
-  };
+  const location = useLocation();
+  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
+  // pathname contains the retrived current loc from useLocation, hence this is a better way compared to prev solution
 
   return (
     <>
@@ -40,8 +36,7 @@ const HeaderNav = () => {
               <li className="nav-item">
                 <Link
                   to="/"
-                  className={`nav-link ${active === "home" ? "active" : ""} me-3`}
-                  onClick={() => handleActiveLink("home")}
+                  className={`nav-link ${location.pathname === '/' ? 'active' : ''} me-3`}
                   aria-current="page"
                 >
                   Home
@@ -50,38 +45,29 @@ const HeaderNav = () => {
               <li className="nav-item">
                 <Link
                   to="/kopiishop"
-                  className={`nav-link ${active === "shop" ? "active" : ""} me-3`}
-                  onClick={() => handleActiveLink("shop")}
+                  className={`nav-link ${location.pathname === '/kopiishop' ? 'active' : ''} me-3`}
                 >
                   Kopii Shop
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                <Link
-                  to="/kopiistop"
-                  className={`nav-link ${active === "stop" ? "active" : ""} me-3`}
-                  onClick={() => handleActiveLink("stop")}
-                >
-                  Kopii Stop
-                </Link>
-              </li> */}
               <li className="nav-item">
-                {!loggedIn ? <Link
-                  id="login"
-                  to="/signup"
-                  className={`btn hvr-bounce-to-top ${active === "not" ? "" : ""} me-3 btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2`}
-                  onClick={() => handleActiveLink("not")}
-                >
-                  Login/Signup
-                </Link> : <Link
-                  id="login"
-                  to="/userinfo"
-                  className={`btn hvr-bounce-to-top ${active === "not" ? "" : ""} me-3 btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2`}
-                  onClick={() => handleActiveLink("not")}
-                >
-                  <i className="fa-solid fa-user px-2"></i>
-                </Link>
-                }
+                {!loggedIn ? (
+                  <Link
+                    id="login"
+                    to="/signup"
+                    className="btn hvr-bounce-to-top me-3 btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
+                  >
+                    Login/Signup
+                  </Link>
+                ) : (
+                  <Link
+                    id="login"
+                    to="/userinfo"
+                    className="btn hvr-bounce-to-top me-3 btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
+                  >
+                    <i className="fa-solid fa-user px-2"></i>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
@@ -129,8 +115,7 @@ const HeaderNav = () => {
                 <li className="nav-item">
                   <Link
                     to="/"
-                    className={`nav-link ${active === 'Home' ? 'active' : ''}`}
-                    onClick={() => handleActiveLink('Home')}
+                    className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
                     aria-current="page"
                   >
                     Home
@@ -139,46 +124,37 @@ const HeaderNav = () => {
                 <li className="nav-item">
                   <Link
                     to="/kopiishop"
-                    className={`nav-link ${active === 'Shop' ? 'active' : ''}`}
-                    onClick={() => handleActiveLink('Shop')}
+                    className={`nav-link ${location.pathname === '/kopiishop' ? 'active' : ''}`}
                   >
                     Kopii Shop
                   </Link>
                 </li>
-                {/* <li className="nav-item">
-                  <Link
-                    to="/kopiistop"
-                    className={`nav-link ${active === 'KopiiStop' ? 'active' : ''}`}
-                    onClick={() => handleActiveLink('KopiiStop')}
-                  >
-                    Kopii Stop
-                  </Link>
-                </li> */}
                 <li className="nav-item">
-                {!loggedIn ? <Link
-                  id="login"
-                  to="/signup"
-                  className={`nav-link${active === "not" ? "active" : ""}`}
-                  onClick={() => handleActiveLink("not")}
+                {!loggedIn ? (
+                  <Link
+                    id="login"
+                    to="/signup"
+                    className={`nav-link${location.pathname === "/signup" ? " active" : ""}`}
                 >
                   Login/Signup
-                </Link> : <Link
+                </Link>
+              ) : (
+                <Link
                   id="login"
                   to="/userinfo"
-                  className={`nav-link${active === "not" ? "active" : ""}`}
-                  onClick={() => handleActiveLink("not")}
+                  className={`nav-link${location.pathname === "/userinfo" ? " active" : ""}`}
                 >
                   User Settings
                 </Link>
-                }
-                </li>
-              </ul>
-            </div>
-          </div>
+              )}
+            </li>
+          </ul>
         </div>
-      </nav>
-    </>
-  );
+      </div>
+    </div>
+  </nav>
+</>
+);
 };
 
 export default HeaderNav;
