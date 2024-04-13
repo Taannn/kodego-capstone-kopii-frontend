@@ -32,6 +32,8 @@ const LandingPage = () => {
     dispatch(fetchLandingStopIntro())
     dispatch(fetchLandingTestimonials())
 
+
+
     return () => {
       dispatch(setLoadingLanding(false))
     }

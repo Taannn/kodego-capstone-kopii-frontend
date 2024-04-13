@@ -20,6 +20,7 @@ import ShopCheckout from "./pages/kopiishop/orderpage/ShopCheckout"
 import ShopOrderComplete from "./pages/kopiishop/ordercomplete/ShopOrderComplete"
 import ToShipInfo from "./pages/usersettings/shoporders/infoperstatus/ToShipInfo"
 import ScrollToTop from "./components/ScrollToTop"
+import Protected from "./pages/protected/Protected"
 
 
 function App() {
@@ -37,17 +38,33 @@ function App() {
           <Route path="/kopiishop" element={<KopiiShop />} />
           <Route path="/kopiishop/:index" element={<KopiiShopSelected />} />
           <Route path="/category/:category" element={<FilteredCategory />} />
-          <Route path="search/:search" element={<SearchResult />} />
+          <Route path="/search/:search" element={<SearchResult />} />
           <Route path="/kopiistop" element={<KopiiStop />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/cart" element={<KopiiShopCart />} />
-          <Route path="/userinfo" element={<UserInfo />} />
+          <Route path="/settings" element={
+            <Protected>
+              <UserInfo />
+            </Protected>
+          } />
           <Route path="/shoporders" element={<KopiiShopOrders />} />
-          <Route path="/shoporders/:toshipID" element={<ToShipInfo />} />
+          <Route path="/shoporders/:toshipID" element={
+            <Protected>
+              <ToShipInfo />
+            </Protected>
+          } />
           <Route path="/stoporders" element={<KopiiStopOrders />} />
-          <Route path="/addressinfo" element={<AddressAndInfo />} />
+          <Route path="/addressinfo" element={
+            <Protected>
+              <AddressAndInfo />
+            </Protected>
+          } />
           <Route path="/shopcheckout" element={<ShopCheckout />} />
-          <Route path="/shop/ordercomplete" element={<ShopOrderComplete />} />
+          <Route path="/shop/ordercomplete" element={
+            <Protected>
+              <ShopOrderComplete />
+            </Protected>
+          } />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>

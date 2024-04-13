@@ -2,19 +2,28 @@ import { Link, useNavigate } from "react-router-dom";
 import AnimatedCoffeeMaker from "../../components/AnimatedCoffeeMaker";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Div from "../../components/Div";
+import { Navigate } from "react-router-dom";
 import {
   emailInput,
   passwordInput,
   passwordToggle,
   errorMessage,
-  loggedInToggle
+  inputReset
 } from "./loginSlice";
 import axios from "axios";
+import { useState } from "react";
+
 
 const Login: React.FC = () => {
+  const [inputToggle, setInputToggle] = useState<boolean>(false);
+  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
   const navigate = useNavigate();
   const formData = useAppSelector((state) => state.kopiilogin);
   const dispatch = useAppDispatch();
+
+  if (localStorage.getItem('token')) {
+    return <Navigate replace to={"/kopiishop"} />
+  }
 
   const handleChange = (action: any) => {
     dispatch(action);
@@ -24,26 +33,28 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      if (formData.email === '' || formData.password === '') {
+        setInputToggle(true);
+        return;
+      }
+      // if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setInputToggle(false);
+      setInvalidEmail(false);
       const res = await axios.post("https://kopii-mp2.onrender.com/kopii/login", {
         email: formData.email,
         password: formData.password
       });
       const { token } = res.data;
       localStorage.setItem('token', token);
-      // console.log('User logged in : ', customer_id);
-      // console.log('Session expires in : ', expiresIn);
-      dispatch(loggedInToggle(true));
       navigate("/kopiishop");
-      dispatch(emailInput(''));
-      dispatch(passwordInput(''));
+      dispatch(inputReset(''));
       return res.data.data;
-    } catch (error: any) {
+      } catch (error: any) {
       if (error.response && error.response.status === 404) {
-        dispatch(errorMessage("User not found"));
+        dispatch(errorMessage("Account not found"));
       } else if (error.response && error.response.status === 401) {
         dispatch(errorMessage("Invalid password"));
       } else {
-        console.log('Login Failed : ', error.message);
         dispatch(errorMessage("An unexpected error occurred"));
       }
     }
@@ -58,65 +69,79 @@ const Login: React.FC = () => {
               <div className="invi-spacer"></div>
               <AnimatedCoffeeMaker />
             </Div>
-
             <Div styles="col-12 col-md-9 col-lg-6 col-xl-5">
               <Div styles="card border-0 bg-light mt-5">
                 <Div styles="card-body">
                   <h2 className="text-primary mb-2 display-4">Log in to Kopii</h2>
-                  <form onSubmit={handleSubmit}>
-                    <div className="form-outline mb-2">
+                  <form onSubmit={handleSubmit} id="loginForm">
+                    <div className="form-outline">
                       <input
                         type="email" id="loginEmail"
                         name="email"
                         value={formData.email}
                         onChange={(e)=>handleChange(emailInput(e.target.value))}
-                        className="form-control form-control-lg"
-                        required
+                        className="form-control form-control-lg border-info-subtle border-3"
                       />
                       <label className="form-label fw-bold" htmlFor="loginEmail">Your Email</label>
                     </div>
 
-                    <div className="form-outline mb-2">
+                    <div className="form-outline">
                       <input
                         type={formData.showPassword ? 'text': 'password'}
                         id="loginPassword"
                         name="password"
                         value={formData.password}
                         onChange={(e)=>handleChange(passwordInput(e.target.value))}
-                        className="form-control form-control-lg"
-                        required
+                        className="form-control form-control-lg border-info-subtle border-3"
                       />
                       <label className="form-label fw-bold" htmlFor="loginPassword">Password</label>
-
                     </div>
+
                     <div className="form-check d-flex justify-content-start mb-2">
                       <input
-                        className="form-check-input me-2"
+                        className="form-check-input me-2 border-1 border-info"
                         type="checkbox"
                         id="showPassword"
                         onChange={() => dispatch(passwordToggle(!formData.showPassword))}
-                      />
+                        />
                       <label className="form-check-label fw-medium" htmlFor="showPassword">
                         Show Password
                       </label>
                     </div>
+                    <div className="d-flex gap-2 mb-2">
+                      {formData.email === '' && inputToggle &&
+                        <div>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Email is required!</small>
+                        </div>
+                      }
+                      {invalidEmail && inputToggle &&
+                        <div>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Invalid email!</small>
+                        </div>
+                      }
+                      {formData.password === '' && inputToggle &&
+                        <div>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Password is required!</small>
+                        </div>
+                      }
                       {formData.error && (
-                      <div className="alert alert-warning mt-3" role="alert">
-                        {formData.error}
-                      </div>
+                        <div>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">{formData.error}!</small>
+                        </div>
                       )}
+                    </div>
 
                     <div className="d-flex justify-content-center">
                       <button
                         type="submit"
-                        className="btn btn-secondary btn-block btn-lg gradient-custom-4 text-light hvr-glow"
+                        className="btn btn-secondary btn-block btn-lg gradient-custom-4 text-light hvr-glow ls-1"
                       >
                         Login
                       </button>
                     </div>
 
                     <p className="text-center text-muted mt-5 mb-0">
-                      Have an account already? <Link to="/signup" className="fw-bold text-body"><u>Sign up here</u></Link>
+                      Don't have an account yet? <Link to="/signup" className="fw-bold text-body"><u>Sign up here</u></Link>
                     </p>
                   </form>
                 </Div>

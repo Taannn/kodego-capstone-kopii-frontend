@@ -2,17 +2,19 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../app/hooks";
 
-
 const SearchBarCart = () => {
-  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
   const cartItemCount = useAppSelector((state) => state.shopcustomerCart);
   const [searchValue, setSearchValue] = useState('');
+
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value)
+    setSearchValue(e.target.value);
   }
-  const handleFormSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearchValue('');
+    if (searchValue.trim() !== '') {
+      window.location.href = `/search/${searchValue}`;
+    }
   }
 
   return (
@@ -28,17 +30,17 @@ const SearchBarCart = () => {
               placeholder="Search for products"
               aria-label="Search"
             />
-            <Link
-              to={`/search/${searchValue}`}
+            <button
               className="btn btn-danger me-1"
-              type="submit">
-                <i className="fa-solid fa-magnifying-glass text-sage py-2 px-3">
-                </i>
-            </Link>
+              type="submit"
+              disabled={!searchValue.trim()}
+            >
+              <i className="fa-solid fa-magnifying-glass text-sage py-2 px-3"></i>
+            </button>
           </form>
         </div>
         <Link to="/cart">
-          {loggedIn && cartItemCount.info && cartItemCount.info.length > 0 ? (
+          {localStorage.getItem('token') && cartItemCount.info && cartItemCount.info.length > 0 ? (
             <i className="fa-solid fa-cart-shopping ms-1 ms-lg-3 me-3 text-info position-relative">
               <span className="position-absolute ff-main top-0 start-100 translate-middle badge rounded-pill bg-dark">
                 {cartItemCount.info.length}
@@ -54,4 +56,4 @@ const SearchBarCart = () => {
   )
 }
 
-export default SearchBarCart
+export default SearchBarCart;

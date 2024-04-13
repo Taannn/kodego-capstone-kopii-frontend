@@ -11909,31 +11909,31 @@ textarea.form-control-lg {
 }
 
 .bs-primary {
-  box-shadow: inset 6px 6px 12px #3c2417, inset -6px -6px 12px #583423;
+  box-shadow: inset 5px 5px 3px #372015, inset -5px -5px 3px #472a1b;
 }
 
 .bs-secondary {
-  box-shadow: inset 6px 6px 12px #8f5d33, inset -6px -6px 12px #d3894b;
+  box-shadow: inset 5px 5px 3px #9a6437, inset -5px -5px 3px #c88247;
 }
 
 .bs-success {
-  box-shadow: inset 6px 6px 12px #536f50, inset -6px -6px 12px #7ba376;
+  box-shadow: inset 5px 5px 3px #5a7756, inset -5px -5px 3px #749b70;
 }
 
 .bs-info {
-  box-shadow: inset 6px 6px 12px #ad9381, inset -6px -6px 12px #fdd7bd;
+  box-shadow: inset 5px 5px 3px #b99d8a, inset -5px -5px 3px #f1cdb4;
 }
 
 .bs-warning {
-  box-shadow: inset 6px 6px 12px #85332d, inset -6px -6px 12px #c34b41;
+  box-shadow: inset 5px 5px 3px #8f3730, inset -5px -5px 3px #b9473e;
 }
 
 .bs-danger {
-  box-shadow: inset 6px 6px 12px #231613, inset -6px -6px 12px #33201b;
+  box-shadow: inset 5px 5px 3px #251714, inset -5px -5px 3px #311f1a;
 }
 
 .card-hover-secondary:hover {
-  box-shadow: 0 0 6px 1px #8f5d33, 0 0 6px 1px #d3894b;
+  box-shadow: 0 2px 11px #9a6437, 0 2px 11px #c88247;
 }
 
 .card-hover-danger:hover {
@@ -11941,11 +11941,11 @@ textarea.form-control-lg {
 }
 
 .bs-light {
-  box-shadow: inset 6px 6px 12px #c9c6be, inset -6px -6px 12px #ffffff;
+  box-shadow: inset 5px 5px 3px #d8d4cc, inset -5px -5px 3px #ffffff;
 }
 
 .card-hover-light:hover {
-  box-shadow: 0 0 12px 1px #c9c6be, 0 0 12px 1px #ffffff;
+  box-shadow: inset 5px 5px 3px #d8d4cc, inset -5px -5px 3px #ffffff;
 }
 
 .bs-dark {

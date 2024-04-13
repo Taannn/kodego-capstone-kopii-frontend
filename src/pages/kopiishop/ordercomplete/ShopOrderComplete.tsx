@@ -19,7 +19,7 @@ const ShopOrderComplete = () => {
       <section className="product-details border-bottom border-primary border-1 mt-5 pt-4">
         <div className="container">
           <div className="row">
-            <div className="col ff-main">
+            <div className="col ff-main text-center">
               <h1 className="display-1 text-success"><i className="fa-regular  fa-circle-check me-2"></i>Order Placed</h1>
               <h1 className="display-6 text-primary">Greetings from Kopii!</h1>
               <p className="lead ms-2 text-primary">Your Order has been placed successfully.</p>

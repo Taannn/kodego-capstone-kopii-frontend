@@ -5,6 +5,12 @@ import { fetchShopCustomerOrders } from "../shopCustomerOrdersSlice";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+type OptionProps = {
+  year: "numeric" | "2-digit";
+  month: "numeric" | "2-digit" | "long" | "short" | "narrow";
+  day: "numeric" | "2-digit";
+};
+
 const ToShipInfo = () => {
   const customerOrders = useAppSelector((state) => state.shopOrders);
   const userInfo = useAppSelector((state) => state.shopUserInfo.info);
@@ -12,6 +18,11 @@ const ToShipInfo = () => {
   const dispatch = useAppDispatch();
   const { toshipID } = useParams<{ toshipID: string }>()
   const currentProduct = customerOrders.info.find((s) => s.order_id === +toshipID!);
+
+  const formatDate = (dateString: string) => {
+    const options: OptionProps = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
 
   useEffect(() => {
     dispatch(fetchShopCustomerOrders());
@@ -52,7 +63,7 @@ const ToShipInfo = () => {
                 </div>
                 <div className="d-flex justify-content-between align-items-center lh-1">
                   <p className="text-bold fs-4">Order Date:</p>
-                  <p className="fs-6">{currentProduct.order_date}</p>
+                  <p className="fs-6">{formatDate(currentProduct.order_date)}</p>
                 </div>
                 <div className="d-flex flex-column">
                 <button className="btn btn-lg rounded btn-outline-warning">Cancel Order</button>
@@ -76,7 +87,7 @@ const ToShipInfo = () => {
                 </div>
                 <p className="fs-5 mx-3">Standard Local</p>
                 <p className="fs-5 mx-3">{"KOPII - KOPIIX100" + currentProduct.shipment_id}</p>
-                <p className="fs-5 mx-3">Expected Shipping Date: {currentProduct.shipment_date}</p>
+                <p className="fs-5 mx-3">Expected Shipping Date: {formatDate(currentProduct.shipment_date)}</p>
               </div>
             </div>
           </div>

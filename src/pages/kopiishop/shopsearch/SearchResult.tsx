@@ -17,17 +17,16 @@ const SearchResult = () => {
     dispatch(fetchShopDailyDiscover());
   }, [dispatch]);
 
+
   const filteredResult = products.filter((product) => {
     return product.product_name.toLowerCase().includes(searchItem.toLowerCase());
   })
-  // console.log(searchItem);
-  // console.log(filteredResult);
 
   return (
     // <div className="display-1 ff-main mt-6">SearchResullt</div>
     <>
       {loading && <div id='preloader'></div>}
-      {!filteredResult.length &&
+      {!filteredResult.length && !search &&
       <div className=" mt-5 full-dimension align-items-center">
         <BreadCrumb currentProduct={"Search Result"} link={"/kopiishop"} />
         <h1 className="text-center text-dark ff-main op-mid display-1">No Items Found</h1>

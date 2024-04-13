@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { loggedInToggle } from "../login/loginSlice";
 import BreadCrumb from "../../components/BreadCrumb";
 import { useEffect } from "react";
 import { fetchShopUserInfo } from "./userInfoSlice";
@@ -17,7 +16,6 @@ const UserInfo = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    dispatch(loggedInToggle(false));
     setTimeout(() => {
       navigate("/kopiishop");
     }, 1000);

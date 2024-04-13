@@ -36,6 +36,12 @@ const signupSlice = createSlice({
     passwordToggle: (state, action: PayloadAction<boolean>) => {
       state.showPassword = action.payload
     },
+    inputReset: (state, action: PayloadAction<string>) => {
+      state.first_name = action.payload;
+      state.last_name = action.payload;
+      state.email = action.payload;
+      state.password = action.payload;
+    },
     errorMessage: (state, action) => {
       state.error = action.payload;
     }
@@ -51,5 +57,6 @@ export const {
   emailInput,
   passwordInput,
   passwordToggle,
-  errorMessage
+  errorMessage,
+  inputReset
 } = signupSlice.actions

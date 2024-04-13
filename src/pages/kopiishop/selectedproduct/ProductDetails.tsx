@@ -16,7 +16,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   addToCart
 }) => {
   const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
-  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
   const dispatch = useAppDispatch();
 
   const handleSelectedProductDetail = (
@@ -45,7 +44,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   return (
     <div className="col-md-7">
       <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
-        <div id="liveToast" className={`toast${successfullyAdded ? ' show':''}`} role="alert" aria-live="assertive" aria-atomic="true">
+        <div
+          id="liveToast"
+          className={`toast${successfullyAdded ? ' show':''}`}
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
           <div className="toast-header bg-secondary border-0 text-light">
             <strong className="me-auto">{productName}</strong>
             <small>1 sec ago</small>
@@ -68,7 +73,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         </div>
         <div className="buttons d-flex my-5">
           <div className="block">
-            {loggedIn ?
+            {localStorage.getItem('token') ?
               <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, productPrice, productImg, productName, productDesc)} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>
             :
             <Link to={"/login"} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>

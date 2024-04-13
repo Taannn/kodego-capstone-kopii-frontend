@@ -24,7 +24,7 @@ const KopiiShopOrders = () => {
       <>
         <BreadCrumb currentProduct={"Kopii Shop Orders"} link={"/userinfo"} />
         <Div styles="container mt-4">
-          <Div styles="card text-center bg-info text-light vh-100 overflow-auto mb-5">
+          <Div styles="card text-center bg-secondary text-light vh-100 overflow-auto mb-5">
             <Div styles="card-header">
               <ul className="nav nav-tabs card-header-tabs ff-main">
                 <TabLink href="#to-pay" label="To Pay" active={false} />

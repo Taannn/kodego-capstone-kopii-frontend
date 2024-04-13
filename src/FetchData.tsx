@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+// fetching prac before actually using api
 
 interface Product {
   id: number;

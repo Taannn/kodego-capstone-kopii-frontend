@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
 import { CustomerOrdersProps } from "../KopiiShopOrdersProps";
 
+type OptionProps = {
+  year: "numeric" | "2-digit";
+  month: "numeric" | "2-digit" | "long" | "short" | "narrow";
+  day: "numeric" | "2-digit";
+};
+
 const ToShip: React.FC<CustomerOrdersProps> = ({ shopCustomerOrders }) => {
+  const formatDate = (dateString: string) => {
+    const options: OptionProps = { year: "numeric", month: "long", day: "numeric"}
+    return new Date(dateString).toLocaleDateString(undefined, options)
+  }
   return (
     <div className="tab-pane fade show active" id="to-ship">
       {!shopCustomerOrders.length &&
@@ -32,7 +42,7 @@ const ToShip: React.FC<CustomerOrdersProps> = ({ shopCustomerOrders }) => {
           <div className="row border border-primary border-3 border-top-0 bg-light mb-5 rounded-0 rounded-bottom p-2">
             <div className="ms-auto ff-main fs-6 text-primary">
               <i className="fa-regular fa-calendar me-2"></i>
-              Shipped Before: {s.shipment_date}
+              Shipped Before: {formatDate(s.shipment_date)}
             </div>
           </div>
         </Link>

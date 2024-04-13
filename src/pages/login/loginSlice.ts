@@ -34,6 +34,10 @@ const loginSlice = createSlice({
     errorMessage: (state, action) => {
       state.error = action.payload;
     },
+    inputReset: (state, action: PayloadAction<string>) => {
+      state.email = action.payload;
+      state.password = action.payload;
+    },
     loggedInToggle: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
     }
@@ -46,5 +50,6 @@ export const {
   passwordInput,
   passwordToggle,
   errorMessage,
-  loggedInToggle
+  loggedInToggle,
+  inputReset
 } = loginSlice.actions

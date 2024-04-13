@@ -3,17 +3,16 @@ import { CurrentProductProps } from "../KopiiShopProps"
 import BreadCrumb from "../../../components/BreadCrumb"
 import ProductDetails from "./ProductDetails"
 import ProductImages from "./ProductImages"
-import { useAppDispatch, useAppSelector } from "../../../app/hooks"
+import { useAppDispatch } from "../../../app/hooks"
 import axios from "axios"
 import { setSuccessful } from "./addToCartSlice"
 import { useNavigate } from "react-router-dom"
 const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) => {
-  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn)
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const handleAddToCart = async (id: number) => {
-    if (!loggedIn) {
+    if (!localStorage.getItem('token')) {
       return navigate("/login")
     }
     try {

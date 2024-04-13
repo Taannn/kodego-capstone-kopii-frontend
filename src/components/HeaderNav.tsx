@@ -1,9 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
-import { useAppSelector } from "../app/hooks";
+// import { useAppSelector } from "../app/hooks";
 
 const HeaderNav = () => {
   const location = useLocation();
-  const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
+  // const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
   // pathname contains the retrived current loc from useLocation, hence this is a better way compared to prev solution
 
   return (
@@ -51,7 +51,7 @@ const HeaderNav = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                {!loggedIn ? (
+                {!localStorage.getItem('token') ? (
                   <Link
                     id="login"
                     to="/signup"
@@ -62,7 +62,7 @@ const HeaderNav = () => {
                 ) : (
                   <Link
                     id="login"
-                    to="/userinfo"
+                    to="/settings"
                     className="btn hvr-bounce-to-top me-3 btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
                   >
                     <i className="fa-solid fa-user px-2"></i>
@@ -130,7 +130,7 @@ const HeaderNav = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                {!loggedIn ? (
+                {!localStorage.getItem('token') ? (
                   <Link
                     id="login"
                     to="/signup"
@@ -141,7 +141,7 @@ const HeaderNav = () => {
               ) : (
                 <Link
                   id="login"
-                  to="/userinfo"
+                  to="/settings"
                   className={`nav-link${location.pathname === "/userinfo" ? " active" : ""}`}
                 >
                   User Settings
