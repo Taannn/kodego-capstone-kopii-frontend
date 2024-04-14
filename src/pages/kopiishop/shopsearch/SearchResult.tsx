@@ -26,7 +26,7 @@ const SearchResult = () => {
     // <div className="display-1 ff-main mt-6">SearchResullt</div>
     <>
       {loading && <div id='preloader'></div>}
-      {!filteredResult.length && !search &&
+      {!filteredResult.length &&
       <div className=" mt-5 full-dimension align-items-center">
         <BreadCrumb currentProduct={"Search Result"} link={"/kopiishop"} />
         <h1 className="text-center text-dark ff-main op-mid display-1">No Items Found</h1>
