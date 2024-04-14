@@ -22,7 +22,7 @@ const KopiiShopOrders = () => {
       {loading && <div id="preloader"></div>}
       {!loading &&
       <>
-        <BreadCrumb currentProduct={"Kopii Shop Orders"} link={"/userinfo"} />
+        <BreadCrumb currentProduct={"Kopii Shop Orders"} link={"/kopiishop"} />
         <Div styles="container mt-4">
           <Div styles="card text-center bg-secondary text-light vh-100 overflow-auto mb-5">
             <Div styles="card-header">

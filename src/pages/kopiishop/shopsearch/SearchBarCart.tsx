@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../app/hooks";
 
 const SearchBarCart = () => {
   const cartItemCount = useAppSelector((state) => state.shopcustomerCart);
   const [searchValue, setSearchValue] = useState('');
+  const navigate = useNavigate();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -13,7 +14,8 @@ const SearchBarCart = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchValue.trim() !== '') {
-      window.location.href = `/search/${searchValue}`;
+      // window.location.href = `/search/${searchValue}`;
+      navigate(`/search/${searchValue}`);
     }
   }
 

@@ -105,7 +105,7 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
                       </Link>
                       <div className="d-flex flex-grow-1 gap-1">
                         <button
-                          className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bs-primary fs-6 ls-1"
+                          className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bg-primary bs-primary fs-6 ls-1"
                           style={{ flex: 1 }}
                           onClick={() => handleAddToCart(s.product_id)}
                         >

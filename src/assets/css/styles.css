@@ -12095,6 +12095,12 @@ textarea.form-control-lg {
   transform: translateY(-50%);
 }
 
+.setting-toggle {
+  top: 3.4rem;
+  right: 1rem;
+  width: 7.7rem;
+}
+
 .full-dimension {
   height: 100vh;
 }

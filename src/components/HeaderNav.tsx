@@ -1,10 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
-// import { useAppSelector } from "../app/hooks";
 
 const HeaderNav = () => {
   const location = useLocation();
-  // const loggedIn = useAppSelector((state) => state.kopiilogin.isLoggedIn);
-  // pathname contains the retrived current loc from useLocation, hence this is a better way compared to prev solution
+  // const userInfo = useAppSelector((state) => state.shopUserInfo.info);
+  // const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
 
   return (
     <>
@@ -142,7 +141,7 @@ const HeaderNav = () => {
                 <Link
                   id="login"
                   to="/settings"
-                  className={`nav-link${location.pathname === "/userinfo" ? " active" : ""}`}
+                  className={`nav-link${location.pathname === "/settings" ? " active" : ""}`}
                 >
                   User Settings
                 </Link>
