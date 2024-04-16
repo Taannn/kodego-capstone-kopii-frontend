@@ -9,13 +9,13 @@ const HeaderNav = () => {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top d-none d-lg-block z-lower bg-primary">
         <div className="container">
-          <a className="navbar-brand hvr-wobble-horizontal" href="/">
+          <Link className={`navbar-brand hvr-wobble-horizontal ${location.pathname === '/' ? 'active' : ''}`} to="/">
             <img
               src="https://kopiiiiiimg.netlify.app/assets/images/kopii-light.png"
               alt=""
               width="70"
             />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -32,7 +32,7 @@ const HeaderNav = () => {
             id="navbarNav"
           >
             <ul className="navbar-nav nav-underline ff-main fs-6">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   to="/"
                   className={`nav-link ${location.pathname === '/' ? 'active' : ''} me-3`}
@@ -40,7 +40,7 @@ const HeaderNav = () => {
                 >
                   Home
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <Link
                   to="/kopiishop"
