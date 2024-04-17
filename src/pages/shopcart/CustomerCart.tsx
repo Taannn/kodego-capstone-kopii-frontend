@@ -27,7 +27,6 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
           'Authorization': `Bearer ${token}`
         }
       })
-      console.log(response.data.data);
       dispatch(fetchShopCustomerCart());
       return response.data.data;
     } catch (error) {
@@ -54,7 +53,7 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
 
   const calculateTotalPrice = (item: { product_price: string; }, productId: number) => {
     const price = parseFloat(item.product_price);
-    const quantity = itemQuantities[productId] || 1; // Use the quantity from itemQuantities
+    const quantity = itemQuantities[productId] || 1;
     return (price * quantity).toFixed(2);
   };
 
@@ -92,7 +91,6 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
             </div>
             <div className="d-flex align-items-center justify-content-center">
               <p className="amount display-5 text-bold ff-main lead text-primary">₱ {new Intl.NumberFormat().format(parseFloat(calculateTotalPrice(s, s.product_id)))}</p>
-              {/* <p className="amount display-5 text-bold ff-main lead text-primary">₱ {calculateTotalPrice(s, s.product_id)}</p> */}
             </div>
             <div className="delete d-flex align-items-center justify-content-center gap-1">
               <button onClick={() => handleDeleteFromCart(s.product_id)} className="btn rounded bg-warning text-light ff-main">Delete</button>

@@ -22,7 +22,7 @@ const UserInfo = () => {
   }
 
   return (
-    <div className="full-dimension">
+    <div>
       <div className="modal fade" id="logoutModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered ff-main">
           <div className="modal-content">

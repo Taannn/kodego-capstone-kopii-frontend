@@ -68,7 +68,7 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
-      <footer className="text-center text-lg-start text-info bg-primary ff-main border-4 border-danger border-top">
+      <footer className="text-center text-lg-start text-info bg-primary ff-main">
         <FooterNav />
       </footer>
     </BrowserRouter>

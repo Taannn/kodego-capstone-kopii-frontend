@@ -2,8 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 
 const HeaderNav = () => {
   const location = useLocation();
-  // const userInfo = useAppSelector((state) => state.shopUserInfo.info);
-  // const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
 
   return (
     <>
