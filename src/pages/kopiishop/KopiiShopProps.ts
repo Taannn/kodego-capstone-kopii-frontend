@@ -36,6 +36,7 @@ export type CarouselProps = {
 // types for shophihglyrated
 export type ShopProductProps = {
   product_id: number;
+  discount: number;
   product_name: string;
   product_price: string;
   product_img: string;
@@ -63,6 +64,7 @@ export type KopiiShopProductProps = {
 export type ShopSelectedProductProps = {
   map(arg0: (s: any, i: any) => import("react/jsx-runtime").JSX.Element): unknown;
   product_id: number;
+  discount: number;
   product_name: string;
   product_desc: string;
   product_price: string;
@@ -81,6 +83,7 @@ export type CurrentProductProps = {
 
 export type ProductDetailsProps = {
   productCategory: string;
+  discount: number;
   productName: string;
   productPrice: string;
   productDesc: string;

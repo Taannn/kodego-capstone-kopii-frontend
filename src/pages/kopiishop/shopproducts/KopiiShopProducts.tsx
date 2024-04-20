@@ -54,6 +54,11 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
     dispatch(selectedProductDesc(productDesc));
   }
 
+  const discountedPrice = (price: number, discount: number) => {
+    const discounted = price - (price * discount) / 100;
+    return discounted.toFixed(2);
+  }
+
   useEffect(() => {
     if (successfullyAdded) {
       setTimeout(() => {
@@ -91,17 +96,32 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
           {shopProducts.map((s, i) => (
             <div className="col-md-3 col-6" key={i}>
               <div className="text-decoration-none">
-                <div className="card card-hover-secondary bg-secondary text-light rounded overflow-hidden">
+                <div className="card card-hover-secondary position-relative bg-secondary text-light rounded overflow-hidden">
+                      {s.discount &&
+                      <span className="bg-info text-dark text-bold position-absolute ff-main mt-1 end-0 me-2 border border-2 border-dark text-info px-1 rounded text-sm">- {s.discount} %</span>
+                      }
                   <Link to={`/kopiishop/${s.product_id}`} className="category">
                     <img src={s.product_img} className="img-fluid" alt="" />
                   </Link>
-                  <div className="card-body px-3 pt-3 pb-0">
-                    <div className="card-title ff-main h6 m-0 text-ellipsis">{s.product_name}</div>
+                  <Link to={`/kopiishop/${s.product_id}`} className="card-body px-3 pt-3 pb-0">
+                    <div className="card-title ff-main h6 m-0 text-ellipsis d-flex align-items-center justify-content-between">
+                      {s.product_name}
+
+                    </div>
                       <Link to={`/kopiishop/${s.product_id}`} className="pricing d-flex w-100 ff-main justify-content-between align-content-center ">
-                        <p className="text-bold fs-5 mb-1">
-                          ₱ {new Intl.NumberFormat().format(parseFloat(s.product_price))}
-                        </p>
-                        <p>No ratings yet</p>
+                        {s.discount ?
+                          <p className="text-bold fs-5 mb-1">
+                            ₱ {discountedPrice(parseFloat(s.product_price), s.discount)}
+                            <span className="text-info ms-1 fs-6 text-decoration-line-through">{new Intl.NumberFormat().format(parseFloat(s.product_price))}</span>
+                          </p>
+                        :
+                          <p className="text-bold fs-5 mb-1">
+                            ₱ {new Intl.NumberFormat().format(parseFloat(s.product_price))}
+                          </p>
+
+                        }
+
+                        <p className="d-none d-md-block">No ratings yet</p>
                       </Link>
                       <div className="d-flex flex-grow-1 gap-1">
                         <button
@@ -126,9 +146,9 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
                             className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bs-primary">
                             Buy Now
                           </Link>
-            }
+                        }
                       </div>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>

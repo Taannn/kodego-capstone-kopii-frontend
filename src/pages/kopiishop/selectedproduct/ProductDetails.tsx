@@ -13,10 +13,16 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   productId,
   productStock,
   productImg,
+  discount,
   addToCart
 }) => {
   const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
   const dispatch = useAppDispatch();
+
+  const discountedPrice = (price: number, discount: number) => {
+    const discounted = price - (price * discount) / 100;
+    return discounted.toFixed(2);
+  }
 
   const handleSelectedProductDetail = (
     quantity: number,
@@ -68,19 +74,30 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         <div className="product-title text-bold my-2">
           {productName}
         </div>
-        <div className="price-area mt-2 mb-4">
-          <p className="new-price text-bold mb-1">₱ {new Intl.NumberFormat().format(parseFloat(productPrice))}</p>
+        <div className="price-area mt-2 mb-4 d-flex align-items-center gap-2">
+          {discount ?
+            <>
+            <p className="new-price text-bold fs-1 mb-1">
+              ₱ {discountedPrice(parseFloat(productPrice), discount)}
+            </p>
+              <span className="text-info fs-3 text-decoration-line-through">{new Intl.NumberFormat().format(parseFloat(productPrice))}</span>
+            </>
+          :
+            <p className="text-bold fs-1 mb-1">
+              ₱ {new Intl.NumberFormat().format(parseFloat(productPrice))}
+            </p>
+          }
         </div>
         <div className="buttons d-flex my-5">
           <div className="block">
             {localStorage.getItem('token') ?
-              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, productPrice, productImg, productName, productDesc)} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>
+              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, productPrice, productImg, productName, productDesc)} className="shadow btn btn-lg btn-secondary text-light bs-secondary rounded">Buy Now</Link>
             :
-            <Link to={"/login"} className="shadow btn btn-lg btn-secondary bs-secondary rounded">Buy Now</Link>
+            <Link to={"/login"} className="shadow btn btn-lg btn-secondary bs-secondary rounded text-light">Buy Now</Link>
             }
           </div>
           <div className="block">
-            <a onClick={addToCart} className="shadow btn btn-lg btn-secondary add-to-cart-btn bs-secondary rounded">Add to cart</a>
+            <a onClick={addToCart} className="shadow btn btn-lg btn-secondary text-light add-to-cart-btn bs-secondary rounded">Add to cart</a>
           </div>
           <div className="block quantity d-flex gap-1 ms-2">
             <span className="btn btn-lg btn-disabled rounded bg-info">Stock: {productStock}</span>
