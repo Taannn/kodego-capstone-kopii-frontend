@@ -11,7 +11,7 @@ const initialState: LandingDiscoverInitState = {
 export const fetchLandingDiscover = createAsyncThunk('landingDiscover/fetchLandingDiscover', async (_, { dispatch }) => {
   dispatch(setLoadingLanding(true));
   try {
-    const response = await axios.get('https://kopii-mp2.onrender.com/kopii/discover');
+    const response = await axios.get('/discover');
     return response.data.data;
   } catch (error) {
     throw error;

@@ -11,7 +11,7 @@ const initialState: ShopCarouselInitState = {
 export const fetchShopCarousel = createAsyncThunk('shopCarousel/fetchShopCarousel', async (_, { dispatch }) => {
   dispatch(setLoadingShop(true));
   try {
-    const response = await axios.get('https://kopii-mp2.onrender.com/kopii/carousel');
+    const response = await axios.get('/carousel');
     return response.data.data;
   } catch (error) {
     throw error;

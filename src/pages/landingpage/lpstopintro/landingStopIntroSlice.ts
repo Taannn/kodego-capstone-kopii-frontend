@@ -11,7 +11,7 @@ const initialState: LandingStopIntroInitState = {
 export const fetchLandingStopIntro = createAsyncThunk('landingStopIntro/fetchLandingStopIntro', async (_, { dispatch }) => {
   dispatch(setLoadingLanding(true));
   try {
-    const response = await axios.get('https://kopii-mp2.onrender.com/kopii/kopiistopintro');
+    const response = await axios.get('/kopiistopintro');
     return response.data.data;
   } catch (error) {
     throw error;

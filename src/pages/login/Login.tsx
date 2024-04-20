@@ -40,7 +40,7 @@ const Login: React.FC = () => {
       // if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       setInputToggle(false);
       setInvalidEmail(false);
-      const res = await axios.post("https://kopii-mp2.onrender.com/kopii/login", {
+      const res = await axios.post("/login", {
         email: formData.email,
         password: formData.password
       });

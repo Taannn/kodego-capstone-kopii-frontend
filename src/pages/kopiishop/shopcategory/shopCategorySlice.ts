@@ -11,7 +11,7 @@ const initialState: ShopCategoryInitState = {
 export const fetchShopCategory = createAsyncThunk('shopCategory/fetchShopCategory', async (_, { dispatch }) => {
   dispatch(setLoadingShop(true));
   try {
-    const response = await axios.get('https://kopii-mp2.onrender.com/kopii/categories');
+    const response = await axios.get('/categories');
     return response.data.data;
   } catch (error) {
     throw error;

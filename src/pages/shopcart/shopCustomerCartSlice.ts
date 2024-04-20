@@ -12,7 +12,7 @@ export const fetchShopCustomerCart = createAsyncThunk('shopCustomerCart/fetchSho
   dispatch(setLoadingShop(true));
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('https://kopii-mp2.onrender.com/kopii/shop/cart', {
+    const response = await axios.get('/shop/cart', {
       headers: {
         'Authorization': `Bearer ${token}`
       }

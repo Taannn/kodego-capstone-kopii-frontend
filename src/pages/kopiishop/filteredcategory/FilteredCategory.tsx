@@ -16,7 +16,7 @@ const FilteredCategory = () => {
     const fetchCategory = async () => {
       dispatch(setLoadingShop(true));
     try {
-      const response = await axios.get(`https://kopii-mp2.onrender.com/kopii/shop/category/${category}`);
+      const response = await axios.get(`/shop/category/${category}`);
       setProducts(response.data.data);
     } catch (error) {
       throw error;

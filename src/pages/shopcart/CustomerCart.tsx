@@ -22,7 +22,7 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
     dispatch(setLoadingShop(true));
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.delete(`https://kopii-mp2.onrender.com/kopii/shop/cart/${product_id}`, {
+      const response = await axios.delete(`/shop/cart/${product_id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

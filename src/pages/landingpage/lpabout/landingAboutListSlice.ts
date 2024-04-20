@@ -11,7 +11,7 @@ const initialState: LandingAboutListInitState = {
 export const fetchLandingAboutList = createAsyncThunk('landingAboutList/fetchLandingAboutList', async (_, { dispatch }) => {
   dispatch(setLoadingLanding(true));
   try {
-    const response = await axios.get('https://kopii-mp2.onrender.com/kopii/featureslist');
+    const response = await axios.get('/featureslist');
     return response.data.data;
   } catch (error) {
     throw error;

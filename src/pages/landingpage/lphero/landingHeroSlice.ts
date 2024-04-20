@@ -11,7 +11,7 @@ const initialState: LandingHeroInitState = {
 export const fetchLandingHero = createAsyncThunk('landingHero/fetchLandingHero', async (_, { dispatch }) => {
   dispatch(setLoadingLanding(true));
   try {
-    const response = await axios.get('https://kopii-mp2.onrender.com/kopii/kopiihero');
+    const response = await axios.get('/kopiihero');
     return response.data.data;
   } catch (error) {
     throw error;

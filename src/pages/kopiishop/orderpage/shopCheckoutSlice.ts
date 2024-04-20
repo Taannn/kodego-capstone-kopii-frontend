@@ -35,7 +35,7 @@ export const addShopOrder = createAsyncThunk('shopCheckout/addShopOrder', async 
     const price = parseFloat(data.finalPrice);
     const priceWithShipping =  (price + data.shippingFee).toFixed(2);
     const token = localStorage.getItem('token');
-    const res = await axios.post("https://kopii-mp2.onrender.com/kopii/shop/addorder", {
+    const res = await axios.post("/shop/addorder", {
       product_id: data.productId,
       quantity: data.finalQuantity,
       price: priceWithShipping,
@@ -48,7 +48,7 @@ export const addShopOrder = createAsyncThunk('shopCheckout/addShopOrder', async 
         'Authorization': `Bearer ${token}`
       }
     });
-    const response = await axios.delete(`https://kopii-mp2.onrender.com/kopii/shop/cart/${data.productId}`, {
+    const response = await axios.delete(`/shop/cart/${data.productId}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }

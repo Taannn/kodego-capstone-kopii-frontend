@@ -40,13 +40,13 @@ const Signup: React.FC = () => {
         return;
       }
       setInputToggle(false);
-      const res = await axios.post("https://kopii-mp2.onrender.com/kopii/signup", {
+      const res = await axios.post("/signup", {
         first_name: formData.first_name,
         last_name: formData.last_name,
         email: formData.email,
         password: formData.password
       });
-      const response = await axios.post("https://kopii-mp2.onrender.com/kopii/login", {
+      const response = await axios.post("/login", {
         email: formData.email,
         password: formData.password
       });

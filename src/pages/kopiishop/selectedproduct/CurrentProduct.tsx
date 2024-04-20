@@ -17,7 +17,7 @@ const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) =
     }
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.post("https://kopii-mp2.onrender.com/kopii/shop/", {
+      const response = await axios.post("/shop/", {
         product_id: id,
         quantity: 1
       }, {
