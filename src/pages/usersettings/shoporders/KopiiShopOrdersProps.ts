@@ -2,7 +2,8 @@
 export type ShopCustomerOrdersProps = {
   order_id: number;
   quantity: number;
-  order_date: string;
+  created_at: string;
+  updated_at: string;
   shipment_id: string;
   shipment_date: string;
   address: string;

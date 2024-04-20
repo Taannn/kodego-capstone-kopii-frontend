@@ -63,7 +63,7 @@ const ToShipInfo = () => {
                 </div>
                 <div className="d-flex justify-content-between align-items-center lh-1">
                   <p className="text-bold fs-4">Order Date:</p>
-                  <p className="fs-6">{formatDate(currentProduct.order_date)}</p>
+                  <p className="fs-6">{formatDate(currentProduct.created_at)}</p>
                 </div>
                 <div className="d-flex flex-column">
                 <button className="btn btn-lg rounded btn-outline-warning">Cancel Order</button>

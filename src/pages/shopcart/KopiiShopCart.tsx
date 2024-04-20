@@ -2,15 +2,21 @@ import Div from "../../components/Div";
 import BreadCrumb from "../../components/BreadCrumb";
 import CustomerCart from "./CustomerCart";
 import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
+import { fetchShopCustomerCart } from "./shopCustomerCartSlice";
+import { useEffect } from "react";
 
 const KopiiShopCart = () => {
+  const dispatch = useAppDispatch();
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const customerCart = useAppSelector((state) => state.shopcustomerCart);
 
+  useEffect(() => {
+    dispatch(fetchShopCustomerCart());
+  }, [dispatch])
   return (
     <>
       {loading && <div id='preloader'></div>}
-      {/* {!loading && customerCart.error ?<div>Error: {customerCart.error}</div> : null } */}
       <div>
         <BreadCrumb currentProduct={"Your Cart"} link={"/kopiishop"} />
         <Div styles="container px-4">

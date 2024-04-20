@@ -1,4 +1,5 @@
 export type ShopCustomerCartProps = {
+  cart_id: number;
   product_id: number;
   product_img: string;
   product_name: string;
