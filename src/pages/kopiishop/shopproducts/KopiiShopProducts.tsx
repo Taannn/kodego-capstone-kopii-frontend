@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { KopiiShopProductProps } from "../KopiiShopProps";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { quantitySetter, selectedProductId, priceSetter, selectedProductImg, selectedProductName, selectedProductDesc } from "../orderpage/shopCheckoutSlice";
 import axios from "axios";
 import { setSuccessful } from "../selectedproduct/addToCartSlice";
@@ -12,11 +12,9 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
   const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
   const dispatch = useAppDispatch();
 
-  const navigate = useNavigate();
-  const handleAddToCart = async (id: number) => {
-    if (!localStorage.getItem('token')) {
-      return navigate("/login")
-    }
+  const handleAddToCart = async (id: number, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
     try {
       const token = localStorage.getItem('token')
       const response = await axios.post("shop/", {
@@ -27,7 +25,6 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
           'Authorization': `Bearer ${token}`
         }
       })
-      // console.log(response.data.data);
       dispatch(fetchShopCustomerCart());
       dispatch(setSuccessful(true));
       return response.data.data;
@@ -98,7 +95,7 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
               <div className="text-decoration-none">
                 <div className="card card-hover-secondary position-relative bg-secondary text-light rounded overflow-hidden">
                       {s.discount &&
-                      <span className="bg-info text-dark text-bold position-absolute ff-main mt-1 end-0 me-2 border border-2 border-dark text-info px-1 rounded text-sm">- {s.discount} %</span>
+                      <Link to={`/kopiishop/${s.product_id}`} className="bg-info text-dark text-bold position-absolute ff-main mt-1 end-0 me-2 border border-2 border-dark text-info px-1 rounded text-sm">- {s.discount} %</Link>
                       }
                   <Link to={`/kopiishop/${s.product_id}`} className="category">
                     <img src={s.product_img} className="img-fluid" alt="" />
@@ -124,18 +121,30 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
                         <p className="d-none d-md-block">No ratings yet</p>
                       </Link>
                       <div className="d-flex flex-grow-1 gap-1">
-                        <button
-                          className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bg-primary bs-primary fs-6 ls-1"
-                          style={{ flex: 1 }}
-                          onClick={() => handleAddToCart(s.product_id)}
-                        >
-                          Add to Cart
-                          <i className="fa-solid fa-cart-shopping ms-2"></i>
-                        </button>
+                        {localStorage.getItem('token') ?
+                          <a
+                            className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bg-primary bs-primary fs-6 ls-1"
+                            style={{ flex: 1 }}
+                            onClick={(e) => handleAddToCart(s.product_id, e)}
+                          >
+                            Add to Cart
+                            <i className="fa-solid fa-cart-shopping ms-2"></i>
+                          </a>
+                         :
+                          <Link
+                            to={"/login"}
+                            className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bs-primary fs-6 ls-1"
+                            style={{ flex: 1 }}
+                          >
+                            Add to Cart
+                            <i className="fa-solid fa-cart-shopping ms-2"></i>
+                          </Link>
+
+                        }
                         {localStorage.getItem('token') ?
                           <Link
                             to={"/shopcheckout"}
-                            onClick={(e) => handleSelectedProductDetail(1, s.product_id, s.product_price, s.product_img, s.product_name, s.product_desc, e)}
+                            onClick={(e) => handleSelectedProductDetail(1, s.product_id, discountedPrice(parseFloat(s.product_price), s.discount), s.product_img, s.product_name, s.product_desc, e)}
                             className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bs-primary"
                           >
                             Buy Now

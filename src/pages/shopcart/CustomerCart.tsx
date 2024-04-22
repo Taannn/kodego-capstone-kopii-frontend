@@ -65,6 +65,12 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
     dispatch(selectedProductDesc(productDesc));
   }
 
+  const discountedPrice = (price: string, discount: number) => {
+    const convertedPrice = parseFloat(price);
+    const discounted = convertedPrice - (convertedPrice * discount) / 100;
+    return discounted.toFixed(2);
+  }
+
   return (
     <>
       {shopCustomerCart.map((s, i) => (
@@ -82,11 +88,20 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
               <button onClick={() => handleDecrement(s.cart_id)} className="btn rounded bg-danger text-light">-</button>
             </div>
             <div className="d-flex align-items-center justify-content-center">
-              <p className="amount display-5 text-bold ff-main lead text-primary">₱ {new Intl.NumberFormat().format(parseFloat(calculateTotalPrice(s.product_price, s.quantity)))}</p>
+              {s.discount ?
+                <p className="amount display-5 text-bold ff-main lead text-primary">
+                  ₱ {new Intl.NumberFormat().format(parseFloat(calculateTotalPrice(discountedPrice(s.product_price, s.discount), s.quantity)))}
+                </p>
+              :
+                <p className="amount display-5 text-bold ff-main lead text-primary">
+                  ₱ {new Intl.NumberFormat().format(parseFloat(calculateTotalPrice(s.product_price, s.quantity)))}
+                </p>
+              }
+
             </div>
             <div className="delete d-flex align-items-center justify-content-center gap-1">
               <button onClick={() => handleDeleteFromCart(s.product_id)} className="btn rounded bg-warning text-light ff-main">Delete</button>
-              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(s.quantity, s.product_id, calculateTotalPrice(s.product_price, s.quantity), s.product_img, s.product_name, s.product_desc)} className="btn rounded bg-success text-light ff-main">Checkout</Link>
+              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(s.quantity, s.product_id, calculateTotalPrice(discountedPrice(s.product_price, s.discount), s.quantity), s.product_img, s.product_name, s.product_desc)} className="btn rounded bg-success text-light ff-main">Checkout</Link>
             </div>
           </div>
         </div>

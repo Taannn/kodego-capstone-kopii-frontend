@@ -91,7 +91,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         <div className="buttons d-flex my-5">
           <div className="block">
             {localStorage.getItem('token') ?
-              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, productPrice, productImg, productName, productDesc)} className="shadow btn btn-lg btn-secondary text-light bs-secondary rounded">Buy Now</Link>
+              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, discountedPrice(parseFloat(productPrice), discount), productImg, productName, productDesc)} className="shadow btn btn-lg btn-secondary text-light bs-secondary rounded">Buy Now</Link>
             :
             <Link to={"/login"} className="shadow btn btn-lg btn-secondary bs-secondary rounded text-light">Buy Now</Link>
             }
