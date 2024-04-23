@@ -13,6 +13,9 @@ const KopiiShopOrders = () => {
   const shopOrders = useAppSelector((state) => state.shopOrders);
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const dispatch = useAppDispatch();
+  const toShip = shopOrders.info.filter(shopOrder => shopOrder.status === "To Ship");
+  const toReceive = shopOrders.info.filter(shopOrder => shopOrder.status === "To Receive");
+  const completed = shopOrders.info.filter(shopOrder => shopOrder.status === "Completed");
 
   useEffect(() => {
     dispatch(fetchShopOrders());
@@ -36,9 +39,9 @@ const KopiiShopOrders = () => {
             <Div styles="card-body">
               <Div styles="tab-content ff-main px-2">
                 <ToPay />
-                <ToShip shopOrders={shopOrders.info} />
-                <ToReceive shopOrders={shopOrders.info} />
-                <Completed shopOrders={shopOrders.info} />
+                <ToShip shopOrders={toShip} />
+                <ToReceive shopOrders={toReceive} />
+                <Completed shopOrders={completed} />
               </Div>
             </Div>
           </Div>

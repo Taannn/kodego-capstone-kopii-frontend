@@ -4,12 +4,7 @@ import { fetchShopUserInfo } from "../../userInfoSlice";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchShopOrders } from "../kopiiShopOrdersSlice";
-
-type OptionProps = {
-  year: "numeric" | "2-digit";
-  month: "numeric" | "2-digit" | "long" | "short" | "narrow";
-  day: "numeric" | "2-digit";
-};
+import { OptionProps } from "../kopiiShopOrdersProps";
 
 const ToShipInfo = () => {
   const customerOrders = useAppSelector((state) => state.shopOrders);
@@ -17,7 +12,7 @@ const ToShipInfo = () => {
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const dispatch = useAppDispatch();
   const { toshipID } = useParams<{ toshipID: string }>()
-  const currentProduct = customerOrders.info.find((s) => s.order_id === +toshipID!);
+  const currentProduct = customerOrders.info.find((customerOrder) => customerOrder.order_id === +toshipID!);
 
   const formatDate = (dateString: string) => {
     const options: OptionProps = { year: "numeric", month: "long", day: "numeric" };
@@ -84,11 +79,11 @@ const ToShipInfo = () => {
                     <p className="border border-2 bg-warning text-light py-1 px-2 rounded"><i className="fa-solid fa-circle-xmark me-2"></i>{currentProduct.status_message}</p>
                   }
                 </div>
-                {(currentProduct.status !== "Completed" && currentProduct.status !== "Cancelled" && currentProduct.status !== "To Receive") &&
+                {/* {(currentProduct.status !== "Completed" && currentProduct.status !== "Cancelled" && currentProduct.status !== "To Receive") &&
                   <div className="d-flex flex-column">
                     <button className="btn btn-lg rounded btn-outline-warning">Cancel Order</button>
                   </div>
-                }
+                } */}
               </div>
             </div>
           </div>
