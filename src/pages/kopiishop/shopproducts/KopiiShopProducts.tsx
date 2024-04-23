@@ -95,7 +95,7 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
               <div className="text-decoration-none">
                 <div className="card card-hover-secondary position-relative bg-secondary text-light rounded overflow-hidden">
                       {s.discount &&
-                      <Link to={`/kopiishop/${s.product_id}`} className="bg-info text-dark text-bold position-absolute ff-main mt-1 end-0 me-2 border border-2 border-dark text-info px-1 rounded text-sm">- {s.discount} %</Link>
+                      <Link to={`/kopiishop/${s.product_id}`} className="bg-danger text-light text-bold position-absolute ff-main mt-1 end-0 me-2 border border-2 border-dark text-info px-1 rounded text-sm">- {s.discount} %</Link>
                       }
                   <Link to={`/kopiishop/${s.product_id}`} className="category">
                     <img src={s.product_img} className="img-fluid" alt="" />

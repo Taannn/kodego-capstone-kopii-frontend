@@ -11933,7 +11933,7 @@ textarea.form-control-lg {
 }
 
 .card-hover-secondary:hover {
-  box-shadow: 0 2px 11px #9a6437, 0 2px 11px #c88247;
+  box-shadow: 0 0 8px 1px #9a6437, 0 0 8px 1px #c88247;
 }
 
 .card-hover-danger:hover {
@@ -12096,9 +12096,9 @@ textarea.form-control-lg {
 }
 
 .setting-toggle {
-  top: 3.4rem;
+  top: 3.3rem;
   right: 1rem;
-  width: 7.7rem;
+  width: 8.6rem;
 }
 
 .full-dimension {
@@ -12127,6 +12127,12 @@ textarea.form-control-lg {
 .flexbox-sb {
   display: flex;
   justify-content: space-between;
+}
+
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
 body {
@@ -12341,6 +12347,9 @@ a {
     width: 100%;
     height: auto;
   }
+}
+#confirm_password {
+  color: white !important;
 }
 
 /*# sourceMappingURL=styles.css.map */
