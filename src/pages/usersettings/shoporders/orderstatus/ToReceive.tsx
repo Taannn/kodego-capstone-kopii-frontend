@@ -1,12 +1,29 @@
 import { Link } from "react-router-dom";
 import { ShopOrdersExtended } from '../kopiiShopOrdersProps';
+// import axios from "axios";
 
 const ToReceive: React.FC<ShopOrdersExtended> = ({ shopOrders }) => {
   // const formatDate = (dateString: string) => {
   //   const options: OptionProps = { year: "numeric", month: "long", day: "numeric"}
   //   return new Date(dateString).toLocaleDateString(undefined, options)
   // }
+  // const handleAddToCart = async (id: number, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   try {
+  //     const token = localStorage.getItem('token')
+  //     const response = await axios.post(`/shop/status/update/completed/${id}`, {
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`
+  //       }
+  //     })
+  //     return response.data.data;
+  //   } catch (error) {
+  //     throw error
+  //   }
+  // }
   const toReceive = shopOrders.filter(order => order.status === "To Receive");
+
   return (
     <div className="tab-pane fade" id="to-deliver">
       {!toReceive.length &&
