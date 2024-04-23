@@ -8,14 +8,15 @@ import ToShip from "./orderstatus/ToShip";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { useEffect } from "react";
 import { fetchShopOrders } from "./kopiiShopOrdersSlice";
+import { ShopCustomerOrdersProps } from './kopiiShopOrdersProps';
 
 const KopiiShopOrders = () => {
   const shopOrders = useAppSelector((state) => state.kopiishopOrders);
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const dispatch = useAppDispatch();
-  const toShip = shopOrders.info.filter((shopOrder: any) => shopOrder.status === "To Ship");
-  const toReceive = shopOrders.info.filter((shopOrder: any) => shopOrder.status === "To Receive");
-  const completed = shopOrders.info.filter((shopOrder: any) => shopOrder.status === "Completed");
+  const toShip: ShopCustomerOrdersProps[] = shopOrders.info.filter(shopOrder => shopOrder.status === "To Ship");
+  const toReceive: ShopCustomerOrdersProps[] = shopOrders.info.filter(shopOrder => shopOrder.status === "To Receive");
+  const completed: ShopCustomerOrdersProps[] = shopOrders.info.filter(shopOrder => shopOrder.status === "Completed");
 
   useEffect(() => {
     dispatch(fetchShopOrders());
