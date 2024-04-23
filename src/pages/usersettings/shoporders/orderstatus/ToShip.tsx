@@ -1,23 +1,19 @@
 import { Link } from "react-router-dom";
-import { CustomerOrdersProps } from "../KopiiShopOrdersProps";
+import { ShopOrders, OptionProps } from "../kopiiShopOrdersProps";
 
-type OptionProps = {
-  year: "numeric" | "2-digit";
-  month: "numeric" | "2-digit" | "long" | "short" | "narrow";
-  day: "numeric" | "2-digit";
-};
-
-const ToShip: React.FC<CustomerOrdersProps> = ({ shopCustomerOrders }) => {
+const ToShip: React.FC<ShopOrders> = ({ shopOrders }) => {
   const formatDate = (dateString: string) => {
     const options: OptionProps = { year: "numeric", month: "long", day: "numeric"}
     return new Date(dateString).toLocaleDateString(undefined, options)
   }
+  const toShip = shopOrders.filter(order => order.status === "To Ship");
+
   return (
     <div className="tab-pane fade show active" id="to-ship">
-      {!shopCustomerOrders.length &&
+      {!toShip.length &&
         <p className="display-1 ff-main text-dark mt-6" style={{ opacity: '.3' }}>No Orders Yet</p>
       }
-      {shopCustomerOrders.map((s, i) => (
+      {toShip.map((s, i) => (
         <Link to={`/shoporders/${s.order_id}`} key={i + s.order_id} className="wrapper">
           <div className="row border border-primary border-3 bg-light mb-0 rounded-0 rounded-top">
             <div className="col-6 col-md-3 overflow-hidden rounded p-2">

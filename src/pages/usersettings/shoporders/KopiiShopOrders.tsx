@@ -7,15 +7,15 @@ import ToReceive from "./orderstatus/ToReceive";
 import ToShip from "./orderstatus/ToShip";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { useEffect } from "react";
-import { fetchShopCustomerOrders } from "./shopCustomerOrdersSlice";
+import { fetchShopOrders } from "./kopiiShopOrdersSlice";
 
 const KopiiShopOrders = () => {
-  const customerOrders = useAppSelector((state) => state.shopOrders);
+  const shopOrders = useAppSelector((state) => state.shopOrders);
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchShopCustomerOrders());
+    dispatch(fetchShopOrders());
   }, [dispatch]);
   return (
     <div>
@@ -36,9 +36,9 @@ const KopiiShopOrders = () => {
             <Div styles="card-body">
               <Div styles="tab-content ff-main px-2">
                 <ToPay />
-                <ToShip shopCustomerOrders={customerOrders.info} />
-                <ToReceive />
-                <Completed />
+                <ToShip shopOrders={shopOrders.info} />
+                <ToReceive shopOrders={shopOrders.info} />
+                <Completed shopOrders={shopOrders.info} />
               </Div>
             </Div>
           </Div>

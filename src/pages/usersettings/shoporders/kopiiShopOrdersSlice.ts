@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { setLoadingShop } from '../../preloader/loadingSliceShop'
-import { ShopCustomerOrdersProps, ShopCustomerOrdersInitState } from './KopiiShopOrdersProps'
+import { ShopCustomerOrdersPropsExtended, ShopCustomerOrdersInitState } from './kopiiShopOrdersProps'
 
 const initialState: ShopCustomerOrdersInitState = {
   info: [],
   error: ''
 }
 
-export const fetchShopCustomerOrders = createAsyncThunk('shopCustomerOrders/fetchShopCustomerOrders', async (_, { dispatch }) => {
+export const fetchShopOrders = createAsyncThunk('shopOrders/fetchShopOrders', async (_, { dispatch }) => {
   dispatch(setLoadingShop(true));
   try {
     const token = localStorage.getItem('token');
@@ -26,20 +26,20 @@ export const fetchShopCustomerOrders = createAsyncThunk('shopCustomerOrders/fetc
 })
 
 
-const shopCustomerOrdersSlice = createSlice({
-  name: 'shopCustomerOrders',
+const shopOrdersSlice = createSlice({
+  name: 'shopCompleted',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchShopCustomerOrders.fulfilled, (state, action: PayloadAction<ShopCustomerOrdersProps[]>) => {
+    builder.addCase(fetchShopOrders.fulfilled, (state, action: PayloadAction<ShopCustomerOrdersPropsExtended[]>) => {
       state.info = action.payload
       state.error = ''
     })
-    builder.addCase(fetchShopCustomerOrders.rejected, (state, action) => {
+    builder.addCase(fetchShopOrders.rejected, (state, action) => {
       state.info = []
       state.error = action.error.message || 'Error'
     })
   }
 })
 
-export default shopCustomerOrdersSlice.reducer
+export default shopOrdersSlice.reducer
