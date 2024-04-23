@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { setLoadingShop } from '../../preloader/loadingSliceShop'
-import { ShopCustomerOrdersPropsExtended, ShopCustomerOrdersInitState } from './kopiiShopOrdersProps'
+import { ShopCustomerOrdersInitState, ShopCustomerOrdersProps } from './kopiiShopOrdersProps'
 
 const initialState: ShopCustomerOrdersInitState = {
   info: [],
@@ -26,12 +26,12 @@ export const fetchShopOrders = createAsyncThunk('shopOrders/fetchShopOrders', as
 })
 
 
-const shopOrdersSlice = createSlice({
+const kopiiShopOrdersSlice = createSlice({
   name: 'shopCompleted',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchShopOrders.fulfilled, (state, action: PayloadAction<ShopCustomerOrdersPropsExtended[]>) => {
+    builder.addCase(fetchShopOrders.fulfilled, (state, action: PayloadAction<ShopCustomerOrdersProps[]>) => {
       state.info = action.payload
       state.error = ''
     })
@@ -42,4 +42,4 @@ const shopOrdersSlice = createSlice({
   }
 })
 
-export default shopOrdersSlice.reducer
+export default kopiiShopOrdersSlice.reducer

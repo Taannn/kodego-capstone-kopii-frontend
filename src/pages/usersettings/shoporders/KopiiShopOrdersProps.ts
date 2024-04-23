@@ -16,25 +16,17 @@ export type ShopCustomerOrdersProps = {
   product_name: string;
   product_desc: string;
   product_img: string;
-};
-export type ShopCustomerOrdersPropsExtended = ShopCustomerOrdersProps & {
   product_price: string;
   discount: number;
 };
 
 export type ShopCustomerOrdersInitState = {
-  info: ShopCustomerOrdersPropsExtended[];
+  info: ShopCustomerOrdersProps[];
   error: string;
 };
 export type ShopOrders = {
   shopOrders: ShopCustomerOrdersProps[];
 };
 export type ShopOrdersExtended = {
-  shopOrders: ShopCustomerOrdersPropsExtended[];
-};
-
-export type OptionProps = {
-  year: "numeric" | "2-digit";
-  month: "numeric" | "2-digit" | "long" | "short" | "narrow";
-  day: "numeric" | "2-digit";
+  shopOrders: ShopCustomerOrdersProps[];
 };

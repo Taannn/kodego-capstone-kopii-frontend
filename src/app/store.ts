@@ -41,7 +41,7 @@ const store = configureStore({
     cartsuccessful: successfullyAddedReducer,
     shopCheckout: shopCheckoutReducer,
     shopUserInfo: shopUserInfoReducer,
-    shopOrders: shopOrdersReducer,
+    kopiishopOrders: shopOrdersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     // to avoid thw warning not sure though if this will do, hoping the code still works

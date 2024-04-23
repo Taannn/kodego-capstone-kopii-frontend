@@ -10,12 +10,12 @@ import { useEffect } from "react";
 import { fetchShopOrders } from "./kopiiShopOrdersSlice";
 
 const KopiiShopOrders = () => {
-  const shopOrders = useAppSelector((state) => state.shopOrders);
+  const shopOrders = useAppSelector((state) => state.kopiishopOrders);
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const dispatch = useAppDispatch();
-  const toShip = shopOrders.info.filter(shopOrder => shopOrder.status === "To Ship");
-  const toReceive = shopOrders.info.filter(shopOrder => shopOrder.status === "To Receive");
-  const completed = shopOrders.info.filter(shopOrder => shopOrder.status === "Completed");
+  const toShip = shopOrders.info.filter((shopOrder: any) => shopOrder.status === "To Ship");
+  const toReceive = shopOrders.info.filter((shopOrder: any) => shopOrder.status === "To Receive");
+  const completed = shopOrders.info.filter((shopOrder: any) => shopOrder.status === "Completed");
 
   useEffect(() => {
     dispatch(fetchShopOrders());

@@ -1,18 +1,23 @@
-import { useAppSelector, useAppDispatch } from "../../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import BreadCrumb from "../../../../components/BreadCrumb";
 import { fetchShopUserInfo } from "../../userInfoSlice";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchShopOrders } from "../kopiiShopOrdersSlice";
-import { OptionProps } from "../kopiiShopOrdersProps";
+
+type OptionProps = {
+  year: "numeric" | "2-digit";
+  month: "numeric" | "2-digit" | "long" | "short" | "narrow";
+  day: "numeric" | "2-digit";
+};
 
 const ToShipInfo = () => {
-  const customerOrders = useAppSelector((state) => state.shopOrders);
+  const customerOrders = useAppSelector((state) => state.kopiishopOrders);
   const userInfo = useAppSelector((state) => state.shopUserInfo.info);
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const dispatch = useAppDispatch();
   const { toshipID } = useParams<{ toshipID: string }>()
-  const currentProduct = customerOrders.info.find((customerOrder) => customerOrder.order_id === +toshipID!);
+  const currentProduct = customerOrders.info.find((customerOrder: any) => customerOrder.order_id === +toshipID!);
 
   const formatDate = (dateString: string) => {
     const options: OptionProps = { year: "numeric", month: "long", day: "numeric" };
