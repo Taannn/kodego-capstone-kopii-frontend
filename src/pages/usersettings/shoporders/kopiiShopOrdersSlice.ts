@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { setLoadingShop } from '../../preloader/loadingSliceShop'
-import { ShopCustomerOrdersInitState, ShopCustomerOrdersProps } from './kopiiShopOrdersProps'
+import { ShopCustomerOrdersInitState, ShopCustomerOrdersProps } from './ShopOrdersProps';
+
 
 const initialState: ShopCustomerOrdersInitState = {
   info: [],
   error: ''
 }
 
-export const fetchShopOrders = createAsyncThunk('shopOrders/fetchShopOrders', async (_, { dispatch }) => {
+export const fetchShopOrders = createAsyncThunk('kopiiShopOrders/fetchShopOrders', async (_, { dispatch }) => {
   dispatch(setLoadingShop(true));
   try {
     const token = localStorage.getItem('token');
@@ -27,7 +28,7 @@ export const fetchShopOrders = createAsyncThunk('shopOrders/fetchShopOrders', as
 
 
 const kopiiShopOrdersSlice = createSlice({
-  name: 'shopCompleted',
+  name: 'kopiiShopOrders',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

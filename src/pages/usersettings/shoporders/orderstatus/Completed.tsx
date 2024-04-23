@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShopOrdersExtended } from '../kopiiShopOrdersProps';
+import { ShopOrdersExtended } from '../ShopOrdersProps';
 
 type OptionProps = {
   year: "numeric" | "2-digit";
@@ -18,7 +18,7 @@ const Completed: React.FC<ShopOrdersExtended> = ({ shopOrders }) => {
       {!shopOrders.length &&
         <p className="display-1 ff-main text-dark mt-6" style={{ opacity: '.3' }}>No Orders Yet</p>
       }
-      {shopOrders.map((s: any, i: number) => (
+      {shopOrders.map((s, i) => (
         <Link to={`/shoporders/${s.order_id}`} key={i + s.order_id} className="wrapper">
           <div className="row border border-primary border-3 bg-light mb-0 rounded-0 rounded-top">
             <div className="col-6 col-md-3 overflow-hidden rounded p-2">

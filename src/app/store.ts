@@ -18,7 +18,7 @@ import shopCustomerCartReducer from '../pages/shopcart/shopCustomerCartSlice';
 import successfullyAddedReducer from '../pages/kopiishop/selectedproduct/addToCartSlice';
 import shopCheckoutReducer from '../pages/kopiishop/orderpage/shopCheckoutSlice';
 import shopUserInfoReducer from '../pages/usersettings/userInfoSlice';
-import shopOrdersReducer from '../pages/usersettings/shoporders/kopiiShopOrdersSlice'
+import shopOrdersReducer from '../pages/usersettings/shoporders/kopiiShopOrdersSlice';
 
 const store = configureStore({
   reducer: {

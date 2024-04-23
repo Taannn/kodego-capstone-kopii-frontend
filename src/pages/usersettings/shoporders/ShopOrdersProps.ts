@@ -24,7 +24,7 @@ export type ShopCustomerOrdersInitState = {
   info: ShopCustomerOrdersProps[];
   error: string;
 };
-export type ShopOrders = {
+export type ShopOrdersProps = {
   shopOrders: ShopCustomerOrdersProps[];
 };
 export type ShopOrdersExtended = {

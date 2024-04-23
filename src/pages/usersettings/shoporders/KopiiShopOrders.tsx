@@ -8,7 +8,7 @@ import ToShip from "./orderstatus/ToShip";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { useEffect } from "react";
 import { fetchShopOrders } from "./kopiiShopOrdersSlice";
-import { ShopCustomerOrdersProps } from './kopiiShopOrdersProps';
+import { ShopCustomerOrdersProps } from './ShopOrdersProps';
 
 const KopiiShopOrders = () => {
   const shopOrders = useAppSelector((state) => state.kopiishopOrders);

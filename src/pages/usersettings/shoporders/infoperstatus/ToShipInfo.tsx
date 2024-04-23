@@ -4,7 +4,7 @@ import { fetchShopUserInfo } from "../../userInfoSlice";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchShopOrders } from "../kopiiShopOrdersSlice";
-import { ShopCustomerOrdersProps } from "../kopiiShopOrdersProps";
+import { ShopCustomerOrdersProps } from "../ShopOrdersProps";
 
 type OptionProps = {
   year: "numeric" | "2-digit";
