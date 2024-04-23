@@ -142,6 +142,14 @@ const HeaderNav = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
+                  <Link
+                    to="/shoporders"
+                    className={`nav-link ${location.pathname === '/kopiishop' ? 'active' : ''}`}
+                  >
+                    Shop Orders
+                  </Link>
+                </li>
+                <li className="nav-item">
                 {!localStorage.getItem('token') ? (
                   <Link
                     id="login"

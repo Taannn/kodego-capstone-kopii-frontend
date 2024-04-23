@@ -44,8 +44,12 @@ const Login: React.FC = () => {
         email: formData.email,
         password: formData.password
       });
-      const { token } = res.data;
+      // const { token } = res.data;
+      // localStorage.setItem('token', token);
+      const { token, expiresIn } = res.data;
+      const expirationTime = new Date().getTime() + expiresIn * 1000;
       localStorage.setItem('token', token);
+      localStorage.setItem('tokenExpiration', expirationTime.toString());
       navigate("/kopiishop");
       dispatch(inputReset(''));
       return res.data.data;

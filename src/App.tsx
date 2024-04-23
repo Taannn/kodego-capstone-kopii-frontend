@@ -4,7 +4,6 @@ import LandingPage from "./pages/landingpage/LandingPage"
 import Login from "./pages/login/Login"
 import Signup from "./pages/signup/Signup"
 import KopiiShop from "./pages/kopiishop/KopiiShop"
-import KopiiStop from "./pages/kopiistop/KopiiStop";
 import ContactUs from "./pages/contactus/ContactUs";
 import ErrorPage from "./pages/error/ErrorPage";
 import FooterNav from "./components/FooterNav"
@@ -15,12 +14,12 @@ import KopiiShopCart from "./pages/shopcart/KopiiShopCart"
 import UserInfo from "./pages/usersettings/UserInfo"
 import KopiiShopOrders from "./pages/usersettings/shoporders/KopiiShopOrders"
 import KopiiStopOrders from "./pages/usersettings/stoporders/KopiiStopOrders"
-import AddressAndInfo from "./pages/usersettings/addressinfo/AddressAndInfo"
 import ShopCheckout from "./pages/kopiishop/orderpage/ShopCheckout"
 import ShopOrderComplete from "./pages/kopiishop/ordercomplete/ShopOrderComplete"
 import ToShipInfo from "./pages/usersettings/shoporders/infoperstatus/ToShipInfo"
 import ScrollToTop from "./components/ScrollToTop"
 import Protected from "./pages/protected/Protected"
+import TokenExpire from "./pages/protected/TokenExpire"
 
 
 function App() {
@@ -32,39 +31,21 @@ function App() {
       <main>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/kopiishop" element={<KopiiShop />} />
-          <Route path="/kopiishop/:index" element={<KopiiShopSelected />} />
-          <Route path="/category/:category" element={<FilteredCategory />} />
-          <Route path="/search/:search" element={<SearchResult />} />
-          <Route path="/kopiistop" element={<KopiiStop />} />
-          <Route path="/contactus" element={<ContactUs />} />
-          <Route path="/cart" element={<KopiiShopCart />} />
-          <Route path="/settings" element={
-            <Protected>
-              <UserInfo />
-            </Protected>
-          } />
-          <Route path="/shoporders" element={<KopiiShopOrders />} />
-          <Route path="/shoporders/:toshipID" element={
-            <Protected>
-              <ToShipInfo />
-            </Protected>
-          } />
-          <Route path="/stoporders" element={<KopiiStopOrders />} />
-          <Route path="/addressinfo" element={
-            <Protected>
-              <AddressAndInfo />
-            </Protected>
-          } />
-          <Route path="/shopcheckout" element={<ShopCheckout />} />
-          <Route path="/shop/ordercomplete" element={
-            <Protected>
-              <ShopOrderComplete />
-            </Protected>
-          } />
+          <Route path="/" element={<TokenExpire><LandingPage /></TokenExpire>} />
+          <Route path="/login" element={<TokenExpire><Login /></TokenExpire>} />
+          <Route path="/signup" element={<TokenExpire><Signup /></TokenExpire>} />
+          <Route path="/kopiishop" element={<TokenExpire><KopiiShop /></TokenExpire>} />
+          <Route path="/kopiishop/:index" element={<TokenExpire><KopiiShopSelected /></TokenExpire>} />
+          <Route path="/category/:category" element={<TokenExpire><FilteredCategory /></TokenExpire>} />
+          <Route path="/search/:search" element={<TokenExpire><SearchResult /></TokenExpire>} />
+          <Route path="/contactus" element={<TokenExpire><ContactUs /></TokenExpire>} />
+          <Route path="/cart" element={<TokenExpire><KopiiShopCart /></TokenExpire>} />
+          <Route path="/settings" element={<Protected><UserInfo /></Protected>} />
+          <Route path="/shoporders" element={<Protected><KopiiShopOrders /></Protected>} />
+          <Route path="/shoporders/:toshipID" element={<Protected><ToShipInfo /></Protected>} />
+          <Route path="/stoporders" element={<TokenExpire><KopiiStopOrders /></TokenExpire>} />
+          <Route path="/shopcheckout" element={<TokenExpire><ShopCheckout /></TokenExpire>} />
+          <Route path="/shop/ordercomplete" element={<Protected><ShopOrderComplete /></Protected>} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>

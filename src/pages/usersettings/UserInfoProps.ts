@@ -15,3 +15,6 @@ export type ShopUserInfoInitState = {
 export type UserInfoProps = {
   shopUserInfo: ShopUserInfoProps[];
 };
+export type UserInfoPropsExtended = UserInfoProps & {
+  updateToggle: boolean;
+}
