@@ -11,7 +11,7 @@ import {
   inputReset
 } from "./loginSlice";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const Login: React.FC = () => {
@@ -28,6 +28,7 @@ const Login: React.FC = () => {
   const handleChange = (action: any) => {
     dispatch(action);
     dispatch(errorMessage(null));
+    setInputToggle(false);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,21 +38,17 @@ const Login: React.FC = () => {
         setInputToggle(true);
         return;
       }
-      // if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       setInputToggle(false);
       setInvalidEmail(false);
       const res = await axios.post("/login", {
         email: formData.email,
         password: formData.password
       });
-      // const { token } = res.data;
-      // localStorage.setItem('token', token);
       const { token, expiresIn } = res.data;
       const expirationTime = new Date().getTime() + expiresIn * 1000;
       localStorage.setItem('token', token);
       localStorage.setItem('tokenExpiration', expirationTime.toString());
       navigate("/kopiishop");
-      dispatch(inputReset(''));
       return res.data.data;
       } catch (error: any) {
       if (error.response && error.response.status === 404) {
@@ -63,6 +60,11 @@ const Login: React.FC = () => {
       }
     }
   };
+  useEffect(() => {
+    return () => {
+      dispatch(inputReset(''));
+    }
+  }, [])
 
   return (
     <section className="vh-100 bg-image bg-light ff-main text-primary">

@@ -22,7 +22,6 @@ const Input: React.FC<InputProps> = ({
         onChange={handleChange}
         className="form-control form-control-lg border border-2 border-info"
         placeholder={pholder}
-        required
       />
     </div>
   );

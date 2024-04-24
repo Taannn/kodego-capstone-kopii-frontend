@@ -12,7 +12,7 @@ import {
   passwordToggle,
   inputReset
 } from './signupSlice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Signup: React.FC = () => {
   const [inputToggle, setInputToggle] = useState<boolean>(false);
@@ -22,6 +22,7 @@ const Signup: React.FC = () => {
   const handleChange = (action: any) => {
     dispatch(action);
     dispatch(errorMessage(null));
+    setInputToggle(false);
   };
   const navigate = useNavigate();
   if (localStorage.getItem('token')) {
@@ -52,7 +53,6 @@ const Signup: React.FC = () => {
       });
       const { token } = response.data;
       localStorage.setItem('token', token);
-      dispatch(inputReset(''));
       navigate("/kopiishop");
       return res.data.data;
     } catch (error: any) {
@@ -68,6 +68,11 @@ const Signup: React.FC = () => {
       }
     }
   };
+  useEffect(() => {
+    return () => {
+      dispatch(inputReset(''));
+    }
+  }, [])
 
   return (
     <section className="vh-100 bg-image bg-light ff-main text-primary">

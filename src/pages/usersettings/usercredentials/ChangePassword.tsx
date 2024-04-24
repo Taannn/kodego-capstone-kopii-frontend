@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
   currentPasswordInput,
@@ -18,6 +18,7 @@ const ChangePassword:React.FC = () => {
   const handleChange = (action: any) => {
     dispatch(action);
     dispatch(errorMessage(null));
+    setInputToggle(false);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,20 +45,24 @@ const ChangePassword:React.FC = () => {
       dispatch(fetchShopUserInfo());
       return res.data.data;
       } catch (error: any) {
-      if (error.response && error.response.status === 404) {
-        if (error.response.data.error === 'PasswordMismatchError') {
-          dispatch(errorMessage('your password is incorrect.'));
+        if (error.response && error.response.status === 400) {
+          setInputToggle(true);
+          if (error.response.data.error === 'PasswordMismatchError') {
+            dispatch(errorMessage('password in incorrect!'));
+          }
+          if (error.response.data.error === 'SamePasswordError') {
+            dispatch(errorMessage('password cannot be the same.'));
+          }
+        }  else {
+          dispatch(errorMessage("server timed out"));
         }
-        if (error.response.data.error === 'SamePasswordError') {
-          dispatch(errorMessage('new password and your password cannot be the same.'));
-        }
-      } else if (error.response && error.response.status === 500) {
-        dispatch(errorMessage("server time out"));
-      } else {
-        dispatch(errorMessage("An unexpected error occurred"));
-      }
     }
   };
+  useEffect(() => {
+    return () => {
+      dispatch(inputReset(''));
+    }
+  }, [])
 
   return (
     <div className="mt-5 grid-cols-2 col-11 bg-primary col-md-8 px-4 py-3 rounded mx-auto">

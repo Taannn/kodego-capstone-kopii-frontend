@@ -30,6 +30,7 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
     }));
     dispatch(action(value));
     dispatch(errorMessage(null));
+    setInputToggle(false);
   };
 
   useEffect(() => {
@@ -39,7 +40,21 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
       zip_code: shopUserInfo.zip_code || "",
       phone_number: shopUserInfo.phone_number || "",
     });
+    return () => {
+      dispatch(inputReset(''));
+    }
   }, [shopUserInfo]);
+
+  const sameAddress = () => {
+    if (userData.address === shopUserInfo.address &&
+        userData.city === shopUserInfo.city &&
+        userData.zip_code === shopUserInfo.zip_code &&
+        userData.phone_number === shopUserInfo.phone_number
+    ) {
+      setInputToggle(true);
+      return dispatch(errorMessage('cannot update with the same address info'));
+    }
+  }
 
   const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,7 +89,7 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
           dispatch(errorMessage('Server Time Out'));
        }
        if (error.response && error.response.status === 400) {
-          dispatch(errorMessage('Email is already registered.'));
+          dispatch(errorMessage('User not found.'));
       } else {
         console.error('Action Failed:', error.message);
         dispatch(errorMessage('An unexpected error occurred'));
@@ -88,6 +103,11 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
         <h4><i className="fa-solid fa-location-dot me-2"></i>{shopUserInfo.address ? 'Update Address' : 'Add Address'}</h4>
         <div className="d-flex gap-2 mb-2 flex-wrap">
           {userData.address === '' && inputToggle &&
+            <div>
+              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">address is required!</small>
+            </div>
+          }
+          {sameAddress() && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">address is required!</small>
             </div>

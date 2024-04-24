@@ -48,12 +48,12 @@ function App() {
           <Route path="/search/:search" element={<TokenExpire><SearchResult /></TokenExpire>} />
           <Route path="/contactus" element={<TokenExpire><ContactUs /></TokenExpire>} />
           <Route path="/cart" element={<TokenExpire><KopiiShopCart /></TokenExpire>} />
-          <Route path="/settings" element={<Protected><UserInfo /></Protected>} />
+          <Route path="/settings" element={<TokenExpire><Protected><UserInfo /></Protected></TokenExpire>} />
           <Route path="/shoporders" element={<Protected><KopiiShopOrders /></Protected>} />
-          <Route path="/shoporders/:toshipID" element={<Protected><ToShipInfo /></Protected>} />
+          <Route path="/shoporders/:toshipID" element={<TokenExpire><Protected><ToShipInfo /></Protected></TokenExpire>} />
           <Route path="/stoporders" element={<TokenExpire><KopiiStopOrders /></TokenExpire>} />
           <Route path="/shopcheckout" element={<TokenExpire><ShopCheckout /></TokenExpire>} />
-          <Route path="/shop/ordercomplete" element={<Protected><ShopOrderComplete /></Protected>} />
+          <Route path="/shop/ordercomplete" element={<TokenExpire><Protected><ShopOrderComplete /></Protected></TokenExpire>} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>

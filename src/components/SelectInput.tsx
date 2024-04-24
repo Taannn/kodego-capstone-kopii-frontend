@@ -21,7 +21,6 @@ const SelectInput: React.FC<SelectInputProps> = ({
           id={id}
           onChange={handleChange}
           className="form-control form-control-lg border border-2 border-info"
-          required
           >
           <option value="">{optionDefault}</option>
           <option value={optionOne}>{optionOne}</option>

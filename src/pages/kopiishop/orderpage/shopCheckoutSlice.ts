@@ -114,7 +114,7 @@ const shopCheckoutSlice = createSlice({
     },
     totalAmountSetter: (state, action) => {
       state.totalAmount = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addShopOrder.fulfilled, (state, action) => {

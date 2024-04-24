@@ -11,7 +11,6 @@ const LoginInput: React.FC<LoginInputProps> = ({ value, onChange }) => {
       value={value}
       onChange={onChange}
       className="form-control form-control-lg"
-      required
     />
   );
 };
