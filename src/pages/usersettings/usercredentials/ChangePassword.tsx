@@ -1,53 +1,63 @@
-// import axios from "axios";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
   currentPasswordInput,
   passwordInput,
   confirmPasswordInput,
-  errorMessage
+  errorMessage,
+  inputReset
 } from "./changePasswordSlice";
+import axios from "axios";
+import { fetchShopUserInfo } from "../userInfoSlice";
 
 
 const ChangePassword:React.FC = () => {
   const [inputToggle, setInputToggle] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.kopiichangePassword);
-
   const handleChange = (action: any) => {
     dispatch(action);
     dispatch(errorMessage(null));
   };
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   try {
-  //     if (formData.email === '' || formData.password === '') {
-  //       setInputToggle(true);
-  //       return;
-  //     }
-  //     // if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-  //     setInputToggle(false);
-  //     setInvalidEmail(false);
-  //     const res = await axios.post("/login", {
-  //       email: formData.email,
-  //       password: formData.password
-  //     });
-  //     const { token } = res.data;
-  //     localStorage.setItem('token', token);
-  //     navigate("/kopiishop");
-  //     dispatch(inputReset(''));
-  //     return res.data.data;
-  //     } catch (error: any) {
-  //     if (error.response && error.response.status === 404) {
-  //       dispatch(errorMessage("Account not found"));
-  //     } else if (error.response && error.response.status === 401) {
-  //       dispatch(errorMessage("Invalid password"));
-  //     } else {
-  //       dispatch(errorMessage("An unexpected error occurred"));
-  //     }
-  //   }
-  // };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      if (formData.current_password === '' ||
+          formData.password === '' ||
+          formData.password !== formData.confirm_password ||
+          formData.confirm_password === ''
+      ) {
+        setInputToggle(true);
+        return;
+      }
+      setInputToggle(false);
+      const res = await axios.put("/update/password/info", {
+        current_password: formData.current_password,
+        password: formData.password
+      }, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      dispatch(inputReset(''));
+      dispatch(fetchShopUserInfo());
+      return res.data.data;
+      } catch (error: any) {
+      if (error.response && error.response.status === 404) {
+        if (error.response.data.error === 'PasswordMismatchError') {
+          dispatch(errorMessage('your password is incorrect.'));
+        }
+        if (error.response.data.error === 'SamePasswordError') {
+          dispatch(errorMessage('new password and your password cannot be the same.'));
+        }
+      } else if (error.response && error.response.status === 500) {
+        dispatch(errorMessage("server time out"));
+      } else {
+        dispatch(errorMessage("An unexpected error occurred"));
+      }
+    }
+  };
 
   return (
     <div className="mt-5 grid-cols-2 col-11 bg-primary col-md-8 px-4 py-3 rounded mx-auto">
@@ -56,14 +66,14 @@ const ChangePassword:React.FC = () => {
         <div className="d-flex flex-wrap mb-2 gap-2">
           {formData.current_password === '' && inputToggle &&
             <div>
-              <small onClick={() => setInputToggle(true)} className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">current password is required!</small>
+              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">current password is required!</small>
             </div>
           }
-          {/* { &&
+          {formData.error && inputToggle &&
             <div>
-              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">password is wrong!</small>
+              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">{formData.error}</small>
             </div>
-          } */}
+          }
           {formData.password === '' && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">new password cannot be empty</small>
@@ -82,17 +92,19 @@ const ChangePassword:React.FC = () => {
         </div>
       </div>
       <div>
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleSubmit}>
           <input
             type="password"
             className="form-control form-control-md mt-2 bg-info border-danger border-2"
             placeholder="current password"
+            value={formData.current_password}
             onChange={(e) => handleChange(currentPasswordInput(e.target.value))}
           />
           <input
             type="password"
             className="form-control form-control-md mt-2 bg-info border-danger border-2"
             placeholder="new password"
+            value={formData.password}
             onChange={(e) => handleChange(passwordInput(e.target.value))}
           />
           <input
@@ -100,6 +112,7 @@ const ChangePassword:React.FC = () => {
             id="cofirm_password"
             className="form-control form-control-md mt-2 bg-info border-danger border-2"
             placeholder="confirm password"
+            value={formData.confirm_password}
             onChange={(e) => handleChange(confirmPasswordInput(e.target.value))}
           />
           <div className="w-100 ms-auto mt-2 d-flex justify-content-end">
