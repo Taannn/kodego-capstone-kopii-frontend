@@ -11,9 +11,6 @@ import KopiiStopFeatured from './lpstopintro/KopiiStopFeatured'
 import KopiiTestimonials from './lptestimonials/KopiiTestimonials'
 import KopiiSubscription from './lpsubscription/KopiiSubscription'
 import { fetchLandingTestimonials } from './lptestimonials/landingTestimonialsSlice'
-import { fetchShopUserInfo } from '../usersettings/userInfoSlice'
-// import { fetchLandingDiscover } from './lpdiscover/landingDiscoverSlice'
-// import KopiiDiscover from './lpdiscover/KopiiDiscover'
 
 const LandingPage = () => {
   const loading = useAppSelector((state) => state.loadingLanding.isLoadingLanding)
@@ -22,18 +19,15 @@ const LandingPage = () => {
   const landingAboutList = useAppSelector((state) => state.lpaboutList)
   const landingStopIntro = useAppSelector((state) => state.lpstopIntro)
   const landingTestimonials = useAppSelector((state) => state.lpTestimonials)
-  // const landingDiscover = useAppSelector((state) => state.lpdiscover)
+
 
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchLandingHero())
-    // dispatch(fetchLandingDiscover())
     dispatch(fetchLandingAboutData())
     dispatch(fetchLandingAboutList())
     dispatch(fetchLandingStopIntro())
     dispatch(fetchLandingTestimonials())
-    dispatch(fetchShopUserInfo());
-
 
     return () => {
       dispatch(setLoadingLanding(false))

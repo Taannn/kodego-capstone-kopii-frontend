@@ -20,9 +20,17 @@ import ToShipInfo from "./pages/usersettings/shoporders/infoperstatus/ToShipInfo
 import ScrollToTop from "./components/ScrollToTop"
 import Protected from "./pages/protected/Protected"
 import TokenExpire from "./pages/protected/TokenExpire"
-
+import { useAppDispatch } from "./app/hooks"
+import { useEffect } from "react"
+import { fetchShopUserInfo } from "./pages/usersettings/userInfoSlice"
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchShopUserInfo());
+
+  }, [dispatch])
   return (
     <BrowserRouter>
       <header>

@@ -44,7 +44,7 @@ const UserInfo = () => {
         </div>
       </div>
       {loading && <div id="preloader"></div>}
-      {!loading &&
+      {!loading && userInfo[0].address && userInfo[0].city && userInfo[0].zip_code && userInfo[0].phone_number &&
       <>
         <BreadCrumb currentProduct={"Profile and Info"} link={"/kopiishop"} />
         <div className="container mb-5 ff-main">
