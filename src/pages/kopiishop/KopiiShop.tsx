@@ -10,6 +10,7 @@ import { fetchShopHighlyRated } from './shopproducts/shopHighlyRatedSlice';
 import { fetchShopDailyDiscover } from './shopproducts/shopDailyDiscoverSlice';
 import KopiiShopProducts from './shopproducts/KopiiShopProducts';
 import { fetchShopCustomerCart } from '../shopcart/shopCustomerCartSlice';
+import { fetchShopUserInfo } from '../usersettings/userInfoSlice';
 
 const KopiiShop: React.FC = () => {
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
@@ -27,6 +28,7 @@ const KopiiShop: React.FC = () => {
     dispatch(fetchShopHighlyRated())
     dispatch(fetchShopDailyDiscover())
     dispatch(fetchShopCustomerCart())
+    dispatch(fetchShopUserInfo());
 
     return () => {
       dispatch(setLoadingShop(false))

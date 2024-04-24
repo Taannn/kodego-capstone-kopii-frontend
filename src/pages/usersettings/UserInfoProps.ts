@@ -13,8 +13,5 @@ export type ShopUserInfoInitState = {
   error: string;
 };
 export type UserInfoProps = {
-  shopUserInfo: ShopUserInfoProps[];
+  shopUserInfo: ShopUserInfoProps;
 };
-export type UserInfoPropsExtended = UserInfoProps & {
-  updateToggle: boolean;
-}

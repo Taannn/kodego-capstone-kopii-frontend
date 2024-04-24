@@ -1,14 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import BreadCrumb from "../../components/BreadCrumb";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchShopUserInfo } from "./userInfoSlice";
 import ChangePassword from "./usercredentials/ChangePassword";
 import UpdateAddress from "./usercredentials/UpdateAddress";
 import { ShopUserInfoProps } from "./UserInfoProps";
 
 const UserInfo = () => {
-  const [updateToggle, setUpdateToggle] = useState<boolean>(false);
   const userInfo: ShopUserInfoProps[] = useAppSelector((state) => state.shopUserInfo.info);
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const dispatch = useAppDispatch();
@@ -85,11 +84,6 @@ const UserInfo = () => {
                     <p className="text-secondary">Phone No.
                       <span className="text-bold ms-3 text-light">{u.phone_number}</span>
                     </p>
-                    {userInfo.length &&
-                    <div className="w-100">
-                      <button onClick={() => {setUpdateToggle(!updateToggle)}} className="btn btn-sm ms-auto d-block btn-secondary rounded px-2 text-light">Update Address</button>
-                    </div>
-                    }
                   </>
                 :
                   <p className="text-secondary">Phone No.<span className="text-bold ms-3 text-light">Not Set</span></p>
@@ -99,7 +93,7 @@ const UserInfo = () => {
             </div>
 
             <ChangePassword />
-            <UpdateAddress shopUserInfo={userInfo} updateToggle={updateToggle} />
+            <UpdateAddress shopUserInfo={userInfo[0]} />
 
           </div>
 

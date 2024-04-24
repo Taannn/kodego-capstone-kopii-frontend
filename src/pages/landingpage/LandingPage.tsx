@@ -11,6 +11,7 @@ import KopiiStopFeatured from './lpstopintro/KopiiStopFeatured'
 import KopiiTestimonials from './lptestimonials/KopiiTestimonials'
 import KopiiSubscription from './lpsubscription/KopiiSubscription'
 import { fetchLandingTestimonials } from './lptestimonials/landingTestimonialsSlice'
+import { fetchShopUserInfo } from '../usersettings/userInfoSlice'
 // import { fetchLandingDiscover } from './lpdiscover/landingDiscoverSlice'
 // import KopiiDiscover from './lpdiscover/KopiiDiscover'
 
@@ -31,7 +32,7 @@ const LandingPage = () => {
     dispatch(fetchLandingAboutList())
     dispatch(fetchLandingStopIntro())
     dispatch(fetchLandingTestimonials())
-
+    dispatch(fetchShopUserInfo());
 
 
     return () => {
