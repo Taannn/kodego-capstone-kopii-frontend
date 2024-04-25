@@ -94,7 +94,6 @@ const UserInfo = () => {
             <ChangePassword />
             <UpdateAddress shopUserInfo={userInfo[0]} />
           </div>
-
         </div>
       </>
       }

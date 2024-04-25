@@ -2,9 +2,12 @@ import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import BreadCrumb from "../../../../components/BreadCrumb";
 import { fetchShopUserInfo } from "../../userInfoSlice";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchShopOrders } from "../kopiiShopOrdersSlice";
 import { ShopCustomerOrdersProps } from "../ShopOrdersProps";
+import CancelReasons from "./CancelReasons";
+import { reasonInput, setCancelToggle } from "./cancelReasonSlice";
+import axios from "axios";
 
 type OptionProps = {
   year: "numeric" | "2-digit";
@@ -14,8 +17,10 @@ type OptionProps = {
 
 const ToShipInfo = () => {
   const customerOrders = useAppSelector((state) => state.kopiishopOrders);
+  const reason = useAppSelector((state) => state.cancelReasonOrder.reason);
   const userInfo = useAppSelector((state) => state.shopUserInfo.info);
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { toshipID } = useParams<{ toshipID: string }>()
   const currentProduct: ShopCustomerOrdersProps | undefined = customerOrders.info.find(customerOrder => customerOrder.order_id === +toshipID!);
@@ -25,13 +30,55 @@ const ToShipInfo = () => {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
+  const handleCancel = async (id: number | undefined) => {
+    if (id === undefined || reason === '') {
+      dispatch(setCancelToggle(true));
+      return;
+    }
+    dispatch(setCancelToggle(false));
+    try {
+      const res = await axios.put(`/shop/status/update/cancelled/${id}`, {
+        status_message: reason
+      }, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      dispatch(reasonInput(''));
+      navigate("/shoporders");
+      return res.data.data;
+    } catch (error: any) {
+      throw error
+    }
+  }
+
   useEffect(() => {
     dispatch(fetchShopOrders());
     dispatch(fetchShopUserInfo());
+    return () => {
+      dispatch(reasonInput(''));
+    }
   }, [dispatch]);
 
   return (
     <>
+      <div className="modal fade" id="cancelOrderModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered ff-main">
+            <div className="modal-content">
+              <div className="modal-header bg-secondary border-0 text-light">
+                <h1 className="modal-title fs-4" id="exampleModalLabel">Reason for cancelling your order</h1>
+                <button onClick={() => dispatch(reasonInput(''))} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body my-0 bg-secondary text-light fs-6">
+                <CancelReasons />
+              </div>
+              <div className="modal-footer bg-secondary border-0">
+                <button onClick={() => {handleCancel(currentProduct?.order_id)}} data-bs-dismiss="modal" className={`btn btn-primary text-light${reason === '' ? ' disabled' : ''}`}>Confirm</button>
+                <button onClick={() => dispatch(reasonInput(''))} className="btn btn-warning" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
       {loading && <div id="preloader"></div>}
       {!loading && currentProduct ?
       <>
@@ -82,7 +129,13 @@ const ToShipInfo = () => {
                 </div>
                 {(currentProduct.status !== "Completed" && currentProduct.status !== "Cancelled" && currentProduct.status !== "To Receive") &&
                   <div className="d-flex flex-column position-absolute bottom-0 mb-2 start-0 end-0 w-full mx-3">
-                    <button className="btn btn-lg rounded btn-outline-warning w-100">Cancel Order</button>
+                    <button
+                      className="btn btn-lg rounded btn-outline-warning w-100"
+                      data-bs-toggle="modal"
+                      data-bs-target="#cancelOrderModal"
+                    >
+                      Cancel Order
+                    </button>
                   </div>
                 }
               </div>

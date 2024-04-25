@@ -21,6 +21,7 @@ import shopUserInfoReducer from '../pages/usersettings/userInfoSlice';
 import shopOrdersReducer from '../pages/usersettings/shoporders/kopiiShopOrdersSlice';
 import updateAddressReducer from '../pages/usersettings/usercredentials/updateAdressSlice';
 import changePasswordReducer from '../pages/usersettings/usercredentials/changePasswordSlice';
+import cancelReasonReducer from '../pages/usersettings/shoporders/infoperstatus/cancelReasonSlice';
 
 const store = configureStore({
   reducer: {
@@ -46,6 +47,7 @@ const store = configureStore({
     kopiishopOrders: shopOrdersReducer,
     kopiiupdateAddress: updateAddressReducer,
     kopiichangePassword: changePasswordReducer,
+    cancelReasonOrder: cancelReasonReducer,
   },
   middleware: (getDefaultMiddleware) =>
     // to avoid thw warning not sure though if this will do, hoping the code still works
