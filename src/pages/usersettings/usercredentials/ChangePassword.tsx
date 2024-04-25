@@ -9,10 +9,12 @@ import {
 } from "./changePasswordSlice";
 import axios from "axios";
 import { fetchShopUserInfo } from "../userInfoSlice";
+import { setSuccessful } from "../../kopiishop/selectedproduct/addToCartSlice";
 
 
 const ChangePassword:React.FC = () => {
   const [inputToggle, setInputToggle] = useState<boolean>(false);
+  const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.kopiichangePassword);
   const handleChange = (action: any) => {
@@ -43,6 +45,7 @@ const ChangePassword:React.FC = () => {
       });
       dispatch(inputReset(''));
       dispatch(fetchShopUserInfo());
+      dispatch(setSuccessful(true));
       return res.data.data;
       } catch (error: any) {
         if (error.response && error.response.status === 400) {
@@ -58,14 +61,39 @@ const ChangePassword:React.FC = () => {
         }
     }
   };
+
   useEffect(() => {
+    if (successfullyAdded) {
+      setTimeout(() => {
+        dispatch(setSuccessful(false))
+      }, 3000);
+    }
     return () => {
       dispatch(inputReset(''));
     }
-  }, [])
+  }, [successfullyAdded])
 
   return (
     <div className="mt-5 grid-cols-2 col-11 bg-primary col-md-8 px-4 py-3 rounded mx-auto">
+      <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
+        <div
+            id="liveToast"
+            className={`toast${successfullyAdded ? ' show':''}`}
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div className="toast-header bg-danger border-0 text-light">
+              <strong className="me-auto">Your Password</strong>
+              <small>1 sec ago</small>
+              {/* <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> */}
+            </div>
+            <div className="toast-body text-success bg-danger rounded-bottom fs-5">
+              <span><i className="fa-regular fa-circle-check me-2 text-success"></i>Successfully changed!</span>
+            </div>
+        </div>
+      </div>
+      {/*  */}
       <div className="text-light pt-2 ls-1">
         <h4><i className="fa-solid fa-lock me-2"></i>Change Password</h4>
         <div className="d-flex flex-wrap mb-2 gap-2">

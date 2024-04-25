@@ -57,13 +57,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
           aria-live="assertive"
           aria-atomic="true"
         >
-          <div className="toast-header bg-secondary border-0 text-light">
+          <div className="toast-header bg-danger border-0 text-light">
             <strong className="me-auto">{productName}</strong>
             <small>1 sec ago</small>
-            <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            {/* <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> */}
           </div>
-          <div className="toast-body text-light bg-secondary rounded-bottom">
-            Successfully added!
+          <div className="toast-body text-success bg-danger rounded-bottom fs-5">
+            <span><i className="fa-regular fa-circle-check me-2 text-success"></i>Successfully added!</span>
           </div>
         </div>
       </div>

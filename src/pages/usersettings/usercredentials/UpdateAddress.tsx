@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
   errorMessage,
   addressInput,
@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import { UserInfoProps } from "../UserInfoProps";
 import { fetchShopUserInfo } from "../userInfoSlice";
+import { setSuccessful } from "../../kopiishop/selectedproduct/addToCartSlice";
 
 const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
   const [inputToggle, setInputToggle] = useState<boolean>(false);
@@ -21,6 +22,7 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
     phone_number: shopUserInfo.phone_number || '',
   });
   const dispatch = useAppDispatch();
+  const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, action: any) => {
     const { name, value } = e.target;
@@ -45,16 +47,13 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
     }
   }, [shopUserInfo]);
 
-  // const sameAddress = () => {
-  //   if (userData.address === shopUserInfo.address &&
-  //       userData.city === shopUserInfo.city &&
-  //       userData.zip_code === shopUserInfo.zip_code &&
-  //       userData.phone_number === shopUserInfo.phone_number
-  //   ) {
-  //     setInputToggle(true);
-  //     return dispatch(errorMessage('cannot update with the same address info'));
-  //   }
-  // }
+  useEffect(() => {
+    if (successfullyAdded) {
+      setTimeout(() => {
+        dispatch(setSuccessful(false))
+      }, 3000);
+    }
+  }, [successfullyAdded]);
 
   const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -83,6 +82,7 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
       });
       dispatch(inputReset(''));
       dispatch(fetchShopUserInfo());
+      dispatch(setSuccessful(true));
       return res.data.data;
     } catch (error: any) {
        if (error.response && error.response.status === 500) {
@@ -99,6 +99,25 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
 
   return (
     <div className={`mt-5 grid-cols-2 col-11 bg-primary col-md-8 px-4 py-3 rounded mx-auto`}>
+      <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
+        <div
+            id="liveToast"
+            className={`toast${successfullyAdded ? ' show':''}`}
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div className="toast-header bg-danger border-0 text-light">
+              <strong className="me-auto">Your Address</strong>
+              <small>1 sec ago</small>
+              {/* <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> */}
+            </div>
+            <div className="toast-body text-success bg-danger rounded-bottom fs-5">
+              <span><i className="fa-regular fa-circle-check me-2 text-success"></i>Successfully updated!</span>
+            </div>
+        </div>
+      </div>
+      {/*  */}
       <div className="text-light pt-2 ls-1">
         <h4><i className="fa-solid fa-location-dot me-2"></i>{shopUserInfo.address ? 'Update Address' : 'Add Address'}</h4>
         <div className="d-flex gap-2 mb-2 flex-wrap">
@@ -107,11 +126,6 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">address is required!</small>
             </div>
           }
-          {/* {sameAddress() && inputToggle &&
-            <div>
-              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">address is required!</small>
-            </div>
-          } */}
           {userData.city === '' && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">city is required!</small>
