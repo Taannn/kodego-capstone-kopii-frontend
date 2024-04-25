@@ -11976,6 +11976,10 @@ textarea.form-control-lg {
   margin-top: 10rem !important;
 }
 
+.mb-5rem {
+  margin-bottom: 5rem;
+}
+
 @media (max-width: 768px) {
   .mt-6 {
     margin-top: 2rem !important;
@@ -12347,9 +12351,6 @@ a {
     width: 100%;
     height: auto;
   }
-}
-#confirm_password {
-  color: white !important;
 }
 
 /*# sourceMappingURL=styles.css.map */

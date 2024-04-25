@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
 import { ShopOrdersExtended } from '../ShopOrdersProps';
-// import axios from "axios";
+import axios from "axios";
+import { useAppDispatch } from "../../../../app/hooks";
+import { fetchShopOrders } from "../kopiiShopOrdersSlice";
 
 const ToReceive: React.FC<ShopOrdersExtended> = ({ shopOrders }) => {
+  const dispatch = useAppDispatch();
+  const handleCompleted = async (orderId: number) => {
+    try {
+      const res = await axios.put(`/shop/status/update/completed/${orderId}`, {}, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      dispatch(fetchShopOrders());
+      return res.data.data;
+    } catch (error: any) {
+      throw error
+    }
+  }
 
   return (
     <div className="tab-pane fade" id="to-deliver">
@@ -32,10 +48,12 @@ const ToReceive: React.FC<ShopOrdersExtended> = ({ shopOrders }) => {
             </div>
           </div>
           <div className="row border border-primary border-3 border-top-0 bg-light mb-5 rounded-0 rounded-bottom p-2">
-            <div className="ms-auto ff-main fs-6 text-primary">
-              <i className="fa-solid fa-truck me-2"></i>
-              {s.status_message}
-              <button onClick={() => {}} className="btn btn-success text-light px-2 py-1 rounded">Order Received</button>
+            <div className="ms-auto ff-main fs-6 text-primary d-flex justify-content-between align-items-center">
+              <p className="d-flex align-items-center pt-2">
+                <i className="fa-solid fa-truck me-2"></i>
+                <span>{s.status_message}</span>
+              </p>
+              <button onClick={() => {handleCompleted(s.order_id)}} className="btn btn-success text-light px-2 py-1 bs-success rounded">Order Received</button>
             </div>
           </div>
         </Link>

@@ -30,11 +30,6 @@ const ToShipInfo = () => {
     dispatch(fetchShopUserInfo());
   }, [dispatch]);
 
-  // const discountedPrice = (price: number, discount: number) => {
-  //   const discounted = price - (price * discount) / 100;
-  //   return discounted.toFixed(2);
-  // }
-
   return (
     <>
       {loading && <div id="preloader"></div>}
@@ -62,7 +57,7 @@ const ToShipInfo = () => {
                 </div>
                 <div className="lead fs-5 text-limit-2-lines">{currentProduct.product_desc}</div>
               </div>
-              <div className="col-12 col-md-4 p-2 border border-1 border-primary">
+              <div className="col-12 col-md-4 p-2 border border-1 border-primary position-relative">
                 <div className="d-flex justify-content-between align-items-center lh-1">
                   <p className="text-bold fs-4">Order ID:</p>
                   <p className="fs-6">{`KOPI100${currentProduct.order_id}`}</p>
@@ -71,7 +66,7 @@ const ToShipInfo = () => {
                   <p className="text-bold fs-4">Order Date:</p>
                   <p className="fs-6">{formatDate(currentProduct.created_at)}</p>
                 </div>
-                <div>
+                <div className="mb-5rem">
                   {currentProduct.status === "To Ship" &&
                     <p className="border border-2 bg-info text-light py-1 px-2 rounded">{currentProduct.status_message}</p>
                   }
@@ -85,11 +80,11 @@ const ToShipInfo = () => {
                     <p className="border border-2 bg-warning text-light py-1 px-2 rounded"><i className="fa-solid fa-circle-xmark me-2"></i>{currentProduct.status_message}</p>
                   }
                 </div>
-                {/* {(currentProduct.status !== "Completed" && currentProduct.status !== "Cancelled" && currentProduct.status !== "To Receive") &&
-                  <div className="d-flex flex-column">
-                    <button className="btn btn-lg rounded btn-outline-warning">Cancel Order</button>
+                {(currentProduct.status !== "Completed" && currentProduct.status !== "Cancelled" && currentProduct.status !== "To Receive") &&
+                  <div className="d-flex flex-column position-absolute bottom-0 mb-2 start-0 end-0 w-full mx-3">
+                    <button className="btn btn-lg rounded btn-outline-warning w-100">Cancel Order</button>
                   </div>
-                } */}
+                }
               </div>
             </div>
           </div>
@@ -109,7 +104,9 @@ const ToShipInfo = () => {
                 </div>
                 <p className="fs-5 mx-3">Standard Local</p>
                 <p className="fs-5 mx-3">{"KOPII - KOPII100" + currentProduct.shipment_id}</p>
-                <p className="fs-5 mx-3">Expected Shipping Date: {formatDate(currentProduct.shipment_date)}</p>
+                {currentProduct.status === 'To Ship' &&
+                  <p className="fs-5 mx-3">Expected Shipping Date: {formatDate(currentProduct.shipment_date)}</p>
+                }
               </div>
             </div>
           </div>
