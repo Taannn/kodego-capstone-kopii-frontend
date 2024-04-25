@@ -13,7 +13,6 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 const Login: React.FC = () => {
   const [inputToggle, setInputToggle] = useState<boolean>(false);
   const [invalidEmail, setInvalidEmail] = useState<boolean>(false);

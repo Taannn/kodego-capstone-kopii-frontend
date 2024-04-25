@@ -26,9 +26,6 @@ const UserInfo = () => {
 
   return (
     <div>
-      {loading && <div id="preloader"></div>}
-      {!loading && userInfo[0].address !== undefined && userInfo[0].city !== undefined && userInfo[0].zip_code !== undefined && userInfo[0].phone_number !== undefined &&
-      <>
         <div className="modal fade" id="logoutModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered ff-main">
             <div className="modal-content">
@@ -46,6 +43,9 @@ const UserInfo = () => {
             </div>
           </div>
         </div>
+      {loading && <div id="preloader"></div>}
+      {!loading && userInfo[0].address !== undefined && userInfo[0].city !== undefined && userInfo[0].zip_code !== undefined && userInfo[0].phone_number !== undefined &&
+      <>
         <BreadCrumb currentProduct={"Profile and Info"} link={"/kopiishop"} />
         <div className="container mb-5 ff-main">
           <div className="row">
@@ -91,10 +91,8 @@ const UserInfo = () => {
               </div>
               ))}
             </div>
-
             <ChangePassword />
             <UpdateAddress shopUserInfo={userInfo[0]} />
-
           </div>
 
         </div>

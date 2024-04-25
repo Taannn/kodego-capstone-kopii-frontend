@@ -45,16 +45,16 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
     }
   }, [shopUserInfo]);
 
-  const sameAddress = () => {
-    if (userData.address === shopUserInfo.address &&
-        userData.city === shopUserInfo.city &&
-        userData.zip_code === shopUserInfo.zip_code &&
-        userData.phone_number === shopUserInfo.phone_number
-    ) {
-      setInputToggle(true);
-      return dispatch(errorMessage('cannot update with the same address info'));
-    }
-  }
+  // const sameAddress = () => {
+  //   if (userData.address === shopUserInfo.address &&
+  //       userData.city === shopUserInfo.city &&
+  //       userData.zip_code === shopUserInfo.zip_code &&
+  //       userData.phone_number === shopUserInfo.phone_number
+  //   ) {
+  //     setInputToggle(true);
+  //     return dispatch(errorMessage('cannot update with the same address info'));
+  //   }
+  // }
 
   const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -107,11 +107,11 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">address is required!</small>
             </div>
           }
-          {sameAddress() && inputToggle &&
+          {/* {sameAddress() && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">address is required!</small>
             </div>
-          }
+          } */}
           {userData.city === '' && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">city is required!</small>
