@@ -57,6 +57,15 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
 
   const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (
+      userData.address === shopUserInfo.address &&
+      userData.city === shopUserInfo.city &&
+      userData.zip_code === shopUserInfo.zip_code &&
+      userData.phone_number === shopUserInfo.phone_number
+    ) {
+      setInputToggle(true);
+      return;
+    }
     try {
       if(userData.address === '' ||
          userData.city === '' ||
@@ -129,6 +138,14 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
           {userData.city === '' && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">city is required!</small>
+            </div>
+          }
+          {userData.address === shopUserInfo.address &&
+           userData.city === shopUserInfo.city &&
+           userData.zip_code === shopUserInfo.zip_code &&
+           userData.phone_number === shopUserInfo.phone_number && inputToggle &&
+            <div>
+              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">cannot update using the same address info.</small>
             </div>
           }
           {userData.zip_code === '' && inputToggle &&

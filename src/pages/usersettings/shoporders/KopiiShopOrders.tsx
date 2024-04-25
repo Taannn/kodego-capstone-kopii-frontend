@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { useEffect } from "react";
 import { fetchShopOrders } from "./kopiiShopOrdersSlice";
 import { ShopCustomerOrdersProps } from './ShopOrdersProps';
+import Cancelled from "./orderstatus/Cancelled";
 
 const KopiiShopOrders = () => {
   const shopOrders = useAppSelector((state) => state.kopiishopOrders);
@@ -17,6 +18,7 @@ const KopiiShopOrders = () => {
   const toShip: ShopCustomerOrdersProps[] = shopOrders.info.filter(shopOrder => shopOrder.status === "To Ship");
   const toReceive: ShopCustomerOrdersProps[] = shopOrders.info.filter(shopOrder => shopOrder.status === "To Receive");
   const completed: ShopCustomerOrdersProps[] = shopOrders.info.filter(shopOrder => shopOrder.status === "Completed");
+  const cancelled: ShopCustomerOrdersProps[] = shopOrders.info.filter(shopOrder => shopOrder.status === "Cancelled");
 
   useEffect(() => {
     dispatch(fetchShopOrders());
@@ -35,6 +37,7 @@ const KopiiShopOrders = () => {
                 <TabLink href="#to-ship" label="To Ship" active={true} />
                 <TabLink href="#to-deliver" label="To Deliver" active={false} />
                 <TabLink href="#completed" label="Completed" active={false} />
+                <TabLink href="#cancelled" label="Cancelled" active={false} />
               </ul>
             </Div>
             <Div styles="card-body">
@@ -43,6 +46,7 @@ const KopiiShopOrders = () => {
                 <ToShip shopOrders={toShip} />
                 <ToReceive shopOrders={toReceive} />
                 <Completed shopOrders={completed} />
+                <Cancelled shopOrders={cancelled} />
               </Div>
             </Div>
           </Div>

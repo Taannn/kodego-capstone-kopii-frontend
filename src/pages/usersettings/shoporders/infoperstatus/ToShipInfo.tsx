@@ -124,7 +124,7 @@ const ToShipInfo = () => {
                     <p className="border border-2 bg-success text-light py-1 px-2 rounded"><i className="fa-solid fa-circle-check me-2"></i>{currentProduct.status_message} {formatDate(currentProduct.updated_at)}</p>
                   }
                   {currentProduct.status === "Cancelled" &&
-                    <p className="border border-2 bg-warning text-light py-1 px-2 rounded"><i className="fa-solid fa-circle-xmark me-2"></i>{currentProduct.status_message}</p>
+                    <p className="border border-2 bg-warning text-light py-1 px-2 rounded"><i className="fa-solid fa-circle-xmark me-2"></i>Cancelled for :  {currentProduct.status_message}</p>
                   }
                 </div>
                 {(currentProduct.status !== "Completed" && currentProduct.status !== "Cancelled" && currentProduct.status !== "To Receive") &&
