@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchShopUserInfo());
 
-  }, [dispatch])
+  }, [])
   return (
     <BrowserRouter>
       <header>

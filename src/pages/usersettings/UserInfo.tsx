@@ -12,12 +12,14 @@ const UserInfo = () => {
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(fetchShopUserInfo());
   }, [dispatch]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpiration');
     setTimeout(() => {
       navigate("/kopiishop");
     }, 1000);
