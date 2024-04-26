@@ -3,7 +3,7 @@ import { CategoryProps } from "../KopiiShopProps"
 
 const Category: React.FC<CategoryProps> = ({ shopCategory }) => {
   return (
-    <div className="">
+    <div className="d-block d-md-none">
       <div className="container">
         <div className="row ff-main bg-primary my-1 rounded">
           {shopCategory.map((s, i) => (

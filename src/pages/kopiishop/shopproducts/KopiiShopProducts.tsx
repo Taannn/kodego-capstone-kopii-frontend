@@ -65,7 +65,7 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
   }, [successfullyAdded])
 
   return (
-    <section className="categories pt-0 pt-md-5 mt-0 mt-md-5 px-3 px-md-0">
+    <section className="categories pt-0 pt-md-5 mt-0 mt-md-2 px-3 px-md-0">
       <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
         <div
             id="liveToast"
@@ -84,13 +84,13 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
             </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container mt-5 mt-md-0">
         <div className="row bg-secondary rounded">
           <div className="col ff-main text-center text-light pt-1">
             <h2 className="display-6 lead">{desc}</h2>
           </div>
         </div>
-        <div className="row mt-3 mb-5 gy-3">
+        <div className="row mt-2 mb-5 gy-3">
           {shopProducts.map((s, i) => (
             <div className="col-md-3 col-6" key={i}>
               <div className="text-decoration-none">

@@ -12037,6 +12037,15 @@ textarea.form-control-lg {
   background-blend-mode: difference;
 }
 
+.bg-circles {
+  --s: 11px; /* control the size */
+  --c: black;
+  --_l: #0000 46%,var(--c) 47% 53%,#0000 54%;
+  background: radial-gradient(100% 100% at 100% 100%, var(--_l)) var(--s) var(--s), radial-gradient(100% 100% at 0 0, var(--_l)) var(--s) var(--s), radial-gradient(100% 100%, rgba(0, 0, 0, 0) 22%, var(--c) 23% 29%, rgba(0, 0, 0, 0) 30% 34%, var(--c) 35% 41%, rgba(0, 0, 0, 0) 42%) #F8ECC9;
+  opacity: 0.8;
+  background-size: calc(var(--s) * 2) calc(var(--s) * 2);
+}
+
 .avatar-img {
   max-width: 3rem;
 }
@@ -12136,6 +12145,12 @@ textarea.form-control-lg {
 .grid-cols-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.grid-cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   gap: 1rem;
 }
 

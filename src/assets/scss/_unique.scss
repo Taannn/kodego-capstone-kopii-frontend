@@ -10,6 +10,19 @@
   background-position: right;
   background-blend-mode: difference;
 }
+.bg-circles {
+  --s: 11px; /* control the size */
+  --c: black;
+
+  --_l: #0000 46%,var(--c) 47% 53%,#0000 54%;
+  background:
+    radial-gradient(100% 100% at 100% 100%,var(--_l)) var(--s) var(--s),
+    radial-gradient(100% 100% at 0    0   ,var(--_l)) var(--s) var(--s),
+    radial-gradient(100% 100%,#0000 22%,var(--c) 23% 29%, #0000 30% 34%,var(--c) 35% 41%,#0000 42%)
+    #F8ECC9;
+    opacity: 0.8;
+  background-size: calc(var(--s)*2) calc(var(--s)*2);
+}
 .avatar-img {
   max-width: 3rem;
 }

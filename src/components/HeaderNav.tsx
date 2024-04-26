@@ -71,7 +71,11 @@ const HeaderNav = () => {
                       onClick={() => setToggleNav(!toggleNav)}
                       className="btn hvr-bounce-to-top me-3 btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
                     >
-                      <i className="fa-solid fa-user px-2"></i>
+                      {toggleNav ?
+                        <i className="fa-solid fa-x px-2"></i>
+                      :
+                        <i className="fa-solid fa-user px-2"></i>
+                      }
                     </button>
                     <div className={`setting-toggle position-absolute${toggleNav ? ' d-block' : ' d-none'} bg-danger rounded px-2 py-2`}>
                       <Link to={"/settings"} onClick={() => {setToggleNav(!toggleNav)}} className="btn hvr-bounce-to-top btn-primary rounded px-2 w-100 py-1 text-light overflow-hidden">Profile and Info</Link>

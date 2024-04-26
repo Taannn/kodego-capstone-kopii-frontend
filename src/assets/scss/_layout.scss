@@ -27,3 +27,8 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
+.grid-cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
