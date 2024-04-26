@@ -9,12 +9,12 @@ import {
 } from "./changePasswordSlice";
 import axios from "axios";
 import { fetchShopUserInfo } from "../userInfoSlice";
-import { setSuccessful } from "../../kopiishop/selectedproduct/addToCartSlice";
+import { passwordChanged } from "../../kopiishop/selectedproduct/addToCartSlice";
 
 
 const ChangePassword:React.FC = () => {
   const [inputToggle, setInputToggle] = useState<boolean>(false);
-  const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
+  const successfullyChanged = useAppSelector((state) => state.cartsuccessful.successfullyChanged);
   const dispatch = useAppDispatch();
   const formData = useAppSelector((state) => state.kopiichangePassword);
   const handleChange = (action: any) => {
@@ -45,7 +45,7 @@ const ChangePassword:React.FC = () => {
       });
       dispatch(inputReset(''));
       dispatch(fetchShopUserInfo());
-      dispatch(setSuccessful(true));
+      dispatch(passwordChanged(true));
       return res.data.data;
       } catch (error: any) {
         if (error.response && error.response.status === 400) {
@@ -63,22 +63,22 @@ const ChangePassword:React.FC = () => {
   };
 
   useEffect(() => {
-    if (successfullyAdded) {
+    if (successfullyChanged) {
       setTimeout(() => {
-        dispatch(setSuccessful(false))
+        dispatch(passwordChanged(false))
       }, 3000);
     }
     return () => {
       dispatch(inputReset(''));
     }
-  }, [successfullyAdded])
+  }, [successfullyChanged])
 
   return (
     <div className="mt-5 grid-cols-2 col-11 bg-primary col-md-8 px-4 py-3 rounded mx-auto">
       <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
         <div
             id="liveToast"
-            className={`toast${successfullyAdded ? ' show':''}`}
+            className={`toast${successfullyChanged ? ' show':''}`}
             role="alert"
             aria-live="assertive"
             aria-atomic="true"
