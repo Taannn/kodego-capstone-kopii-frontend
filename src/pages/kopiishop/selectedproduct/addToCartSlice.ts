@@ -2,9 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type AddToCartProp = {
   successfullyAdded: boolean;
+  reset: boolean;
 }
 const initialState: AddToCartProp = {
-  successfullyAdded: false
+  successfullyAdded: false,
+  reset: false
 };
 
 const addToCartSlice = createSlice({
@@ -14,8 +16,11 @@ const addToCartSlice = createSlice({
     setSuccessful: (state, action: PayloadAction<boolean>) => {
       state.successfullyAdded = action.payload;
     },
+    setReset: (state, action: PayloadAction<boolean>) => {
+      state.successfullyAdded = action.payload;
+    },
   },
 });
 
-export const { setSuccessful } = addToCartSlice.actions;
+export const { setSuccessful, setReset } = addToCartSlice.actions;
 export default addToCartSlice.reducer;

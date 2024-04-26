@@ -91,13 +91,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         <div className="buttons d-flex my-5">
           <div className="block">
             {localStorage.getItem('token') ?
-              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, discountedPrice(parseFloat(productPrice), discount), productImg, productName, productDesc)} className="shadow btn btn-lg btn-secondary text-light bs-secondary rounded">Buy Now</Link>
+              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, discountedPrice(parseFloat(productPrice), discount), productImg, productName, productDesc)} className="btn btn-lg btn-secondary text-light bs-secondary rounded">Buy Now</Link>
             :
-            <Link to={"/login"} className="shadow btn btn-lg btn-secondary bs-secondary rounded text-light">Buy Now</Link>
+            <Link to={"/login"} className="btn btn-lg btn-secondary bs-secondary rounded text-light">Buy Now</Link>
             }
           </div>
           <div className="block">
-            <a onClick={addToCart} className="shadow btn btn-lg btn-secondary text-light add-to-cart-btn bs-secondary rounded">Add to cart</a>
+            <a onClick={addToCart} className="btn btn-lg btn-secondary text-light add-to-cart-btn bs-secondary rounded bs-secondary">Add to cart</a>
           </div>
           <div className="block quantity d-flex gap-1 ms-2">
             <span className="btn btn-lg btn-disabled rounded bg-info">Stock: {productStock}</span>

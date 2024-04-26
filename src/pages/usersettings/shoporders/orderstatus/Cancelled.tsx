@@ -40,8 +40,8 @@ const Cancelled: React.FC<ShopOrdersProps> = ({ shopOrders }) => {
           </div>
           <div className="row border border-primary border-3 border-top-0 bg-light mb-5 rounded-0 rounded-bottom p-2">
             <div className="ms-auto ff-main fs-6 text-primary">
-            <i className="fa-regular fa-circle-xmark me-2"></i>
-              Cancelled At : {formatDate(s.updated_at)}
+            <i className="fa-solid fa-circle-xmark me-2"></i>
+            Cancelled At: {formatDate(s.updated_at)}
             </div>
           </div>
         </Link>

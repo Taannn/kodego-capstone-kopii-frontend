@@ -15,6 +15,7 @@ import { setSuccessful } from "../../kopiishop/selectedproduct/addToCartSlice";
 
 const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
   const [inputToggle, setInputToggle] = useState<boolean>(false);
+  const [updating, setUpdating] = useState<boolean>(false);
   const [userData, setUserData] = useState({
     address: shopUserInfo.address || '',
     city: shopUserInfo.city || '',
@@ -22,7 +23,7 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
     phone_number: shopUserInfo.phone_number || '',
   });
   const dispatch = useAppDispatch();
-  const successfullyAdded = useAppSelector((state) => state.cartsuccessful.successfullyAdded);
+  const action = useAppSelector((state) => state.cartsuccessful);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, action: any) => {
     const { name, value } = e.target;
@@ -48,12 +49,23 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
   }, [shopUserInfo]);
 
   useEffect(() => {
-    if (successfullyAdded) {
+    if (
+      userData.address !== '' &&
+      userData.city !== '' &&
+      userData.zip_code !== '' &&
+      userData.phone_number !== ''
+    ) {
+      setUpdating(true);
+    }
+  }, [action.successfullyAdded, action.reset])
+
+  useEffect(() => {
+    if (action.successfullyAdded) {
       setTimeout(() => {
         dispatch(setSuccessful(false))
-      }, 3000);
+      }, 1000);
     }
-  }, [successfullyAdded]);
+  }, [action.successfullyAdded]);
 
   const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -111,7 +123,7 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
       <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
         <div
             id="liveToast"
-            className={`toast${successfullyAdded ? ' show':''}`}
+            className={`toast${action.successfullyAdded ? ' show':''}`}
             role="alert"
             aria-live="assertive"
             aria-atomic="true"
@@ -122,7 +134,7 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
               {/* <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> */}
             </div>
             <div className="toast-body text-success bg-danger rounded-bottom fs-5">
-              <span><i className="fa-regular fa-circle-check me-2 text-success"></i>Successfully updated!</span>
+              <span><i className="fa-regular fa-circle-check me-2 text-success"></i>Successfully {updating ? 'updated' : 'added'}!</span>
             </div>
         </div>
       </div>
@@ -219,8 +231,8 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
               placeholder="e.g. 09XXYYYZZZZ"
               onChange={(e) => handleChange(e, phoneNumberInput)}
             />
-            <div className="w-100 ms-auto mt-2 d-flex justify-content-end">
-              <button type="submit" className="btn btn-secondary px-4 py-1 text-light">{userData.address ? 'Update' : 'Add'}</button>
+            <div className="w-100 ms-auto mt-2 d-flex gap-2 justify-content-end">
+              <button type="submit" className="btn btn-secondary px-4 py-1 text-light bs-secondary">Confirm</button>
             </div>
           </form>
 
