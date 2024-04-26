@@ -40,8 +40,8 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<TokenExpire><LandingPage /></TokenExpire>} />
-          <Route path="/login" element={<TokenExpire><Login /></TokenExpire>} />
-          <Route path="/signup" element={<TokenExpire><Signup /></TokenExpire>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/kopiishop" element={<TokenExpire><KopiiShop /></TokenExpire>} />
           <Route path="/kopiishop/:index" element={<TokenExpire><KopiiShopSelected /></TokenExpire>} />
           <Route path="/category/:category" element={<TokenExpire><FilteredCategory /></TokenExpire>} />
