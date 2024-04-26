@@ -107,11 +107,11 @@ const ShopCheckout = () => {
       <Div styles="container ff-main mt-5">
       <form onSubmit={handleSubmit}>
         <OrderedProduct />
-          {userAddress && !applied &&
+          {userAddress.address && !applied &&
           <Div styles="col-12 col-md-8 p-3 mb-5 ff-main mx-auto text-danger border border-3 border-info rounded">
               <p className="text-bold fs-4"><i className="fa-solid fa-location-dot me-2"></i>Use Your Address?</p>
               <div className="d-flex justify-content-between align-items-center border border-1 border-info rounded p-2">
-                <span className="fs-5">{userAddress.address}{" ,"}{userAddress.city}{" ,"}{userAddress.zip_code}</span>
+                <span className="fs-5">{userAddress.address}{", "}{userAddress.city}{", "}{userAddress.zip_code}</span>
                 <button type="button" onClick={handleApplyAddress} className="btn btn-primary bs-primary rounded px-4 py-2 text-light">Apply</button>
               </div>
           </Div>
