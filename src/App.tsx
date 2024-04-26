@@ -48,7 +48,7 @@ function App() {
           <Route path="/search/:search" element={<TokenExpire><SearchResult /></TokenExpire>} />
           <Route path="/contactus" element={<TokenExpire><ContactUs /></TokenExpire>} />
           <Route path="/cart" element={<TokenExpire><KopiiShopCart /></TokenExpire>} />
-          <Route path="/settings" element={<TokenExpire><Protected><UserInfo /></Protected></TokenExpire>} />
+          <Route path="/settings" element={<Protected><UserInfo /></Protected>} />
           <Route path="/shoporders" element={<Protected><KopiiShopOrders /></Protected>} />
           <Route path="/shoporders/:toshipID" element={<TokenExpire><Protected><ToShipInfo /></Protected></TokenExpire>} />
           <Route path="/stoporders" element={<TokenExpire><KopiiStopOrders /></TokenExpire>} />
