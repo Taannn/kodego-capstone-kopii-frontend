@@ -32,7 +32,7 @@ const PlaceOrder: React.FC = () => {
       </div>
       {/*  */}
       <div>
-        <button type="submit" className="btn btn-lg btn-secondary text-light d-block ms-auto">Place Order</button>
+        <button type="submit" className="btn btn-lg btn-primary bs-primary text-light d-block ms-auto">Place Order</button>
       </div>
     </div>
   );

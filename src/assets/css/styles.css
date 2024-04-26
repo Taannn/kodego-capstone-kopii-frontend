@@ -11933,7 +11933,7 @@ textarea.form-control-lg {
 }
 
 .card-hover-secondary:hover {
-  box-shadow: 0 0 8px 1px #9a6437, 0 0 8px 1px #c88247;
+  box-shadow: 0 0 6px 1px #9a6437, 0 0 6px 1px #c88247;
 }
 
 .card-hover-danger:hover {
@@ -11995,6 +11995,11 @@ textarea.form-control-lg {
 
 .bg-sage {
   background-color: #C7C7A6;
+}
+
+.border-espresso {
+  border: 2px solid hsl(13, 46%, 22%);
+  border-radius: 1rem;
 }
 
 .bg-opaque {

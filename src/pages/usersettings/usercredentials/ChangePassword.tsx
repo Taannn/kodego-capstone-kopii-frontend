@@ -149,7 +149,7 @@ const ChangePassword:React.FC = () => {
             onChange={(e) => handleChange(confirmPasswordInput(e.target.value))}
           />
           <div className="w-100 ms-auto mt-2 d-flex justify-content-end">
-            <button type="submit" className="btn btn-secondary px-2 py-1 text-light bs-secondary">Change</button>
+            <button type="submit" className="btn btn-secondary px-4 py-1 text-light bs-secondary card-hover-secondary">Change</button>
           </div>
         </form>
       </div>

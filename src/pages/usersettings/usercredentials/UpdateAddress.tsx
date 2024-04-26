@@ -232,7 +232,7 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
               onChange={(e) => handleChange(e, phoneNumberInput)}
             />
             <div className="w-100 ms-auto mt-2 d-flex gap-2 justify-content-end">
-              <button type="submit" className="btn btn-secondary px-4 py-1 text-light bs-secondary">Confirm</button>
+              <button type="submit" className="btn btn-secondary px-4 py-1 text-light bs-secondary card-hover-secondary">Confirm</button>
             </div>
           </form>
 

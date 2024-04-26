@@ -43,7 +43,7 @@ const KopiiShop: React.FC = () => {
           <SearchBarCart />
           <Category shopCategory={shopCategory.info} />
           <Carousel shopCarousel={shopCarousel.info} />
-          <KopiiShopProducts shopProducts={highlyRated} desc="Best Selling" />
+          <KopiiShopProducts shopProducts={highlyRated} desc="Featured Products" />
           <KopiiShopProducts shopProducts={dailyDiscover} desc="Daily Discover" />
         </div>
       ) : null}

@@ -23,6 +23,11 @@ const NumberInput: React.FC<NumberInputProps> = ({
         pattern="[0-9]*"
         inputMode="numeric"
         maxLength={max}
+        onKeyPress={(event) => {
+          if (!/[0-9]/.test(event.key)) {
+            event.preventDefault();
+          }
+        }}
         id={id}
         value={value}
         onChange={handleChange}

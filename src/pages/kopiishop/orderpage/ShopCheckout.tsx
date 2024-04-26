@@ -18,10 +18,13 @@ import {
 import OrderedProduct from "./OrderedProduct";
 import PlaceOrder from "./PlaceOrder";
 import { useNavigate } from "react-router-dom";
+import { fetchShopUserInfo } from "../../usersettings/userInfoSlice";
 
 const ShopCheckout = () => {
   const [inputToggle, setInputToggle] = useState<boolean>(false);
+  const [applied, setApplied] = useState<boolean>(false);
   const formData = useAppSelector((state) => state.shopCheckout);
+  const userAddress = useAppSelector((state) => state.shopUserInfo.info[0]);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -56,6 +59,7 @@ const ShopCheckout = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchShopUserInfo());
     const generateRandomNumber = () => {
       return (Math.random() * (60 - 20) + 20).toFixed(2);
     };
@@ -71,6 +75,7 @@ const ShopCheckout = () => {
       dispatch(cityInput(''));
       dispatch(zipCodeInput(''));
       dispatch(paymentMethodSetter(''));
+      setApplied(false);
     }
   }, []);
 
@@ -78,6 +83,13 @@ const ShopCheckout = () => {
     dispatch(action);
     dispatch(errorMessage(null));
     setInputToggle(false);
+  }
+
+  const handleApplyAddress = () => {
+    dispatch(addressInput(userAddress.address || ''));
+    dispatch(cityInput(userAddress.city || ''));
+    dispatch(zipCodeInput(userAddress.zip_code || ''));
+    setApplied(true);
   }
 
   return (
@@ -95,6 +107,15 @@ const ShopCheckout = () => {
       <Div styles="container ff-main mt-5">
       <form onSubmit={handleSubmit}>
         <OrderedProduct />
+          {userAddress && !applied &&
+          <Div styles="col-12 col-md-8 p-3 mb-5 ff-main mx-auto text-danger border border-3 border-info rounded">
+              <p className="text-bold fs-4"><i className="fa-solid fa-location-dot me-2"></i>Use Your Address?</p>
+              <div className="d-flex justify-content-between align-items-center border border-1 border-info rounded p-2">
+                <span className="fs-5">{userAddress.address}{" ,"}{userAddress.city}{" ,"}{userAddress.zip_code}</span>
+                <button type="button" onClick={handleApplyAddress} className="btn btn-primary bs-primary rounded px-4 py-2 text-light">Apply</button>
+              </div>
+          </Div>
+          }
           <Div styles="row">
             <Div styles="col-12 col-md-8 mx-auto">
               <Input

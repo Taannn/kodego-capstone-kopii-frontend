@@ -25,8 +25,8 @@
             inset -5px -5px 3px #311f1a;
 }
 .card-hover-secondary:hover {
-  box-shadow:  0 0 8px 1px #9a6437,
-               0 0 8px 1px #c88247;
+  box-shadow:  0 0 6px 1px #9a6437,
+               0 0 6px 1px #c88247;
 }
 .card-hover-danger:hover {
   box-shadow: 0 0 12px 1px #231613,
@@ -81,6 +81,10 @@
 }
 .bg-sage {
   background-color: $sage;
+}
+.border-espresso {
+  border: 2px solid hsla(13, 46%, 22%, 1);
+  border-radius: 1rem;
 }
 // custom styles
 .bg-opaque {

@@ -6,15 +6,13 @@ const Carousel: React.FC<CarouselProps> = ({ shopCarousel }) => {
   const shopCategory = useAppSelector((state) => state.shopcategory.info);
 
   return (
-    <section className=" container px-2 py-3 bg-danger rounded mt-5 d-none d-md-block">
+    <section className=" container-fluid px-2 py-3 bg-dark mt-0 d-none d-md-block">
     <div className="container-fluid container-md mb-md-0 mb-3 grid-cols-3">
       <div className="grid-cols-2">
         {shopCategory.map((s, i) => (
           <Link to={`/category/${s.category}`} key={i} className="bg-primary text-light d-flex justify-content-center align-items-center rounded ff-lead px-2 py-1 bs-primary bg-circles">
             <div>
               <p className="lead d-inline ls-2 fs-4 fw-bolder">{s.category}</p>
-              {/* <i className="fa-solid fa-mug-hot fs-5 ms-1"></i> */}
-              {/* <i className="fa-solid fa-mug-hot fs-5 ms-1"></i> */}
             </div>
           </Link>
         ))}
