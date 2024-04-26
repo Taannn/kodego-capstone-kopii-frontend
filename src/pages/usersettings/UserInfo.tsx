@@ -25,28 +25,27 @@ const UserInfo = () => {
     }, 1000);
   }
 
-
   return (
     <div>
-        <div className="modal fade" id="logoutModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-centered ff-main">
-            <div className="modal-content">
-              <div className="modal-header bg-secondary border-0 text-light">
-                <h1 className="modal-title fs-5" id="exampleModalLabel">Logout</h1>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div className="modal-body bg-secondary text-light fs-4">
-                Are you sure you want to log out?
-              </div>
-              <div className="modal-footer bg-secondary border-0">
-                <button onClick={handleLogout} data-bs-dismiss="modal" className="btn btn-primary text-light">Yes</button>
-                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">No</button>
-              </div>
+      <div className="modal fade" id="logoutModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered ff-main">
+          <div className="modal-content">
+            <div className="modal-header bg-secondary border-0 text-light">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body bg-secondary text-light fs-4">
+              Are you sure you want to log out?
+            </div>
+            <div className="modal-footer bg-secondary border-0">
+              <button onClick={handleLogout} data-bs-dismiss="modal" className="btn btn-primary text-light">Yes</button>
+              <button type="button" className="btn btn-warning" data-bs-dismiss="modal">No</button>
             </div>
           </div>
         </div>
+      </div>
       {loading && <div id="preloader"></div>}
-      {!loading && userInfo[0].address !== undefined && userInfo[0].city !== undefined && userInfo[0].zip_code !== undefined && userInfo[0].phone_number !== undefined &&
+      {!loading && userInfo.length > 0 &&
       <>
         <BreadCrumb currentProduct={"Profile and Info"} link={"/kopiishop"} />
         <div className="container mb-5 ff-main">
@@ -69,18 +68,13 @@ const UserInfo = () => {
                   </a>
                 </div>
             </div>
-            <div className="mt-2 grid-cols-2 col-11 bg-danger col-md-8 px-4 py-3 rounded mx-auto ls-1">
-              {userInfo.map((u, i) => (
-              <div key={i}>
+            {userInfo.map((u, i) => (
+              <div key={i} className="mt-2 grid-cols-2 col-11 bg-danger col-md-8 px-4 py-3 rounded mx-auto ls-1">
                 {u.address && u.city && u.zip_code ?
                   <p className="text-secondary">Address:<span className="text-bold ms-3 text-light">{u.address}{", "}{u.city}{", "}{u.zip_code}</span></p>
                 :
                   <p className="text-secondary">Address:<span className="text-bold ms-3 text-light">Not Set</span></p>
                 }
-              </div>
-              ))}
-              {userInfo.map((u, i) => (
-              <div key={i}>
                 {u.address && u.city && u.zip_code ?
                   <>
                     <p className="text-secondary">Phone No.
@@ -91,10 +85,9 @@ const UserInfo = () => {
                   <p className="text-secondary">Phone No.<span className="text-bold ms-3 text-light">Not Set</span></p>
                 }
               </div>
-              ))}
-            </div>
+            ))}
             <ChangePassword />
-            <UpdateAddress shopUserInfo={userInfo[0]} />
+            {userInfo.length > 0 && <UpdateAddress shopUserInfo={userInfo[0]} />}
           </div>
         </div>
       </>
@@ -103,4 +96,4 @@ const UserInfo = () => {
   )
 }
 
-export default UserInfo
+export default UserInfo;
