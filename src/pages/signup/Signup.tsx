@@ -51,8 +51,12 @@ const Signup: React.FC = () => {
         email: formData.email,
         password: formData.password
       });
-      const { token } = response.data;
+      // const { token } = response.data;
+      // localStorage.setItem('token', token);
+      const { token, expiresIn } = response.data;
+      const expirationTime = new Date().getTime() + expiresIn * 1000;
       localStorage.setItem('token', token);
+      localStorage.setItem('tokenExpiration', expirationTime.toString());
       navigate("/kopiishop");
       return res.data.data;
     } catch (error: any) {
