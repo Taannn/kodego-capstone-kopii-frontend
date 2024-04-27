@@ -15,7 +15,6 @@ import { useEffect, useState } from "react";
 
 const Login: React.FC = () => {
   const [inputToggle, setInputToggle] = useState<boolean>(false);
-  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
   const navigate = useNavigate();
   const formData = useAppSelector((state) => state.kopiilogin);
   const dispatch = useAppDispatch();
@@ -30,15 +29,20 @@ const Login: React.FC = () => {
     setInputToggle(false);
   };
 
+  const validateEmail = (email: string) => {
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    return regex.test(email);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (formData.email === '' || formData.password === '') {
+      const validEmail = validateEmail(formData.email);
+      if (formData.email === '' || formData.password === '' || !validEmail) {
         setInputToggle(true);
         return;
       }
       setInputToggle(false);
-      setInvalidEmail(false);
       const res = await axios.post("/login", {
         email: formData.email,
         password: formData.password
@@ -78,7 +82,7 @@ const Login: React.FC = () => {
               <Div styles="card border-0 bg-light mt-5">
                 <Div styles="card-body">
                   <h2 className="text-primary mb-2 display-4">Log in to Kopii</h2>
-                  <form onSubmit={handleSubmit} id="loginForm">
+                  <form onSubmit={handleSubmit} id="loginForm" noValidate>
                     <div className="form-outline">
                       <input
                         type="email" id="loginEmail"
@@ -119,9 +123,9 @@ const Login: React.FC = () => {
                           <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Email is required!</small>
                         </div>
                       }
-                      {invalidEmail && inputToggle &&
+                      {formData.email && !validateEmail(formData.email) && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Invalid email!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Invalid Email!</small>
                         </div>
                       }
                       {formData.password === '' && inputToggle &&
@@ -139,7 +143,7 @@ const Login: React.FC = () => {
                     <div className="d-flex justify-content-center">
                       <button
                         type="submit"
-                        className="btn btn-secondary btn-block btn-lg gradient-custom-4 text-light hvr-glow ls-1"
+                        className="btn btn-secondary btn-block btn-lg bs-secondary card-hover-secondary gradient-custom-4 text-light ls-1"
                       >
                         Login
                       </button>

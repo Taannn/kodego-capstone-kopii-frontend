@@ -5,8 +5,8 @@ const FooterNav = () => {
   const today = new Date();
   const year = today.getFullYear();
   return (
-    <div className={`border-4 border-danger border-top${location.pathname === "/cart" || location.pathname === "/settings" ? ' d-none' : ''}`}>
-        <div className="container p-2 pb-0">
+    <div className={`border-4 border-danger pb-5 border-top${location.pathname === "/cart" || location.pathname === "/settings" ? ' d-none' : ''}`}>
+        <div className="container pb-3 pb-0">
           <section className="p-3 pt-0">
             <div className="row d-flex align-items-center">
               <div className="col-md-7 col-lg-8 text-center text-md-start">

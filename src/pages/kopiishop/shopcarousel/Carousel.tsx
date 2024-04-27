@@ -6,7 +6,7 @@ const Carousel: React.FC<CarouselProps> = ({ shopCarousel }) => {
   const shopCategory = useAppSelector((state) => state.shopcategory.info);
 
   return (
-    <section className=" container-fluid px-2 py-3 bg-dark mt-0 d-none d-md-block">
+    <section className=" container rounded px-2 py-3 bg-dark mt-5 d-none d-md-block">
     <div className="container-fluid container-md mb-md-0 mb-3 grid-cols-3">
       <div className="grid-cols-2">
         {shopCategory.map((s, i) => (

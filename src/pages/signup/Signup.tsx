@@ -29,14 +29,21 @@ const Signup: React.FC = () => {
     return <Navigate replace to={"/kopiishop"} />
   }
 
+  const validateEmail = (email: string) => {
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    return regex.test(email);
+  };
+
   const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      const validEmail = validateEmail(formData.email);
       if (formData.email === '' ||
           formData.password === '' ||
           formData.first_name === ''||
           formData.last_name === '' ||
-          formData.password.length <= 7) {
+          formData.password.length <= 7 ||
+          !validEmail) {
         setInputToggle(true);
         return;
       }
@@ -91,7 +98,7 @@ const Signup: React.FC = () => {
               <div className="card border-0 bg-light mt-5">
                 <div className="card-body">
                   <h2 className="text-primary mb-3 display-5">Sign up to Kopii</h2>
-                  <form onSubmit={handleSubmit} id="signupForm">
+                  <form onSubmit={handleSubmit} id="signupForm" noValidate>
                     <div className="form-outline mb-2">
                       <input
                         type="text"
@@ -159,11 +166,11 @@ const Signup: React.FC = () => {
                           <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Last Name is required!</small>
                         </div>
                       }
-                      {/* {invalidEmail && inputToggle &&
+                      {formData.email && !validateEmail(formData.email) && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Invalid email!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Invalid Email!</small>
                         </div>
-                      } */}
+                      }
                       {formData.password === '' && inputToggle &&
                         <div>
                           <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Password is required!</small>
@@ -184,7 +191,7 @@ const Signup: React.FC = () => {
                     <div className="d-flex justify-content-center">
                       <button
                         type="submit"
-                        className="btn btn-secondary btn-block btn-lg gradient-custom-4 text-light hvr-glow" >
+                        className="btn btn-secondary btn-block btn-lg bs-secondary card-hover-secondary gradient-custom-4 text-light" >
                           Sign up
                         </button>
                     </div>

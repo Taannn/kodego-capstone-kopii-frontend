@@ -65,7 +65,7 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
   }, [successfullyAdded])
 
   return (
-    <section className="categories pt-0 pt-md-5 mt-0 mt-md-2 px-3 px-md-0">
+    <section className="categories pt-0 pt-md-3 mt-0 mt-md-2 px-3 px-md-0">
       <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
         <div
             id="liveToast"
