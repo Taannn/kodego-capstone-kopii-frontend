@@ -3,8 +3,9 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { setLoadingShop } from "../../preloader/loadingSliceShop";
-import KopiiShopProducts from "../shopproducts/KopiiShopProducts";
+// import KopiiShopProducts from "../shopproducts/KopiiShopProducts";
 import BreadCrumb from "../../../components/BreadCrumb";
+import ProductsWithSidebar from "../shopproducts/ProductsWithSidebar";
 
 const FilteredCategory = () => {
   const loading = useAppSelector((state) => state.loadingShop.isLoadingShop)
@@ -36,7 +37,8 @@ const FilteredCategory = () => {
       {!loading && products.length ? (
         <div>
           <BreadCrumb currentProduct={category} link={"/kopiishop"} />
-          <KopiiShopProducts shopProducts={products} desc={`Category: ${category}`}  />
+          {/* <KopiiShopProducts shopProducts={products} desc={`Category: ${category}`}  /> */}
+          <ProductsWithSidebar shopProducts={products} desc={`Category: ${category}`} />
         </div>
       ) : null}
     </>

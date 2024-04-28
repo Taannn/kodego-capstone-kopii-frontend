@@ -170,22 +170,22 @@ const UpdateAddress:React.FC<UserInfoProps> = ({ shopUserInfo }) => {
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">phone number is required!</small>
             </div>
           }
-          {userData.address.length <= 9 && inputToggle &&
+          {userData.address && userData.address.length <= 9 && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">address must be minimum of 10 characters</small>
             </div>
           }
-          {userData.city.length <= 4 && inputToggle &&
+          {userData.city && userData.city.length <= 4 && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">city must be minimum of 5 characters</small>
             </div>
           }
-          {userData.zip_code.length <= 3 && inputToggle &&
+          {userData.zip_code && userData.zip_code.length <= 3 && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">zip code must be minimum of 4</small>
             </div>
           }
-          {userData.phone_number.length <= 10 && inputToggle &&
+          {userData.phone_number && userData.phone_number.length <= 10 && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Phone Number must be minimum of 11</small>
             </div>

@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import BreadCrumb from "../../../components/BreadCrumb";
-import KopiiShopProducts from "../shopproducts/KopiiShopProducts";
 import { useEffect } from "react";
 import { fetchShopDailyDiscover } from "../shopproducts/shopDailyDiscoverSlice";
+import ProductsWithSidebar from "../shopproducts/ProductsWithSidebar";
 
 const SearchResult = () => {
   const products = useAppSelector((state) => state.shopdailyDiscover.info);
@@ -34,7 +34,7 @@ const SearchResult = () => {
       {!loading && filteredResult.length ? (
         <div>
           <BreadCrumb currentProduct={"Search Result"} link={"/kopiishop"} />
-          <KopiiShopProducts shopProducts={filteredResult} desc={`Search Result for "${searchItem}"`}  />
+          <ProductsWithSidebar shopProducts={filteredResult} desc={`Search for "${searchItem}"`}  />
         </div>
       ) : null}
     </>

@@ -131,7 +131,7 @@ const ShopCheckout = () => {
                     <small className="fw-bold my-1 bg-warning rounded-1 px-2 py-1 text-light">address cannot be empty.</small>
                   </div>
                 }
-                {formData.address.length <= 9 && inputToggle &&
+                {formData.address && formData.address.length <= 9 && inputToggle &&
                   <div>
                     <small className="fw-bold my-1 bg-warning rounded-1 px-2 py-1 text-light">address must be minimum of 10 characters.</small>
                   </div>
@@ -151,7 +151,7 @@ const ShopCheckout = () => {
                   <small className="fw-bold my-1 bg-warning rounded-1 px-2 py-1 text-light">city cannot be empty.</small>
                 </div>
               }
-              {formData.city.length <= 2 && inputToggle &&
+              {formData.city && formData.city.length <= 2 && inputToggle &&
                 <div>
                   <small className="fw-bold my-1 bg-warning rounded-1 px-2 py-1 text-light">city must be minimum of 3 characters.</small>
                 </div>
@@ -171,7 +171,7 @@ const ShopCheckout = () => {
                     <small className="fw-bold my-1 bg-warning rounded-1 px-2 py-1 text-light">zip code cannot be empty.</small>
                   </div>
                 }
-                {formData.zipCode.length <= 3 && inputToggle &&
+                {formData.zipCode && formData.zipCode.length <= 3 && inputToggle &&
                   <div>
                     <small className="fw-bold my-1 bg-warning rounded-1 px-2 py-1 text-light">zip code must be minimum of 4 characters.</small>
                   </div>

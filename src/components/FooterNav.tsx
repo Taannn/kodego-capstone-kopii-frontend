@@ -19,7 +19,7 @@ const FooterNav = () => {
                 <a className="btn btn-outline-info btn-floating m-1 text-danger" target="_blank" href="https://www.facebook.com/" role="button"><i className="fab fa-facebook-f"></i></a>
                 <a className="btn btn-outline-info btn-floating m-1 text-danger" target="_blank" href="https://twitter.com/home?lang=en" role="button"><i className="fab fa-twitter"></i></a>
                 <a className="btn btn-outline-info btn-floating m-1 text-danger" target="_blank" href="https://www.google.com/" role="button"><i className="fab fa-google"></i></a>
-                <a className="btn btn-outline-info btn-floating m-1 text-danger" target="_blank" href="https://www.instagram.com/" role="button"><i className="fab fa-instagram"></i></a>
+                <a className="btn btn-outline-info btn-floating m-1 text-danger" target="_blank" href="https://www.linkedin.com/in/tristan-candelario/" role="button"><i className="fa-brands fa-linkedin"></i></a>
               </div>
             </div>
           </section>

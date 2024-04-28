@@ -65,7 +65,7 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
   }, [successfullyAdded])
 
   return (
-    <section className="categories pt-0 pt-md-5 mt-0 mt-md-2 px-3 px-md-0">
+    <section className="categories pt-0 pt-md-2 mt-0 mt-md-2 px-3 px-md-0">
       <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">
         <div
             id="liveToast"
@@ -84,12 +84,13 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
             </div>
         </div>
       </div>
-      <div className="container">
-        <div className="row bg-secondary rounded">
-          <div className="col ff-main text-center text-light pt-1">
-            <h2 className="display-6 lead">{desc}</h2>
-          </div>
+      <section className="border-bottom border-2 border-primary ff-main">
+        <div className="container">
+          <h1 className="display-1 text-primary ls-1">{desc}</h1>
+          <p className="lead text-success px-4 fs-6 py-1 rounded bg-danger d-inline-block">{shopProducts.length === 1 ? 'Total Product: ' : 'Total Products: '}{shopProducts.length}<i className="fa-solid fa-bag-shopping ms-2 fs-6"></i></p>
         </div>
+      </section>
+      <div className="container">
         <div className="row mt-3 mb-5 gy-3">
           {shopProducts.map((s, i) => (
             <div className="col-md-3 col-6" key={i}>

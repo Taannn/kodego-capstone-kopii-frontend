@@ -51,10 +51,10 @@ const ChangePassword:React.FC = () => {
         if (error.response && error.response.status === 400) {
           setInputToggle(true);
           if (error.response.data.error === 'PasswordMismatchError') {
-            dispatch(errorMessage('password in incorrect!'));
+            dispatch(errorMessage('password in incorrect'));
           }
           if (error.response.data.error === 'SamePasswordError') {
-            dispatch(errorMessage('password cannot be the same.'));
+            dispatch(errorMessage('new password cannot be the same as current one'));
           }
         }  else {
           dispatch(errorMessage("server timed out"));
@@ -99,7 +99,7 @@ const ChangePassword:React.FC = () => {
         <div className="d-flex flex-wrap mb-2 gap-2">
           {formData.current_password === '' && inputToggle &&
             <div>
-              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">current password is required!</small>
+              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">current password is required</small>
             </div>
           }
           {formData.error && inputToggle &&
@@ -114,10 +114,10 @@ const ChangePassword:React.FC = () => {
           }
           {formData.password !== formData.confirm_password && inputToggle &&
             <div>
-              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">passwords do not match!</small>
+              <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">passwords do not match</small>
             </div>
           }
-          {formData.password.length <= 7 && inputToggle &&
+          {formData.password && formData.password.length <= 7 && inputToggle &&
             <div>
               <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">password must be minimum of 8 characters</small>
             </div>

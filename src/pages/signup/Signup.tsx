@@ -171,6 +171,11 @@ const Signup: React.FC = () => {
                           <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">last name is required</small>
                         </div>
                       }
+                      {formData.email === '' && inputToggle &&
+                        <div>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">email is required</small>
+                        </div>
+                      }
                       {formData.password.length >= 8 && formData.confirmPassword !== formData.password && inputToggle &&
                         <div>
                           <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">passwords do not match</small>
@@ -186,7 +191,7 @@ const Signup: React.FC = () => {
                           <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">password is required</small>
                         </div>
                       }
-                      {formData.password.length <= 7 && inputToggle &&
+                      {formData.password && formData.password.length <= 7 && inputToggle &&
                         <div>
                           <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">password must be minimum of 8 characters</small>
                         </div>
