@@ -4,12 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 const HeaderNav = () => {
   const location = useLocation();
   const [toggleNav, setToggleNav] = useState<boolean>(false);
-  // const handleLogout = () => {
-  //   localStorage.removeItem('token');
-  //   setTimeout(() => {
-  //     navigate("/kopiishop");
-  //   }, 1000);
-  // }
 
   return (
     <>
@@ -69,6 +63,8 @@ const HeaderNav = () => {
                     <button
                       id="login"
                       onClick={() => setToggleNav(!toggleNav)}
+                      onMouseEnter={() => setToggleNav(true)}
+                      // onMouseLeave={() => setToggleNav(false)}
                       className="btn hvr-bounce-to-top me-3 btn-danger btn-sm bs-danger ms-2 pb-2 fw-medium text-info pt-2"
                     >
                       {toggleNav ?
@@ -77,8 +73,11 @@ const HeaderNav = () => {
                         <i className="fa-solid fa-user px-2"></i>
                       }
                     </button>
-                    <div className={`setting-toggle position-absolute${toggleNav ? ' d-block' : ' d-none'} bg-danger rounded px-2 py-2`}>
-                      <Link to={"/settings"} onClick={() => {setToggleNav(!toggleNav)}} className="btn hvr-bounce-to-top btn-primary rounded px-2 w-100 py-1 text-light overflow-hidden">Profile and Info</Link>
+                    <div
+                      className={`setting-toggle position-absolute${toggleNav ? ' d-block' : ' d-none'} bg-danger rounded px-2 py-2`}
+                      onMouseEnter={() => setToggleNav(true)} onMouseLeave={() => setToggleNav(false)}
+                    >
+                      <Link to={"/settings"} onClick={() => setToggleNav(true)} className="btn hvr-bounce-to-top btn-primary rounded px-2 w-100 py-1 text-light overflow-hidden">Profile and Info</Link>
                       <Link to={"/shoporders"} onClick={() => {setToggleNav(!toggleNav)}} className="btn hvr-bounce-to-top btn-primary rounded px-2 w-100 py-1 text-light mt-2 overflow-hidden">Shop Orders</Link>
                     </div>
                   </div>

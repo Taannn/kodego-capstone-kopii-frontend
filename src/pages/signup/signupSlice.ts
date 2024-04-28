@@ -5,6 +5,7 @@ type InitialStateProps = {
   last_name: string;
   email: string;
   password: string;
+  confirmPassword: string;
   showPassword: boolean;
   error: string | null;
 }
@@ -13,6 +14,7 @@ const initialState: InitialStateProps = {
   last_name: "",
   email: "",
   password: "",
+  confirmPassword: "",
   showPassword: false,
   error: ""
 }
@@ -33,6 +35,9 @@ const signupSlice = createSlice({
     passwordInput: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
+    confirmPasswordInput: (state, action: PayloadAction<string>) => {
+      state.confirmPassword = action.payload;
+    },
     passwordToggle: (state, action: PayloadAction<boolean>) => {
       state.showPassword = action.payload
     },
@@ -41,6 +46,7 @@ const signupSlice = createSlice({
       state.last_name = action.payload;
       state.email = action.payload;
       state.password = action.payload;
+      state.confirmPassword = action.payload;
     },
     errorMessage: (state, action) => {
       state.error = action.payload;
@@ -48,15 +54,14 @@ const signupSlice = createSlice({
   },
 })
 
-// default export
 export default signupSlice.reducer
-// named export
 export const {
   nameInput,
   surnameInput,
   emailInput,
   passwordInput,
   passwordToggle,
+  confirmPasswordInput,
   errorMessage,
   inputReset
 } = signupSlice.actions

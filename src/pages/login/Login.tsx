@@ -55,11 +55,11 @@ const Login: React.FC = () => {
       return res.data.data;
       } catch (error: any) {
       if (error.response && error.response.status === 404) {
-        dispatch(errorMessage("Account not found"));
+        dispatch(errorMessage("account not found"));
       } else if (error.response && error.response.status === 401) {
-        dispatch(errorMessage("Invalid password"));
+        dispatch(errorMessage("invalid password"));
       } else {
-        dispatch(errorMessage("An unexpected error occurred"));
+        dispatch(errorMessage("an unexpected error occurred"));
       }
     }
   };
@@ -120,22 +120,22 @@ const Login: React.FC = () => {
                     <div className="d-flex gap-2 mb-2">
                       {formData.email === '' && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Email is required!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">email is required</small>
                         </div>
                       }
                       {formData.email && !validateEmail(formData.email) && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Invalid Email!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">invalid email</small>
                         </div>
                       }
                       {formData.password === '' && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Password is required!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">password is required</small>
                         </div>
                       }
                       {formData.error && (
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">{formData.error}!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">{formData.error}</small>
                         </div>
                       )}
                     </div>

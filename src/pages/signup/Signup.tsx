@@ -8,9 +8,11 @@ import {
   nameInput,
   surnameInput,
   passwordInput,
+  // confirmPasswordInput,
   errorMessage,
-  passwordToggle,
-  inputReset
+  // passwordToggle,
+  inputReset,
+  confirmPasswordInput
 } from './signupSlice';
 import { useEffect, useState } from 'react';
 
@@ -43,6 +45,7 @@ const Signup: React.FC = () => {
           formData.first_name === ''||
           formData.last_name === '' ||
           formData.password.length <= 7 ||
+          formData.confirmPassword !== formData.password ||
           !validEmail) {
         setInputToggle(true);
         return;
@@ -58,8 +61,6 @@ const Signup: React.FC = () => {
         email: formData.email,
         password: formData.password
       });
-      // const { token } = response.data;
-      // localStorage.setItem('token', token);
       const { token, expiresIn } = response.data;
       const expirationTime = new Date().getTime() + expiresIn * 1000;
       localStorage.setItem('token', token);
@@ -69,13 +70,13 @@ const Signup: React.FC = () => {
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         if (error.response.data.error === 'DuplicateEmailError') {
-          dispatch(errorMessage('Email is already registered.'));
+          dispatch(errorMessage('email is already registered'));
         } else {
-          dispatch(errorMessage('Invalid signup data'));
+          dispatch(errorMessage('invalid signup data'));
         }
       } else {
         console.error('Signup failed:', error.message);
-        dispatch(errorMessage('An unexpected error occurred'));
+        dispatch(errorMessage('an unexpected error occurred'));
       }
     }
   };
@@ -95,30 +96,32 @@ const Signup: React.FC = () => {
               <AnimatedCoffeeMaker />
             </div>
             <div className="col-12 col-md-9 col-lg-5">
-              <div className="card border-0 bg-light mt-5">
+              <div className="card border-0 bg-light mt-1">
                 <div className="card-body">
-                  <h2 className="text-primary mb-3 display-5">Sign up to Kopii</h2>
+                  <h2 className="text-primary mb-3 display-4">Sign up to Kopii</h2>
                   <form onSubmit={handleSubmit} id="signupForm" noValidate>
-                    <div className="form-outline mb-2">
-                      <input
-                        type="text"
-                        id="signupFirstname"
-                        value={formData.first_name}
-                        onChange={(e)=>handleChange(nameInput(e.target.value))}
-                        className="form-control form-control-md border-info-subtle border-3"
-                      />
-                      <label className="form-label fw-bold" htmlFor="signupFirstname">First Name</label>
-                    </div>
+                    <div className="grid-cols-2">
+                      <div className="form-outline mb-2">
+                        <input
+                          type="text"
+                          id="signupFirstname"
+                          value={formData.first_name}
+                          onChange={(e)=>handleChange(nameInput(e.target.value))}
+                          className="form-control form-control-md border-info-subtle border-3"
+                        />
+                        <label className="form-label fw-bold" htmlFor="signupFirstname">First Name</label>
+                      </div>
 
-                    <div className="form-outline mb-2">
-                      <input
-                        type="text"
-                        id="signupLastname"
-                        value={formData.last_name}
-                        onChange={(e) => handleChange(surnameInput(e.target.value))}
-                        className="form-control form-control-md border-info-subtle border-3"
-                      />
-                      <label className="form-label fw-bold" htmlFor="signupLastname">Last Name</label>
+                      <div className="form-outline mb-2">
+                        <input
+                          type="text"
+                          id="signupLastname"
+                          value={formData.last_name}
+                          onChange={(e) => handleChange(surnameInput(e.target.value))}
+                          className="form-control form-control-md border-info-subtle border-3"
+                        />
+                        <label className="form-label fw-bold" htmlFor="signupLastname">Last Name</label>
+                      </div>
                     </div>
 
                     <div className="form-outline mb-2">
@@ -128,62 +131,69 @@ const Signup: React.FC = () => {
                         value={formData.email}
                         onChange={(e)=>handleChange(emailInput(e.target.value))}
                         className="form-control form-control-md border-info-subtle border-3"
-                        placeholder="example@gmail.com"
                       />
                       <label className="form-label fw-bold" htmlFor="signupEmail">Your Email</label>
                     </div>
 
-                    <div className="form-outline mb-2">
-                      <input
-                        type={formData.showPassword ? 'text': 'password'}
-                        id="signupPassword"
-                        value={formData.password}
-                        onChange={(e)=>handleChange(passwordInput(e.target.value))}
-                        className="form-control form-control-md border-info-subtle border-3"
-                        placeholder="Must have at least 6 characters"
-                      />
-                      <label className="form-label fw-bold" htmlFor="signupPassword">Password</label>
-                    </div>
+                    <div className="grid-cols-2">
+                      <div className="form-outline mb-2">
+                        <input
+                          type={formData.showPassword ? 'text': 'password'}
+                          id="signupPassword"
+                          value={formData.password}
+                          onChange={(e)=>handleChange(passwordInput(e.target.value))}
+                          className="form-control form-control-md border-info-subtle border-3"
+                        />
+                        <label className="form-label fw-bold" htmlFor="signupPassword">Password</label>
+                      </div>
 
-                    <div className="form-check d-flex justify-content-start mb-2">
-                      <input
-                        className="form-check-input me-2 border-info border-1"
-                        type="checkbox"
-                        id="showPassword"
-                        onChange={()=> dispatch(passwordToggle(!formData.showPassword))}
-                      />
-                      <label className="form-check-label fw-medium" htmlFor="showPassword">Show Password</label>
+                      <div className="form-outline mb-2">
+                        <input
+                          type={formData.showPassword ? 'text': 'password'}
+                          id="confirmPassword"
+                          value={formData.confirmPassword}
+                          onChange={(e)=>handleChange(confirmPasswordInput(e.target.value))}
+                          className={`form-control form-control-md${!formData.password || formData.password.length < 8 ? ' bg-light' : ''} border-info-subtle border-3`}
+                          disabled={!formData.password || formData.password.length < 8}
+                        />
+                        <label className="form-label fw-bold" htmlFor="confirmPassword">Confirm Password</label>
+                      </div>
                     </div>
 
                     <div className="d-flex gap-2 mb-2 flex-wrap">
                       {formData.first_name === '' && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">First Name is required!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">first name is required</small>
                         </div>
                       }
                       {formData.last_name === '' && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Last Name is required!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">last name is required</small>
+                        </div>
+                      }
+                      {formData.password.length >= 8 && formData.confirmPassword !== formData.password && inputToggle &&
+                        <div>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">passwords do not match</small>
                         </div>
                       }
                       {formData.email && !validateEmail(formData.email) && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Invalid Email!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">invalid email</small>
                         </div>
                       }
                       {formData.password === '' && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Password is required!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">password is required</small>
                         </div>
                       }
                       {formData.password.length <= 7 && inputToggle &&
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">Password must be minimum of 8 characters!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">password must be minimum of 8 characters</small>
                         </div>
                       }
                       {formData.error && (
                         <div>
-                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">{formData.error}!</small>
+                          <small className="fw-bold mt-1 bg-warning rounded-1 px-2 py-1 text-light">{formData.error}</small>
                         </div>
                       )}
                     </div>

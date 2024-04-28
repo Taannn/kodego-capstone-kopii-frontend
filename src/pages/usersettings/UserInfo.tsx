@@ -38,8 +38,8 @@ const UserInfo = () => {
               Are you sure you want to log out?
             </div>
             <div className="modal-footer bg-secondary border-0">
-              <button onClick={handleLogout} data-bs-dismiss="modal" className="btn btn-primary text-light">Yes</button>
-              <button type="button" className="btn btn-warning" data-bs-dismiss="modal">No</button>
+              <button onClick={handleLogout} data-bs-dismiss="modal" className="btn btn-primary bs-primary text-light px-3">Yes</button>
+              <button type="button" className="btn btn-warning bs-warning px-3" data-bs-dismiss="modal">No</button>
             </div>
           </div>
         </div>
