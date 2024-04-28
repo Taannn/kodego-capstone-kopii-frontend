@@ -9,7 +9,7 @@ import { fetchLandingAboutList } from './lpabout/landingAboutListSlice'
 import { fetchLandingStopIntro } from './lpstopintro/landingStopIntroSlice'
 import KopiiStopFeatured from './lpstopintro/KopiiStopFeatured'
 import KopiiTestimonials from './lptestimonials/KopiiTestimonials'
-import KopiiSubscription from './lpsubscription/KopiiSubscription'
+// import KopiiSubscription from './lpsubscription/KopiiSubscription'
 import { fetchLandingTestimonials } from './lptestimonials/landingTestimonialsSlice'
 // import { fetchShopUserInfo } from '../usersettings/userInfoSlice'
 
@@ -47,7 +47,7 @@ const LandingPage = () => {
           <KopiiAbout landingAboutData={landingAboutData.info} landingAboutList={landingAboutList.info} />
           <KopiiStopFeatured landingStopIntro={landingStopIntro.info} />
           <KopiiTestimonials landingTestimonials={landingTestimonials.info} />
-          <KopiiSubscription />
+          {/* <KopiiSubscription /> */}
         </div>
       ) : null}
     </>
