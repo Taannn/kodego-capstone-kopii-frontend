@@ -145,7 +145,7 @@ const KopiiShopProducts: React.FC<KopiiShopProductProps> = ({ shopProducts, desc
                         {localStorage.getItem('token') ?
                           <Link
                             to={"/shopcheckout"}
-                            onClick={(e) => handleSelectedProductDetail(1, s.product_id, discountedPrice(parseFloat(s.product_price), s.discount), s.product_img, s.product_name, s.product_desc, e)}
+                            onClick={(e) => handleSelectedProductDetail(1, s.product_id, discountedPrice(parseFloat(s.product_price), s.discount), s.product_img ? s.product_img : 'https://placehold.jp/600x400.png', s.product_name, s.product_desc, e)}
                             className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bs-primary"
                           >
                             Buy Now

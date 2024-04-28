@@ -100,7 +100,7 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
                       <Link to={`/kopiishop/${s.product_id}`} className="bg-danger text-light text-bold position-absolute ff-main mt-1 end-0 me-2 border border-2 border-dark text-info px-1 rounded text-sm">- {s.discount} %</Link>
                       }
                   <Link to={`/kopiishop/${s.product_id}`} className="category">
-                    <img src={s.product_img} className="img-fluid" alt="" />
+                    <img src={s.product_img ? s.product_img : 'https://placehold.jp/600x400.png'} className="img-fluid" alt="" />
                   </Link>
                   <Link to={`/kopiishop/${s.product_id}`} className="card-body px-3 pt-3 pb-0">
                     <div className="card-title ff-main h6 m-0 text-ellipsis d-flex align-items-center justify-content-between">
@@ -146,7 +146,7 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
                         {localStorage.getItem('token') ?
                           <Link
                             to={"/shopcheckout"}
-                            onClick={(e) => handleSelectedProductDetail(1, s.product_id, discountedPrice(parseFloat(s.product_price), s.discount), s.product_img, s.product_name, s.product_desc, e)}
+                            onClick={(e) => handleSelectedProductDetail(1, s.product_id, discountedPrice(parseFloat(s.product_price), s.discount), s.product_img ? s.product_img : 'https://placehold.jp/600x400.png', s.product_name, s.product_desc, e)}
                             className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bs-primary"
                           >
                             Buy Now

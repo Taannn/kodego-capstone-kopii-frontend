@@ -60,7 +60,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
           <div className="toast-header bg-danger border-0 text-light">
             <strong className="me-auto">{productName}</strong>
             <small>1 sec ago</small>
-            {/* <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> */}
           </div>
           <div className="toast-body text-success bg-danger rounded-bottom fs-5">
             <span><i className="fa-regular fa-circle-check me-2 text-success"></i>Successfully added!</span>
@@ -91,7 +90,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         <div className="buttons d-flex my-5">
           <div className="block">
             {localStorage.getItem('token') ?
-              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, discountedPrice(parseFloat(productPrice), discount), productImg, productName, productDesc)} className="btn btn-lg btn-secondary card-hover-secondary text-light bs-secondary rounded">Buy Now</Link>
+              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(1, productId, discountedPrice(parseFloat(productPrice), discount), productImg ? productImg : 'https://placehold.jp/600x400.png', productName, productDesc)} className="btn btn-lg btn-secondary card-hover-secondary text-light bs-secondary rounded">Buy Now</Link>
             :
             <Link to={"/login"} className="btn btn-lg btn-secondary card-hover-secondary text-light bs-secondary rounded">Buy Now</Link>
             }

@@ -88,7 +88,7 @@ const ToShipInfo = () => {
             <div className="border d-flex flex-md-row flex-column border-1 border-primary p-0">
               <div className="col-12 col-md-4 p-0 overflow-hidden">
                 <img
-                  src={currentProduct.product_img}
+                  src={currentProduct.product_img ? currentProduct.product_img : 'https://placehold.jp/600x400.png'}
                   alt={currentProduct.product_name}
                   className="img-fluid border border-1 border-primary"
                 />

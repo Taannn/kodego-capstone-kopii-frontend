@@ -77,7 +77,7 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
         <div key={i + s.product_id} className="row border border-primary border-3 rounded bg-light mb-5">
           <div className="col-6 col-md-3 p-2">
             <div className="rounded overflow-hidden">
-              <img className="img-fluid" src={s.product_img} alt={s.product_name} />
+              <img className="img-fluid" src={s.product_img ? s.product_img : 'https://placehold.jp/600x400.png'} alt={s.product_name} />
             </div>
             <p className="text-primary h4 ff-main text-ellipsis">{s.product_name}</p>
           </div>
@@ -101,7 +101,7 @@ const CustomerCart: React.FC<CustomerCartProps> = ({ shopCustomerCart }) => {
             </div>
             <div className="delete d-flex align-items-center justify-content-center gap-1">
               <button onClick={() => handleDeleteFromCart(s.product_id)} className="btn rounded bg-warning text-light ff-main">Delete</button>
-              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(s.quantity, s.product_id, calculateTotalPrice(discountedPrice(s.product_price, s.discount), s.quantity), s.product_img, s.product_name, s.product_desc)} className="btn rounded bg-success text-light ff-main">Checkout</Link>
+              <Link to={"/shopcheckout"} onClick={() => handleSelectedProductDetail(s.quantity, s.product_id, calculateTotalPrice(discountedPrice(s.product_price, s.discount), s.quantity), s.product_img ? s.product_img : 'https://placehold.jp/600x400.png', s.product_name, s.product_desc)} className="btn rounded bg-success text-light ff-main">Checkout</Link>
             </div>
           </div>
         </div>

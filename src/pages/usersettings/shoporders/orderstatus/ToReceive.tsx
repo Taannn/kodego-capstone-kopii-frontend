@@ -29,7 +29,7 @@ const ToReceive: React.FC<ShopOrdersExtended> = ({ shopOrders }) => {
         <Link to={`/shoporders/${s.order_id}`} key={i + s.order_id} className="wrapper">
           <div className="row border border-primary border-3 bg-light mb-0 rounded-0 rounded-top">
             <div className="col-6 col-md-3 overflow-hidden rounded p-2">
-              <img className="img-fluid rounded" src={s.product_img} alt={s.product_name} />
+              <img className="img-fluid rounded" src={s.product_img ? s.product_img : 'https://placehold.jp/600x400.png'} alt={s.product_name} />
             </div>
             <div className="col-6 col-md-9 d-flex flex-column flex-md-row align-items-center justify-content-around p-2">
               <div className="d-flex align-items-center justify-content-center">
