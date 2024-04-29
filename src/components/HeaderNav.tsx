@@ -147,7 +147,7 @@ const HeaderNav = () => {
                 <li className="nav-item">
                   <Link
                     to="/shoporders"
-                    className={`nav-link ${location.pathname === '/kopiishop' ? 'active' : ''}`}
+                    className={`nav-link ${location.pathname === '/shoporders' ? 'active' : ''}`}
                   >
                     Shop Orders
                   </Link>
@@ -157,13 +157,13 @@ const HeaderNav = () => {
                   <Link
                     id="login"
                     to="/login"
-                    className={`nav-link${location.pathname === "/signup" ? " active" : ""}`}
+                    className={`nav-link${location.pathname === "/login" ? " active" : ""}`}
                 >
                   Login/Signup
                 </Link>
               ) : (
                 <Link
-                  id="login"
+                  id="settings"
                   to="/settings"
                   className={`nav-link${location.pathname === "/settings" ? " active" : ""}`}
                 >
