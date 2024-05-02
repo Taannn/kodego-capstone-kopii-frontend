@@ -43,7 +43,7 @@ const ShopCheckout = () => {
         shippingFee: formData.shippingFee
       }
       if(formData.address === '' ||
-         formData.address.length <= 19 ||
+         formData.address.length <= 9 ||
          formData.zipCode === ''||
          formData.zipCode.length <= 3 ||
          formData.paymentMethod === '') {
