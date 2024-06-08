@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Kopii
 
-Currently, two official plugins are available:
+![Example Image](./src/assets/images/kopii.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+KodeGo Bootcamp E-Commerce Web Application. Developed in three stages: MP1 (wireframing, clickable prototype), MP2 (API Driven Web Application Built using React + Typesccript, RESTful API), CAPSTONE (full-stack web application)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#### Packages Used
 
-- Configure the top-level `parserOptions` property like this:
+- Redux Toolkit
+- React
+- Typescript
+- Bootstrap 5.3
+- SASS
+- Axios
+- Autoprefixer
+- Reac Router DOM
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+
+## Getting Started
+
+Install dependencies
+
+```bash
+  npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Run the development server:
+
+```bash
+  npm run dev
+```
+
+Complie SCSS to CSS
+
+```bash
+  npm run w
+```
