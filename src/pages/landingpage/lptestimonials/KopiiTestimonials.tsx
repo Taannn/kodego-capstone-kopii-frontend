@@ -13,20 +13,20 @@ const KopiiTestimonials: React.FC<KopiiTestimonialsProps> = ({ landingTestimonia
           <div className="row">
             <div id="carouselExampleDark" className="carousel carousel-dark slide col">
               <div className="carousel-inner">
-                {landingTestimonials.map((l, i) => (
-                  <div key={i} className={`carousel-item ${i === 0 ? 'active' : ''}`} data-bs-interval="10000">
+                {landingTestimonials.map((item, index) => (
+                  <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`} data-bs-interval="10000">
                     <div className="card mb-3 w-75 mx-auto">
                       <div className="card-body shadow card-bg">
                         <div className="avatar d-flex flex-row gap-3">
                           <div className="avatar-img">
-                            <img className="img-fluid rounded-5" src={l.avatar_src} alt="" />
+                            <img className="img-fluid rounded-5" src={item.avatar_src} alt="" />
                           </div>
                           <div className="avatar-name">
-                            <h5 className="mb-0">{l.name}</h5>
-                            <small>{l.role}</small>
+                            <h5 className="mb-0">{item.name}</h5>
+                            <small>{item.role}</small>
                           </div>
                         </div>
-                        <p className="mt-3">{l.text}</p>
+                        <p className="mt-3">{item.text}</p>
                       </div>
                     </div>
                   </div>
@@ -46,6 +46,6 @@ const KopiiTestimonials: React.FC<KopiiTestimonialsProps> = ({ landingTestimonia
       </section>
     </>
   );
-}
+};
 
 export default KopiiTestimonials;

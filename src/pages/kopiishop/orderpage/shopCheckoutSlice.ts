@@ -64,8 +64,8 @@ export const addShopOrder = createAsyncThunk('shopCheckout/addShopOrder', async 
     dispatch(paymentMethodSetter(''));
     dispatch(totalAmountSetter(''));
     return response.data.data;
-  } catch (error: any) {
-    console.error(error);
+  } catch (error: unknown) {
+    console.error(`Error fetching: ${error}`);
   } finally {
     dispatch(setLoadingShop(false));
   }

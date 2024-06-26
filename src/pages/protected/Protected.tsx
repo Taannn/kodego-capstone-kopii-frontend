@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom';
 
 type ProtectedProps = {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ const Protected:React.FC<ProtectedProps> = ({children}) => {
     <div>
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default Protected
+export default Protected;

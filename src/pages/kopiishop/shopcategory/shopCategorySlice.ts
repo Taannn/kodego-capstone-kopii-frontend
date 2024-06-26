@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { setLoadingShop } from '../../preloader/loadingSliceShop'
-import { ShopCategoryProps, ShopCategoryInitState } from '../KopiiShopProps'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { setLoadingShop } from '../../preloader/loadingSliceShop';
+import { ShopCategoryProps, ShopCategoryInitState } from '../KopiiShopProps';
 
 const initialState: ShopCategoryInitState = {
   info: [],
@@ -14,7 +14,7 @@ export const fetchShopCategory = createAsyncThunk('shopCategory/fetchShopCategor
     const response = await axios.get('/categories');
     return response.data.data;
   } catch (error) {
-    throw error;
+    console.error(`Error fetching: ${error}`);
   } finally {
     dispatch(setLoadingShop(false));
   }
@@ -37,4 +37,4 @@ const shopCategorySlice = createSlice({
   }
 })
 
-export default shopCategorySlice.reducer
+export default shopCategorySlice.reducer;

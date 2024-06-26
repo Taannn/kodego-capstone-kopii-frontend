@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { setLoadingLanding } from '../../preloader/loadingSliceLanding'
-import { LandingStopIntroInitState, LandingStopIntroProps } from '../LandingPageProps'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { setLoadingLanding } from '../../preloader/loadingSliceLanding';
+import { LandingStopIntroInitState, LandingStopIntroProps } from '../LandingPageProps';
 
 const initialState: LandingStopIntroInitState = {
   info: [],
@@ -14,7 +14,7 @@ export const fetchLandingStopIntro = createAsyncThunk('landingStopIntro/fetchLan
     const response = await axios.get('/kopiistopintro');
     return response.data.data;
   } catch (error) {
-    throw error;
+    console.error(`Error fetching: ${error}`);
   } finally {
     dispatch(setLoadingLanding(false));
   }

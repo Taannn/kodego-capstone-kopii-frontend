@@ -1,12 +1,13 @@
-import Div from "../../../components/Div"
-import { CurrentProductProps } from "../KopiiShopProps"
-import BreadCrumb from "../../../components/BreadCrumb"
-import ProductDetails from "./ProductDetails"
-import ProductImages from "./ProductImages"
-import { useAppDispatch } from "../../../app/hooks"
-import axios from "axios"
-import { setSuccessful } from "./addToCartSlice"
-import { useNavigate } from "react-router-dom"
+import Div from "../../../components/Div";
+import { CurrentProductProps } from "../KopiiShopProps";
+import BreadCrumb from "../../../components/BreadCrumb";
+import ProductDetails from "./ProductDetails";
+import ProductImages from "./ProductImages";
+import { useAppDispatch } from "../../../app/hooks";
+import axios from "axios";
+import { setSuccessful } from "./addToCartSlice";
+import { useNavigate } from "react-router-dom";
+
 const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) => {
   const dispatch = useAppDispatch();
 
@@ -29,7 +30,7 @@ const CurrentProduct:React.FC<CurrentProductProps> = ({ shopSelectedProduct }) =
       dispatch(setSuccessful(true))
       return response.data.data;
     } catch (error) {
-      throw error
+      console.error(`Error fetching: ${error}`);
     }
   }
 

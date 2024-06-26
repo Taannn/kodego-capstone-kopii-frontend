@@ -1,8 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { setLoadingShop } from '../../preloader/loadingSliceShop'
-import { ShopCarouselInitState, ShopCarouselProps } from '../KopiiShopProps'
-
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { setLoadingShop } from '../../preloader/loadingSliceShop';
+import { ShopCarouselInitState, ShopCarouselProps } from '../KopiiShopProps';
 const initialState: ShopCarouselInitState = {
   info: [],
   error: ''
@@ -14,7 +13,7 @@ export const fetchShopCarousel = createAsyncThunk('shopCarousel/fetchShopCarouse
     const response = await axios.get('/carousel');
     return response.data.data;
   } catch (error) {
-    throw error;
+    console.error(`Error fetching: ${error}`);
   } finally {
     dispatch(setLoadingShop(false));
   }
@@ -37,4 +36,4 @@ const shopCarouselSlice = createSlice({
   }
 })
 
-export default shopCarouselSlice.reducer
+export default shopCarouselSlice.reducer;

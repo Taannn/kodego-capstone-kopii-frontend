@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { setLoadingLanding } from '../../preloader/loadingSliceLanding'
-import { LandingDiscoverInitState, LandingDiscoverProps } from '../LandingPageProps'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { setLoadingLanding } from '../../preloader/loadingSliceLanding';
+import { LandingDiscoverInitState, LandingDiscoverProps } from '../LandingPageProps';
 
 const initialState: LandingDiscoverInitState = {
   info: [],
@@ -14,7 +14,7 @@ export const fetchLandingDiscover = createAsyncThunk('landingDiscover/fetchLandi
     const response = await axios.get('/discover');
     return response.data.data;
   } catch (error) {
-    throw error;
+    console.error(`Error fetching: ${error}`);
   } finally {
     dispatch(setLoadingLanding(false));
   }

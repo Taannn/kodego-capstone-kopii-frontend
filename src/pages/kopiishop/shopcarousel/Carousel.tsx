@@ -9,14 +9,15 @@ const Carousel: React.FC<CarouselProps> = ({ shopCarousel }) => {
     <section className=" container rounded px-2 py-3 bg-dark mt-5 d-none d-md-block">
     <div className="container-fluid container-md mb-md-0 mb-3 grid-cols-3">
       <div className="grid-cols-2">
-        {shopCategory.map((s, i) => (
-          <Link to={`/category/${s.category}`} key={i} className="bg-primary text-light d-flex justify-content-center align-items-center rounded ff-lead px-2 py-1 bs-primary bg-circles">
+        {shopCategory.map((item, index) => (
+          <Link to={`/category/${item.category}`} key={index} className="bg-primary text-light d-flex justify-content-center align-items-center rounded ff-lead px-2 py-1 bs-primary bg-circles">
             <div>
-              <p className="lead d-inline ls-2 fs-4 fw-bolder">{s.category}</p>
+              <p className="lead d-inline ls-2 fs-4 fw-bolder">{item.category}</p>
             </div>
           </Link>
         ))}
       </div>
+      {/*  */}
       <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -24,12 +25,12 @@ const Carousel: React.FC<CarouselProps> = ({ shopCarousel }) => {
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div className="carousel-inner rounded">
-          {shopCarousel.map((s, i) => (
-            <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
-              <img className="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src={s.img} alt="" />
+          {shopCarousel.map((item, index) => (
+            <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+              <img className="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src={item.img} alt="" />
               <div className="carousel-caption d-none d-md-block text-danger">
-                <h1 className="text-light d-inline-block px-4 py-2 ff-main rounded bg-opaque">{s.title}</h1>
-                <p className="text-light lead rounded bg-opaque">{s.about}</p>
+                <h1 className="text-light d-inline-block px-4 py-2 ff-main rounded bg-opaque">{item.title}</h1>
+                <p className="text-light lead rounded bg-opaque">{item.about}</p>
               </div>
             </div>
           ))}
@@ -46,6 +47,6 @@ const Carousel: React.FC<CarouselProps> = ({ shopCarousel }) => {
     </div>
     </section>
   );
-}
+};
 
 export default Carousel;

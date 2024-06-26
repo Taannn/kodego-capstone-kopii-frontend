@@ -46,7 +46,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         dispatch(setSuccessful(false))
       }, 3000);
     }
-  }, [successfullyAdded])
+  }, [dispatch, successfullyAdded])
   return (
     <div className="col-md-7">
       <div className="toast-container position-fixed bottom-0 end-0 p-3 ff-main">

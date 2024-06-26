@@ -14,7 +14,7 @@ export const fetchLandingHero = createAsyncThunk('landingHero/fetchLandingHero',
     const response = await axios.get('/kopiihero');
     return response.data.data;
   } catch (error) {
-    throw error;
+    throw new Error('Invalid Data');
   } finally {
     dispatch(setLoadingLanding(false));
   }

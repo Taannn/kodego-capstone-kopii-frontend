@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { setLoadingShop } from '../../preloader/loadingSliceShop'
-import { ShopProductInitState, ShopProductProps } from '../KopiiShopProps'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { setLoadingShop } from '../../preloader/loadingSliceShop';
+import { ShopProductInitState, ShopProductProps } from '../KopiiShopProps';
 
 const initialState: ShopProductInitState = {
   info: [],
@@ -14,7 +14,7 @@ export const fetchShopHighlyRated = createAsyncThunk('shopHighlyRated/fetchShopH
     const response = await axios.get('/shop/highrated');
     return response.data.data;
   } catch (error) {
-    throw error;
+    console.error(`Error fetching: ${error}`);
   } finally {
     dispatch(setLoadingShop(false));
   }
@@ -37,4 +37,4 @@ const shopHighlyRatedSlice = createSlice({
   }
 })
 
-export default shopHighlyRatedSlice.reducer
+export default shopHighlyRatedSlice.reducer;

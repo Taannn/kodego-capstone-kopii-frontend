@@ -62,7 +62,7 @@ export type KopiiShopProductProps = {
 
 // types for shopselectedproduct
 export type ShopSelectedProductProps = {
-  map(arg0: (s: any, i: any) => import("react/jsx-runtime").JSX.Element): unknown;
+  map(arg0: (item: unknown, index: unknown) => import("react/jsx-runtime").JSX.Element): unknown;
   product_id: number;
   discount: number;
   product_name: string;

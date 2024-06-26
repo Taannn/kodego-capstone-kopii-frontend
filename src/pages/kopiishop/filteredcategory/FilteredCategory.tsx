@@ -20,7 +20,7 @@ const FilteredCategory = () => {
       const response = await axios.get(`/shop/category/${category}`);
       setProducts(response.data.data);
     } catch (error) {
-      throw error;
+      console.error(`Error fetching: ${error}`);
     } finally {
       dispatch(setLoadingShop(false));
     }

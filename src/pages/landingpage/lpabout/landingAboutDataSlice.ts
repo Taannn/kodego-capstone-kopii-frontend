@@ -14,7 +14,7 @@ export const fetchLandingAboutData = createAsyncThunk('landingAboutData/fetchLan
     const response = await axios.get('/featuresdata');
     return response.data.data;
   } catch (error) {
-    throw error;
+    console.error(`Error fetching: ${error}`)
   } finally {
     dispatch(setLoadingLanding(false));
   }

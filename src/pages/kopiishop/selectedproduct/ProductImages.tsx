@@ -23,7 +23,7 @@ const ProductImages: React.FC<ProductImagesProps> = ({ productImg, productName }
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductImages
+export default ProductImages;

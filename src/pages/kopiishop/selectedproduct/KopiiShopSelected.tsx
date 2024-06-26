@@ -33,7 +33,7 @@ const KopiiShopSelected: React.FC = () => {
         <CurrentProduct shopSelectedProduct={currentProduct}/>
       ) : null}
     </div>
-  )
-}
+  );
+};
 
-export default KopiiShopSelected
+export default KopiiShopSelected;

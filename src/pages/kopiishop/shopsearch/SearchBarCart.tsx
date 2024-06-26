@@ -55,7 +55,7 @@ const SearchBarCart = () => {
         </Link>
       </div>
     </nav>
-  )
-}
+  );
+};
 
 export default SearchBarCart;

@@ -29,7 +29,7 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
       dispatch(setSuccessful(true));
       return response.data.data;
     } catch (error) {
-      throw error
+      console.error(`Error fetching: ${error}`);
     }
   }
 
@@ -62,7 +62,7 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
         dispatch(setSuccessful(false))
       }, 3000);
     }
-  }, [successfullyAdded])
+  }, [successfullyAdded, dispatch])
 
   return (
     <section className="categories pt-0 pt-md-2 mt-0 mt-md-2 px-3 px-md-0">
@@ -92,30 +92,30 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
       </section>
       <div className="container">
         <div className="row mt-3 mb-5 gy-3">
-          {shopProducts.map((s, i) => (
-            <div className="col-md-3 col-6" key={i}>
+          {shopProducts.map((item, index) => (
+            <div className="col-md-3 col-6" key={index}>
               <div className="text-decoration-none">
                 <div className="card card-hover-secondary position-relative bg-secondary text-light rounded overflow-hidden">
-                      {s.discount &&
-                      <Link to={`/kopiishop/${s.product_id}`} className="bg-danger text-light text-bold position-absolute ff-main mt-1 end-0 me-2 border border-2 border-dark text-info px-1 rounded text-sm">- {s.discount} %</Link>
+                      {item.discount &&
+                      <Link to={`/kopiishop/${item.product_id}`} className="bg-danger text-light text-bold position-absolute ff-main mt-1 end-0 me-2 border border-2 border-dark text-info px-1 rounded text-sm">- {item.discount} %</Link>
                       }
-                  <Link to={`/kopiishop/${s.product_id}`} className="category">
-                    <img src={s.product_img ? s.product_img : 'https://placehold.jp/600x400.png'} className="img-fluid" alt="" />
+                  <Link to={`/kopiishop/${item.product_id}`} className="category">
+                    <img src={item.product_img ? item.product_img : 'https://placehold.jp/600x400.png'} className="img-fluid" alt="" />
                   </Link>
-                  <Link to={`/kopiishop/${s.product_id}`} className="card-body px-3 pt-3 pb-0">
+                  <Link to={`/kopiishop/${item.product_id}`} className="card-body px-3 pt-3 pb-0">
                     <div className="card-title ff-main h6 m-0 text-ellipsis d-flex align-items-center justify-content-between">
-                      {s.product_name}
+                      {item.product_name}
 
                     </div>
-                      <Link to={`/kopiishop/${s.product_id}`} className="pricing d-flex w-100 ff-main justify-content-between align-content-center ">
-                        {s.discount ?
+                      <Link to={`/kopiishop/${item.product_id}`} className="pricing d-flex w-100 ff-main justify-content-between align-content-center ">
+                        {item.discount ?
                           <p className="text-bold fs-5 mb-1">
-                            ₱ {discountedPrice(parseFloat(s.product_price), s.discount)}
-                            <span className="text-info ms-1 fs-6 text-decoration-line-through">{new Intl.NumberFormat().format(parseFloat(s.product_price))}</span>
+                            ₱ {discountedPrice(parseFloat(item.product_price), item.discount)}
+                            <span className="text-info ms-1 fs-6 text-decoration-line-through">{new Intl.NumberFormat().format(parseFloat(item.product_price))}</span>
                           </p>
                         :
                           <p className="text-bold fs-5 mb-1">
-                            ₱ {new Intl.NumberFormat().format(parseFloat(s.product_price))}
+                            ₱ {new Intl.NumberFormat().format(parseFloat(item.product_price))}
                           </p>
 
                         }
@@ -127,7 +127,7 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
                           <a
                             className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bg-primary bs-primary fs-6 ls-1"
                             style={{ flex: 1 }}
-                            onClick={(e) => handleAddToCart(s.product_id, e)}
+                            onClick={(e) => handleAddToCart(item.product_id, e)}
                           >
                             Add to Cart
                             <i className="fa-solid fa-cart-shopping ms-2"></i>
@@ -146,7 +146,7 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
                         {localStorage.getItem('token') ?
                           <Link
                             to={"/shopcheckout"}
-                            onClick={(e) => handleSelectedProductDetail(1, s.product_id, discountedPrice(parseFloat(s.product_price), s.discount), s.product_img ? s.product_img : 'https://placehold.jp/600x400.png', s.product_name, s.product_desc, e)}
+                            onClick={(e) => handleSelectedProductDetail(1, item.product_id, discountedPrice(parseFloat(item.product_price), item.discount), item.product_img ? item.product_img : 'https://placehold.jp/600x400.png', item.product_name, item.product_desc, e)}
                             className="btn btn-primary rounded-1 text-info ff-main mb-2 d-none d-md-block bs-primary"
                           >
                             Buy Now
@@ -167,7 +167,7 @@ const ProductsWithSidebar: React.FC<KopiiShopProductProps> = ({ shopProducts, de
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default ProductsWithSidebar;

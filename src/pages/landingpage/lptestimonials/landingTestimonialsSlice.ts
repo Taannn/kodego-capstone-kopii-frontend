@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { setLoadingLanding } from '../../preloader/loadingSliceLanding'
-import { LandingTestimonialsInitState, LandingTestimonialsProps } from '../LandingPageProps'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { setLoadingLanding } from '../../preloader/loadingSliceLanding';
+import { LandingTestimonialsInitState, LandingTestimonialsProps } from '../LandingPageProps';
 
 const initialState: LandingTestimonialsInitState = {
   info: [],
@@ -14,7 +14,7 @@ export const fetchLandingTestimonials = createAsyncThunk('landingTestimonials/fe
     const response = await axios.get('/testimonials');
     return response.data.data;
   } catch (error) {
-    throw error;
+    console.error(`Error fetching: ${error}`);
   } finally {
     dispatch(setLoadingLanding(false));
   }
