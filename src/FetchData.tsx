@@ -35,11 +35,11 @@ const FetchingData: React.FC = () => {
       ) : (
         <>
           {data?.map((product) => (
-            <div key={product.id}>
+            <React.Fragment key={product.id}>
               <h1>{product.title}</h1>
               <p>{product.description}</p>
               <img src={product.image} alt={product.title} />
-            </div>
+            </React.Fragment>
           ))}
         </>
       )}
